@@ -7,7 +7,7 @@
 
 <html class="theme-next muse use-motion" lang>
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
@@ -121,7 +121,7 @@
 
 
 
-  <title>Effe's blog</title>
+  <title>Effe's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -140,7 +140,7 @@
     
   
 
-  <div class="container sidebar-position-left 
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
   page-home">
     <div class="headband"></div>
 
@@ -335,12 +335,12 @@
 </ol>
 <p>其中信息增益(也被称为互信息)的算法是:</p>
 <ol>
-<li>计算数据集$D$的经验熵$H(D)$<br>$$H(D)=-\sum^K_{k=1}\frac{|C_k|}{|D|}log_2\frac{|C_k|}{|D|}$$</li>
-<li>计算特征$A$对数据集$D$的经验条件熵$H(D|A)$<br>$$H(D|A)=\sum^n_{i=1}\frac{|D_i|}{|D|}H(D_i)=-\sum^n_{i=1}\frac{|D_i|}{|D|}\sum^K_{k=1}\frac{|D_{ik}|}{|D_i|}log_2\frac{|D_{ik}|}{|D_i|}$$</li>
-<li>计算信息增益<br>$$g(D,A)=H(D)-H(D|A)$$</li>
+<li>计算数据集$D$的经验熵$H(D)$<script type="math/tex; mode=display">H(D)=-\sum^K_{k=1}\frac{|C_k|}{|D|}log_2\frac{|C_k|}{|D|}</script></li>
+<li>计算特征$A$对数据集$D$的经验条件熵$H(D|A)$<script type="math/tex; mode=display">H(D|A)=\sum^n_{i=1}\frac{|D_i|}{|D|}H(D_i)=-\sum^n_{i=1}\frac{|D_i|}{|D|}\sum^K_{k=1}\frac{|D_{ik}|}{|D_i|}log_2\frac{|D_{ik}|}{|D_i|}</script></li>
+<li>计算信息增益<script type="math/tex; mode=display">g(D,A)=H(D)-H(D|A)</script></li>
 </ol>
-<p>信息增益比:<br>$$g_R(D,A)=\frac{g(D,A)}{H_A(D)}$$</p>
-
+<p>信息增益比:</p>
+<script type="math/tex; mode=display">g_R(D,A)=\frac{g(D,A)}{H_A(D)}</script>
           
         
       
@@ -467,7 +467,11 @@
 <ol>
 <li>选取初值$\omega_0,b_0$</li>
 <li>在训练集中选取数据$(x_i,y_i)$</li>
-<li>如果$y_i(\omega\cdot x_i+b)\leq0$<br>$$<br>\begin{aligned}<br> \omega&amp;\leftarrow\omega +\eta y_ix_i \<br> b&amp;\leftarrow b+\eta y_i<br>\end{aligned}<br>$$</li>
+<li>如果$y_i(\omega\cdot x_i+b)\leq0$<script type="math/tex; mode=display">
+\begin{aligned}
+ \omega&\leftarrow\omega +\eta y_ix_i \\
+ b&\leftarrow b+\eta y_i
+\end{aligned}</script></li>
 <li>重复算法,直至没有误分类点.</li>
 </ol>
 <p>感知机算法的对偶形式:</p>
@@ -476,12 +480,15 @@
 <li>在训练集中选取数据$(x_i,y_i)$</li>
 <li>如果$y_i(\sum^N_{j=1}\alpha_jy_jx_j\cdot x_i+b)\leq0$</li>
 </ol>
-<p>$$<br>    \begin{aligned}<br>        \alpha_i&amp;\leftarrow \alpha_i +\eta \<br>        b&amp;\leftarrow b+\eta y_i<br>    \end{aligned}<br>$$</p>
-<ol start="4">
+<script type="math/tex; mode=display">
+    \begin{aligned}
+        \alpha_i&\leftarrow \alpha_i +\eta \\
+        b&\leftarrow b+\eta y_i
+    \end{aligned}</script><ol>
 <li>重复算法,直至没有误分类点.</li>
 </ol>
-<p>对偶形式中用到了Gram矩阵,也就是对样本集做内积:<br>$$G=[x_i\cdot x_j]_{N\times N}$$</p>
-<p>感知机算法的缺点让这个算法的应用范围很窄,基本不会被实际用到.但是通过不同方向的改进,能够得到一些新的算法:比如因为感知机算法得到的解,依赖于初值的选择和迭代过程中选择误分类点的顺序,为了得到唯一超平面,需要引入约束条件,这就是线性SVM的思想；针对线性不可分的问题,通过多层感知机算法解决.</p>
+<p>对偶形式中用到了Gram矩阵,也就是对样本集做内积:</p>
+<script type="math/tex; mode=display">G=[x_i\cdot x_j]_{N\times N}</script><p>感知机算法的缺点让这个算法的应用范围很窄,基本不会被实际用到.但是通过不同方向的改进,能够得到一些新的算法:比如因为感知机算法得到的解,依赖于初值的选择和迭代过程中选择误分类点的顺序,为了得到唯一超平面,需要引入约束条件,这就是线性SVM的思想；针对线性不可分的问题,通过多层感知机算法解决.</p>
 
           
         
@@ -745,14 +752,15 @@
           
             <h4 id="今天主要完成的学习任务"><a href="#今天主要完成的学习任务" class="headerlink" title="今天主要完成的学习任务:"></a>今天主要完成的学习任务:</h4><ul>
 <li>朴素贝叶斯算法</li>
-<li>Julia重写感知机算法<br>朴素贝叶斯算法是典型的生成模型,生成模型由训练数据学习联合概率分布$P(X,Y)$,然后求得后验概率分布$P(Y|X)$.<br>$$P(X,Y)=P(Y)P(X|Y)$$<br>算法步骤:</li>
+<li>Julia重写感知机算法<br>朴素贝叶斯算法是典型的生成模型,生成模型由训练数据学习联合概率分布$P(X,Y)$,然后求得后验概率分布$P(Y|X)$.<script type="math/tex; mode=display">P(X,Y)=P(Y)P(X|Y)</script>算法步骤:</li>
 </ul>
 <ol>
-<li><p>计算先验概率及条件概率<br>$$P(Y=c_k)=\frac{\sum^N_{i=1}I(y_i=c_k)}{N}$$<br>$$P(X^(i)=a_{jl}|\frac{\sum^N_{i=1}I(x^{(j)}<em>i=a</em>{jl},y_i=c_k)}{\sum^N_{i=1}I(y_i=c_k)})$$<br>其中概率计算方法可以是极大似然估计或贝叶斯估计.</p>
+<li><p>计算先验概率及条件概率</p>
+<script type="math/tex; mode=display">P(Y=c_k)=\frac{\sum^N_{i=1}I(y_i=c_k)}{N}</script><script type="math/tex; mode=display">P(X^(i)=a_{jl}|\frac{\sum^N_{i=1}I(x^{(j)}_i=a_{jl},y_i=c_k)}{\sum^N_{i=1}I(y_i=c_k)})</script><p>其中概率计算方法可以是极大似然估计或贝叶斯估计.</p>
 </li>
-<li><p>对于给定的实例x计算<br>$$P(Y=c_k)\prod^n_{j=1}P(X^{(j)}=x^{(j)}|Y=c_k)$$</p>
-</li>
-<li>确定实例$x$的类<br>$$y=argmax_{c_k}P(Y=c_k)\prod^n_{j=1}P(X^{(j)}=x^{(j)|Y=c_k})$$</li>
+<li><p>对于给定的实例x计算</p>
+<script type="math/tex; mode=display">P(Y=c_k)\prod^n_{j=1}P(X^{(j)}=x^{(j)}|Y=c_k)</script></li>
+<li>确定实例$x$的类<script type="math/tex; mode=display">y=argmax_{c_k}P(Y=c_k)\prod^n_{j=1}P(X^{(j)}=x^{(j)|Y=c_k})</script></li>
 </ol>
 <p>&emsp;&emsp;对于连续值,采用的是高斯模型,即假设特征符合高斯分布；对于离散值,采用多项式模型；另外在伯努利模型中,每个特征的取值是布尔型,这个模型我还不是很清楚在什么场景下使用.</p>
 <p>&emsp;&emsp;朴素贝叶斯的基本假设是条件独立性,这是一个严格的条件,因此模型所需要的参数比较少.这个算法的优点主要有:</p>
@@ -1233,7 +1241,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
