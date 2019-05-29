@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Effe&#39;s blog">
 <meta property="og:description" content="今天主要完成的学习任务: 朴素贝叶斯算法 Julia重写感知机算法朴素贝叶斯算法是典型的生成模型,生成模型由训练数据学习联合概率分布$P(X,Y)$,然后求得后验概率分布$P(Y|X)$.$$P(X,Y)=P(Y)P(X|Y)$$算法步骤:   计算先验概率及条件概率$$P(Y=c_k)=\frac{\sum^N_{i=1}I(y_i=c_k)}{N}$$$$P(X^(i)=a_{jl}|\fra">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-29T02:20:48.810Z">
+<meta property="og:updated_time" content="2019-05-29T04:58:54.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Naive Bayesian">
 <meta name="twitter:description" content="今天主要完成的学习任务: 朴素贝叶斯算法 Julia重写感知机算法朴素贝叶斯算法是典型的生成模型,生成模型由训练数据学习联合概率分布$P(X,Y)$,然后求得后验概率分布$P(Y|X)$.$$P(X,Y)=P(Y)P(X|Y)$$算法步骤:   计算先验概率及条件概率$$P(Y=c_k)=\frac{\sum^N_{i=1}I(y_i=c_k)}{N}$$$$P(X^(i)=a_{jl}|\fra">
@@ -700,6 +700,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
