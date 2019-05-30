@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="今天主要完成的学习任务: 朴素贝叶斯算法 Julia重写感知机算法朴素贝叶斯算法是典型的生成模型,生成模型由训练数据学习联合概率分布$P(X,Y)$,然后求得后验概率分布$P(Y|X)$.P(X,Y)=P(Y)P(X|Y)算法步骤:   计算先验概率及条件概率 P(Y=c_k)=\frac{\sum^N_{i=1}I(y_i=c_k)}{N}P(X^(i)=a_{jl}|\frac{\sum^N_">
+<meta name="description" content="机器学习中的一些基本概念贝叶斯学习&amp;emsp;&amp;emsp;在概率模型的学习中, 利用贝叶斯定理, 计算后验概率,并进行模型估计, 对数据进行预测.将模型,未观测要素及其参数用变量表示.基本公式如下: P(\theta |D)=\frac{P(\theta)P(D|\theta)}{P(D)}&amp;emsp;&amp;emsp;其中$D$是数据, $\theta$是模型参数, $P(\theta)$是先验概率,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Naive Bayesian">
-<meta property="og:url" content="http://yoursite.com/2019/05/27/Naive-Bayesian/index.html">
+<meta property="og:title" content="Basic Concept">
+<meta property="og:url" content="http://yoursite.com/2019/05/30/Basic-Concept/index.html">
 <meta property="og:site_name" content="Effe&#39;s blog">
-<meta property="og:description" content="今天主要完成的学习任务: 朴素贝叶斯算法 Julia重写感知机算法朴素贝叶斯算法是典型的生成模型,生成模型由训练数据学习联合概率分布$P(X,Y)$,然后求得后验概率分布$P(Y|X)$.P(X,Y)=P(Y)P(X|Y)算法步骤:   计算先验概率及条件概率 P(Y=c_k)=\frac{\sum^N_{i=1}I(y_i=c_k)}{N}P(X^(i)=a_{jl}|\frac{\sum^N_">
+<meta property="og:description" content="机器学习中的一些基本概念贝叶斯学习&amp;emsp;&amp;emsp;在概率模型的学习中, 利用贝叶斯定理, 计算后验概率,并进行模型估计, 对数据进行预测.将模型,未观测要素及其参数用变量表示.基本公式如下: P(\theta |D)=\frac{P(\theta)P(D|\theta)}{P(D)}&amp;emsp;&amp;emsp;其中$D$是数据, $\theta$是模型参数, $P(\theta)$是先验概率,">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-29T06:20:31.042Z">
+<meta property="og:updated_time" content="2019-05-30T03:06:43.462Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Naive Bayesian">
-<meta name="twitter:description" content="今天主要完成的学习任务: 朴素贝叶斯算法 Julia重写感知机算法朴素贝叶斯算法是典型的生成模型,生成模型由训练数据学习联合概率分布$P(X,Y)$,然后求得后验概率分布$P(Y|X)$.P(X,Y)=P(Y)P(X|Y)算法步骤:   计算先验概率及条件概率 P(Y=c_k)=\frac{\sum^N_{i=1}I(y_i=c_k)}{N}P(X^(i)=a_{jl}|\frac{\sum^N_">
+<meta name="twitter:title" content="Basic Concept">
+<meta name="twitter:description" content="机器学习中的一些基本概念贝叶斯学习&amp;emsp;&amp;emsp;在概率模型的学习中, 利用贝叶斯定理, 计算后验概率,并进行模型估计, 对数据进行预测.将模型,未观测要素及其参数用变量表示.基本公式如下: P(\theta |D)=\frac{P(\theta)P(D|\theta)}{P(D)}&amp;emsp;&amp;emsp;其中$D$是数据, $\theta$是模型参数, $P(\theta)$是先验概率,">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/27/Naive-Bayesian/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/30/Basic-Concept/">
 
 
 
 
 
-  <title>Naive Bayesian | Effe's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Basic Concept | Effe's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -252,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/Naive-Bayesian/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/Basic-Concept/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Effe">
@@ -269,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Naive Bayesian</h1>
+          <h1 class="post-title" itemprop="name headline">Basic Concept</h1>
         
 
         <div class="post-meta">
@@ -281,8 +281,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-27T16:52:44+08:00">
-                2019-05-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-30T08:38:07+08:00">
+                2019-05-30
               </time>
             
 
@@ -341,29 +341,47 @@
       
 
       
-        <h4 id="今天主要完成的学习任务"><a href="#今天主要完成的学习任务" class="headerlink" title="今天主要完成的学习任务:"></a>今天主要完成的学习任务:</h4><ul>
-<li>朴素贝叶斯算法</li>
-<li>Julia重写感知机算法<br>朴素贝叶斯算法是典型的生成模型,生成模型由训练数据学习联合概率分布$P(X,Y)$,然后求得后验概率分布$P(Y|X)$.<script type="math/tex; mode=display">P(X,Y)=P(Y)P(X|Y)</script>算法步骤:</li>
-</ul>
-<ol>
-<li><p>计算先验概率及条件概率</p>
-<script type="math/tex; mode=display">P(Y=c_k)=\frac{\sum^N_{i=1}I(y_i=c_k)}{N}</script><script type="math/tex; mode=display">P(X^(i)=a_{jl}|\frac{\sum^N_{i=1}I(x^{(j)}_i=a_{jl},y_i=c_k)}{\sum^N_{i=1}I(y_i=c_k)})</script><p>其中概率计算方法可以是极大似然估计或贝叶斯估计.</p>
-</li>
-<li><p>对于给定的实例x计算</p>
-<script type="math/tex; mode=display">P(Y=c_k)\prod^n_{j=1}P(X^{(j)}=x^{(j)}|Y=c_k)</script></li>
-<li>确定实例$x$的类<script type="math/tex; mode=display">y=argmax_{c_k}P(Y=c_k)\prod^n_{j=1}P(X^{(j)}=x^{(j)|Y=c_k})</script></li>
-</ol>
-<p>&emsp;&emsp;对于连续值,采用的是高斯模型,即假设特征符合高斯分布；对于离散值,采用多项式模型；另外在伯努利模型中,每个特征的取值是布尔型,这个模型我还不是很清楚在什么场景下使用.</p>
-<p>&emsp;&emsp;朴素贝叶斯的基本假设是条件独立性,这是一个严格的条件,因此模型所需要的参数比较少.这个算法的优点主要有:</p>
-<ol>
-<li>对小规模的数据表现较好,能处理多分类任务.</li>
-<li>面对无关属性,$P(X_i|Y)$几乎是均匀分布,$X_i$类的条件概率不会对总的后验概率计算产生影响.</li>
-</ol>
-<p>&emsp;&emsp;缺点主要有:</p>
-<ol>
-<li>需要计算先验概率.</li>
-<li>输入变量必须是条件独立的,如果样本点之间存在概率依存关系,那么相关属性可能会降低朴素贝叶斯分类器的性能.</li>
-</ol>
+        <h4 id="机器学习中的一些基本概念"><a href="#机器学习中的一些基本概念" class="headerlink" title="机器学习中的一些基本概念"></a>机器学习中的一些基本概念</h4><h5 id="贝叶斯学习"><a href="#贝叶斯学习" class="headerlink" title="贝叶斯学习"></a>贝叶斯学习</h5><p>&emsp;&emsp;在概率模型的学习中, 利用贝叶斯定理, 计算后验概率,并进行模型估计, 对数据进行预测.将模型,未观测要素及其参数用变量表示.基本公式如下:</p>
+<script type="math/tex; mode=display">P(\theta |D)=\frac{P(\theta)P(D|\theta)}{P(D)}</script><p>&emsp;&emsp;其中$D$是数据, $\theta$是模型参数, $P(\theta)$是先验概率, $P(D|\theta)$是似然函数, $P(\theta |D)$是后验概率. 通常是取后验概率最大的模型.</p>
+<hr>
+<h5 id="经验风险最小化和结构风险最小化"><a href="#经验风险最小化和结构风险最小化" class="headerlink" title="经验风险最小化和结构风险最小化"></a>经验风险最小化和结构风险最小化</h5><p>&emsp;&emsp;在数据量足够大的时候,经验风险趋于期望风险,这时经验风险最小化就是求解模型最优化等价问题.</p>
+<script type="math/tex; mode=display">min_{f\in \mathcal{F}}\frac{1}{N}\sum^N_{i=1}L(y_i,f(x_i))</script><p>&emsp;&emsp;但是当样本量较小时,会存在过拟合现象.这时需要引入结构风险来防止过拟合.</p>
+<script type="math/tex; mode=display">min_{f\in \mathcal{F}}\frac{1}{N}\sum^N_{i=1}L(y_i,f(x_i))+\lambda J(f)</script><p>&emsp;&emsp;其中$J(f)$是模型复杂度,经典的方法是使用一个正则化项(如一范数,二范数),$\lambda$是用来权衡经验风险和模型复杂度的系数</p>
+<p>&emsp;&emsp;极大似然估计是经验风险最小化的例子.也就是损失函数是对数损失函数时,极大似然估计等价于经验风险最小化；贝叶斯估计中的最大后验概率估计是结构风险最小化的例子.也就是损失函数是对数损失函数,模型复杂度由模型先验概率表示时,最大后验概率估计等价于结构风险最小化.</p>
+<hr>
+<h5 id="模型泛化"><a href="#模型泛化" class="headerlink" title="模型泛化"></a>模型泛化</h5><p>&emsp;&emsp;泛化误差实际上就是学习到模型的期望风险.泛化能力分析通常是求泛化误差上界.# Todo(公式推导)</p>
+<hr>
+<h5 id="生成模型和判别模型"><a href="#生成模型和判别模型" class="headerlink" title="生成模型和判别模型"></a>生成模型和判别模型</h5><p>&emsp;&emsp;生成模型是由数据学习联合概率分布$P(X,Y)$,然后求出条件概率分布$P(Y|X)$作为预测的模型.典型的生成模型有朴素贝叶斯和隐马尔可夫模型.</p>
+<script type="math/tex; mode=display">P(Y|X)=\frac{P(X,Y)}{P(X)}</script><p>&emsp;&emsp;判别模型是由数据直接学习决策函数$f(X)$或者条件概率分布$P(Y|X)$作为预测的模型.</p>
+<p>&emsp;&emsp;显然生成模型关注输入$X$产生输出$Y$的生成关系,而判别模型关心给定输入$X$,应该预测什么样的输出$Y$；当样本容量增加时,生成模型的收敛速度更快；存在隐变量的时候,就只能使用生成模型；判别模型能够简化学习问题,对数据进行一定程度的抽象.</p>
+<hr>
+<h5 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">样本\预测</th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">TN</td>
+<td style="text-align:center">FP</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">FN</td>
+<td style="text-align:center">TP</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>精确率(precision): $P=\frac{TP}{TP+FP}$</p>
+<p>准确率(accuracy): $A=\frac{TP+TN}{TP+FP+FN+TN}$</p>
+<p>召回率(recall): $R=\frac{TP}{TP+FN}$</p>
+<p>F1值: $F_1=\frac{2PR}{P+R}=\frac{2TP}{2TP+FP+FN}$ </p>
 
       
     </div>
@@ -388,8 +406,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/26/first-blog/" rel="next" title="First Blog">
-                <i class="fa fa-chevron-left"></i> First Blog
+              <a href="/2019/05/29/Decision-Tree/" rel="next" title="Decision Tree">
+                <i class="fa fa-chevron-left"></i> Decision Tree
               </a>
             
           </div>
@@ -397,10 +415,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/29/KNN/" rel="prev" title="KNN">
-                KNN <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -523,7 +537,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#今天主要完成的学习任务"><span class="nav-number">1.</span> <span class="nav-text">今天主要完成的学习任务:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#机器学习中的一些基本概念"><span class="nav-number">1.</span> <span class="nav-text">机器学习中的一些基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#贝叶斯学习"><span class="nav-number">1.1.</span> <span class="nav-text">贝叶斯学习</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#经验风险最小化和结构风险最小化"><span class="nav-number">1.2.</span> <span class="nav-text">经验风险最小化和结构风险最小化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#模型泛化"><span class="nav-number">1.3.</span> <span class="nav-text">模型泛化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#生成模型和判别模型"><span class="nav-number">1.4.</span> <span class="nav-text">生成模型和判别模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#评价指标"><span class="nav-number">1.5.</span> <span class="nav-text">评价指标</span></a></li></ol></li></ol></div>
             
 
           </div>
