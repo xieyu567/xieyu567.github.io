@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="machine learning,">
+  <meta name="keywords" content="AI,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="k近邻算法k近邻算法是一种简单的机器学习算法. 算法步骤: 对于给定的距离度量,在训练集中找到与实例$x$最近的$k$个点. 根据分类决策规则决定$x$的类别$y$.  &amp;emsp;&amp;emsp;距离度量通常用欧式距离,常用的分类据测规则是多数表决.k值通常使用交叉验证选择最优值. &amp;emsp;&amp;emsp;kd树实际上是二分法在k维空间的扩展,对于训练集中个数较少的情况,kd树的实际表现并不如暴力扫">
-<meta name="keywords" content="machine learning">
+<meta name="description" content="第二章的习题 2.1&amp;emsp;&amp;emsp;还是以扫地机为例子,如果之前的序列是扫地机一直向右走并清扫灰尘,但是当前已经到了墙角下,无法再向右走,如果扫地机只依赖于之前的时间步,那么就会一直停止.因此理性Agent的行动不仅依赖于环境状态,也要考虑它到达的时间点. 2.21)&amp;emsp;&amp;emsp;要证明这个扫地机是理性Agent,就是要证明对每个可能的感知序列,根据已知的感知序列提供的证据和Ag">
+<meta name="keywords" content="AI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KNN">
-<meta property="og:url" content="http://yoursite.com/2019/05/29/KNN/index.html">
+<meta property="og:title" content="AI-chapter2">
+<meta property="og:url" content="http://yoursite.com/2019/06/11/AI-chapter2/index.html">
 <meta property="og:site_name" content="Effe&#39;s blog">
-<meta property="og:description" content="k近邻算法k近邻算法是一种简单的机器学习算法. 算法步骤: 对于给定的距离度量,在训练集中找到与实例$x$最近的$k$个点. 根据分类决策规则决定$x$的类别$y$.  &amp;emsp;&amp;emsp;距离度量通常用欧式距离,常用的分类据测规则是多数表决.k值通常使用交叉验证选择最优值. &amp;emsp;&amp;emsp;kd树实际上是二分法在k维空间的扩展,对于训练集中个数较少的情况,kd树的实际表现并不如暴力扫">
+<meta property="og:description" content="第二章的习题 2.1&amp;emsp;&amp;emsp;还是以扫地机为例子,如果之前的序列是扫地机一直向右走并清扫灰尘,但是当前已经到了墙角下,无法再向右走,如果扫地机只依赖于之前的时间步,那么就会一直停止.因此理性Agent的行动不仅依赖于环境状态,也要考虑它到达的时间点. 2.21)&amp;emsp;&amp;emsp;要证明这个扫地机是理性Agent,就是要证明对每个可能的感知序列,根据已知的感知序列提供的证据和Ag">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-10T07:42:24.964Z">
+<meta property="og:updated_time" content="2019-06-11T03:00:10.474Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KNN">
-<meta name="twitter:description" content="k近邻算法k近邻算法是一种简单的机器学习算法. 算法步骤: 对于给定的距离度量,在训练集中找到与实例$x$最近的$k$个点. 根据分类决策规则决定$x$的类别$y$.  &amp;emsp;&amp;emsp;距离度量通常用欧式距离,常用的分类据测规则是多数表决.k值通常使用交叉验证选择最优值. &amp;emsp;&amp;emsp;kd树实际上是二分法在k维空间的扩展,对于训练集中个数较少的情况,kd树的实际表现并不如暴力扫">
+<meta name="twitter:title" content="AI-chapter2">
+<meta name="twitter:description" content="第二章的习题 2.1&amp;emsp;&amp;emsp;还是以扫地机为例子,如果之前的序列是扫地机一直向右走并清扫灰尘,但是当前已经到了墙角下,无法再向右走,如果扫地机只依赖于之前的时间步,那么就会一直停止.因此理性Agent的行动不仅依赖于环境状态,也要考虑它到达的时间点. 2.21)&amp;emsp;&amp;emsp;要证明这个扫地机是理性Agent,就是要证明对每个可能的感知序列,根据已知的感知序列提供的证据和Ag">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/29/KNN/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/11/AI-chapter2/">
 
 
 
 
 
-  <title>KNN | Effe's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>AI-chapter2 | Effe's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/29/KNN/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/11/AI-chapter2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Effe">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">KNN</h1>
+          <h1 class="post-title" itemprop="name headline">AI-chapter2</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-29T09:41:47+08:00">
-                2019-05-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-11T07:44:46+08:00">
+                2019-06-11
               </time>
             
 
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-06-10T15:42:24+08:00">
-                2019-06-10
+              <time title="Post modified" itemprop="dateModified" datetime="2019-06-11T11:00:10+08:00">
+                2019-06-11
               </time>
             
           </span>
@@ -317,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/统计学习方法/" itemprop="url" rel="index">
-                    <span itemprop="name">统计学习方法</span>
+                  <a href="/categories/AI-an-answer-of-the-modern-method/" itemprop="url" rel="index">
+                    <span itemprop="name">AI-an answer of the modern method</span>
                   </a>
                 </span>
 
@@ -334,7 +334,7 @@
 
           
           
-             <span id="/2019/05/29/KNN/" class="leancloud_visitors" data-flag-title="KNN">
+             <span id="/2019/06/11/AI-chapter2/" class="leancloud_visitors" data-flag-title="AI-chapter2">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -365,26 +365,22 @@
       
 
       
-        <h4 id="k近邻算法"><a href="#k近邻算法" class="headerlink" title="k近邻算法"></a>k近邻算法</h4><p>k近邻算法是一种简单的机器学习算法.</p>
-<h5 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤:"></a>算法步骤:</h5><ol>
-<li>对于给定的距离度量,在训练集中找到与实例$x$最近的$k$个点.</li>
-<li>根据分类决策规则决定$x$的类别$y$.</li>
-</ol>
-<p>&emsp;&emsp;距离度量通常用欧式距离,常用的分类据测规则是多数表决.k值通常使用交叉验证选择最优值.</p>
-<p>&emsp;&emsp;kd树实际上是二分法在k维空间的扩展,对于训练集中个数较少的情况,kd树的实际表现并不如暴力扫描.</p>
-<hr>
-<p>&emsp;&emsp;KNN算法作为一个简单直观的算法存在以下优点:</p>
-<ol>
-<li>可用于非线性分类.</li>
-<li>对类别的判断只与局部的数据点有关,能够较好地避免样本数量的不平衡问题.</li>
-<li>直接使用样本之间关系,减少类别特征选择不当造成的不利影响,体现分类规则独立性的优势.</li>
-</ol>
-<p>&emsp;&emsp;同时,也存在一些不足:</p>
-<ol>
-<li>对样本的依赖性较高,对噪声敏感.</li>
-<li>距离度量的计算开销大,时间空间复杂度高.</li>
-<li>k值难以确定.</li>
-</ol>
+        <p>第二章的习题</p>
+<h4 id="2-1"><a href="#2-1" class="headerlink" title="2.1"></a>2.1</h4><p>&emsp;&emsp;还是以扫地机为例子,如果之前的序列是扫地机一直向右走并清扫灰尘,但是当前已经到了墙角下,无法再向右走,如果扫地机只依赖于之前的时间步,那么就会一直停止.因此理性Agent的行动不仅依赖于环境状态,也要考虑它到达的时间点.</p>
+<h4 id="2-2"><a href="#2-2" class="headerlink" title="2.2"></a>2.2</h4><h5 id="1"><a href="#1" class="headerlink" title="1)"></a>1)</h5><p>&emsp;&emsp;要证明这个扫地机是理性Agent,就是要证明对每个可能的感知序列,根据已知的感知序列提供的证据和Agent具有的先验知识,扫地机会选择能使其性能度量最大化的行动.先验知识是环境,也就是地板的分布.性能度量是每个时间步对每块清洁的方格奖励1分.因为只有左右两块地板,扫地机只具备向左,向右和打扫地面三个行动.按照之前的行动序列,可以认为这是能使性能度量分值的期望最高的行动.因此这个Agent是理性的.</p>
+<h5 id="2"><a href="#2" class="headerlink" title="2)"></a>2)</h5><p>&emsp;&emsp;如果给移动加一个代价,那么在扫地机就不能积极地进行移动.可以设计这样的一个函数:</p>
+<p>&emsp;&emsp;当A地板是干净的,下一步移动到B地板,如果B地板也是干净的,那么就停一步,也就是在一个时间步之后再移动到A地板,如果B地板是脏的,那么就没有时间延迟.同理,如果从B地板移动到A地板后,根据环境,在之前的时间延迟之上再加一个时间步的时间延迟.</p>
+<p>&emsp;&emsp;这样的Agent仍然是基于规则-行动的,没有复杂的内部状态,只是基于当前的环境对执行时间进行推迟,以减少移动带来的惩罚.</p>
+<h5 id="3"><a href="#3" class="headerlink" title="3)"></a>3)</h5><p>&emsp;&emsp;对于地理环境不明的情况,最好是使用随机的方式,也就是让机器自己学习到地理信息.</p>
+<h4 id="2-3"><a href="#2-3" class="headerlink" title="2.3"></a>2.3</h4><h5 id="a"><a href="#a" class="headerlink" title="a)"></a>a)</h5><p>&emsp;&emsp;并非不可能是完全理性的,在限制条件下采取的理性也可能是完美理性的,局部最优解可能就是全局最优解.</p>
+<h5 id="b"><a href="#b" class="headerlink" title="b)"></a>b)</h5><p>&emsp;&emsp;存在这样的情况,比如扫地机在需要给地面铺上沙子的任务,原来的规则就和现有的任务相悖,因此行动也会是不理性的.</p>
+<h5 id="c"><a href="#c" class="headerlink" title="c)"></a>c)</h5><p>&emsp;&emsp;存在.自动驾驶任务下,每个自动驾驶的汽车都会选择当前最佳的行动.</p>
+<h5 id="d"><a href="#d" class="headerlink" title="d)"></a>d)</h5><p>&emsp;&emsp;不是的,Agent程序以当前感知为输入,Agent函数以整个历史作为输入.</p>
+<h5 id="e"><a href="#e" class="headerlink" title="e)"></a>e)</h5><p>&emsp;&emsp;是的,Agent函数都可以用程序/机器组合实现.</p>
+<h5 id="f"><a href="#f" class="headerlink" title="f)"></a>f)</h5><p>&emsp;&emsp;不存在,完全是随机的话,就不存在最优解,那也就无法判断Agent是否是理性的.</p>
+<h5 id="g"><a href="#g" class="headerlink" title="g)"></a>g)</h5><p>&emsp;&emsp;可能,任务环境不同但是相近的才能使这句话成立,因为性能度量要一致,给定的Agent才能进行任务迁移.</p>
+<h5 id="h"><a href="#h" class="headerlink" title="h)"></a>h)</h5><p>&emsp;&emsp;在无法观察环境下,Agent也可能是理性的.</p>
+<h4 id="2-5"><a href="#2-5" class="headerlink" title="2.5"></a>2.5</h4><p>Agent: AI的最小单元 \<br>Agent函数: AI行动的逻辑单元 \<br>Agent程序: Agent函数的实现 \<br>反射Agent: 基于条件-行动准则的Agent,只关注当前输入. \<br>基于模型的Agent: 根据过去历史维持内部状态,通过先验知识(对现实建模)和内部状态决定行动.比如自动驾驶的汽车观察到上一帧前面的车没有点亮车灯,而当前时间后车灯同时亮了,根据先验知识,可以知道前车在刹车,同样根据先验知识,得到自己也需要刹车.由此由模型和内部状态得到了减速行为. \<br>基于目标的Agent: 在前面的基础上加上目标信息.还是前车刹车的例子.基于目标的Agent是通过推理的形式得到,因为前车刹车了,为了不和前车相撞,我也需要刹车.也就是不同与前面是基于规则,基于目标的Agent能够推理进行决策. \<br>基于效用的Agent: 在上面的基础上再引入效用函数.用来评价行动和决策的分数.评价行为是否是经济,高效的. \<br>学习Agent: 能够实现自学习的Agent,通过Critic, Learning element, Performance element, Problem generator四个组件实现.</p>
 
       
     </div>
@@ -402,7 +398,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+            <a href="/tags/AI/" rel="tag"># AI</a>
           
         </div>
       
@@ -415,8 +411,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/27/Naive-Bayesian/" rel="next" title="Naive Bayesian">
-                <i class="fa fa-chevron-left"></i> Naive Bayesian
+              <a href="/2019/06/10/AI-Chapter1/" rel="next" title="AI-Chapter1">
+                <i class="fa fa-chevron-left"></i> AI-Chapter1
               </a>
             
           </div>
@@ -425,8 +421,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/29/Perceptron/" rel="prev" title="Perceptron">
-                Perceptron <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/19/亚述/" rel="prev" title="亚述">
+                亚述 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -559,7 +555,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#k近邻算法"><span class="nav-number">1.</span> <span class="nav-text">k近邻算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#算法步骤"><span class="nav-number">1.1.</span> <span class="nav-text">算法步骤:</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1"><span class="nav-number">1.</span> <span class="nav-text">2.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2"><span class="nav-number">2.</span> <span class="nav-text">2.2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1"><span class="nav-number">2.1.</span> <span class="nav-text">1)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2"><span class="nav-number">2.2.</span> <span class="nav-text">2)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3"><span class="nav-number">2.3.</span> <span class="nav-text">3)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3"><span class="nav-number">3.</span> <span class="nav-text">2.3</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#a"><span class="nav-number">3.1.</span> <span class="nav-text">a)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#b"><span class="nav-number">3.2.</span> <span class="nav-text">b)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#c"><span class="nav-number">3.3.</span> <span class="nav-text">c)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#d"><span class="nav-number">3.4.</span> <span class="nav-text">d)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#e"><span class="nav-number">3.5.</span> <span class="nav-text">e)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#f"><span class="nav-number">3.6.</span> <span class="nav-text">f)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#g"><span class="nav-number">3.7.</span> <span class="nav-text">g)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#h"><span class="nav-number">3.8.</span> <span class="nav-text">h)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5"><span class="nav-number">4.</span> <span class="nav-text">2.5</span></a></li></ol></div>
             
 
           </div>
