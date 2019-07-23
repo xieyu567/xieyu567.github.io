@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="AI,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="第二章的习题 2.1&amp;emsp;&amp;emsp;还是以扫地机为例子,如果之前的序列是扫地机一直向右走并清扫灰尘,但是当前已经到了墙角下,无法再向右走,如果扫地机只依赖于之前的时间步,那么就会一直停止.因此理性Agent的行动不仅依赖于环境状态,也要考虑它到达的时间点. 2.21)&amp;emsp;&amp;emsp;要证明这个扫地机是理性Agent,就是要证明对每个可能的感知序列,根据已知的感知序列提供的证据和Ag">
+<meta name="keywords" content="AI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI-chapter2">
+<meta property="og:url" content="http://yoursite.com/2019/06/11/AI-chapter2/index.html">
+<meta property="og:site_name" content="Effe&#39;s blog">
+<meta property="og:description" content="第二章的习题 2.1&amp;emsp;&amp;emsp;还是以扫地机为例子,如果之前的序列是扫地机一直向右走并清扫灰尘,但是当前已经到了墙角下,无法再向右走,如果扫地机只依赖于之前的时间步,那么就会一直停止.因此理性Agent的行动不仅依赖于环境状态,也要考虑它到达的时间点. 2.21)&amp;emsp;&amp;emsp;要证明这个扫地机是理性Agent,就是要证明对每个可能的感知序列,根据已知的感知序列提供的证据和Ag">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-11T03:00:10.474Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI-chapter2">
+<meta name="twitter:description" content="第二章的习题 2.1&amp;emsp;&amp;emsp;还是以扫地机为例子,如果之前的序列是扫地机一直向右走并清扫灰尘,但是当前已经到了墙角下,无法再向右走,如果扫地机只依赖于之前的时间步,那么就会一直停止.因此理性Agent的行动不仅依赖于环境状态,也要考虑它到达的时间点. 2.21)&amp;emsp;&amp;emsp;要证明这个扫地机是理性Agent,就是要证明对每个可能的感知序列,根据已知的感知序列提供的证据和Ag">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/11/AI-chapter2/">
+
+
+
+
+
+  <title>AI-chapter2 | Effe's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Effe's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/11/AI-chapter2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AI-chapter2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-11T07:44:46+08:00">
+                2019-06-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-06-11T11:00:10+08:00">
+                2019-06-11
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI-an-answer-of-the-modern-method/" itemprop="url" rel="index">
+                    <span itemprop="name">AI-an answer of the modern method</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>第二章的习题</p>
+<h4 id="2-1"><a href="#2-1" class="headerlink" title="2.1"></a>2.1</h4><p>&emsp;&emsp;还是以扫地机为例子,如果之前的序列是扫地机一直向右走并清扫灰尘,但是当前已经到了墙角下,无法再向右走,如果扫地机只依赖于之前的时间步,那么就会一直停止.因此理性Agent的行动不仅依赖于环境状态,也要考虑它到达的时间点.</p>
+<h4 id="2-2"><a href="#2-2" class="headerlink" title="2.2"></a>2.2</h4><h5 id="1"><a href="#1" class="headerlink" title="1)"></a>1)</h5><p>&emsp;&emsp;要证明这个扫地机是理性Agent,就是要证明对每个可能的感知序列,根据已知的感知序列提供的证据和Agent具有的先验知识,扫地机会选择能使其性能度量最大化的行动.先验知识是环境,也就是地板的分布.性能度量是每个时间步对每块清洁的方格奖励1分.因为只有左右两块地板,扫地机只具备向左,向右和打扫地面三个行动.按照之前的行动序列,可以认为这是能使性能度量分值的期望最高的行动.因此这个Agent是理性的.</p>
+<h5 id="2"><a href="#2" class="headerlink" title="2)"></a>2)</h5><p>&emsp;&emsp;如果给移动加一个代价,那么在扫地机就不能积极地进行移动.可以设计这样的一个函数:</p>
+<p>&emsp;&emsp;当A地板是干净的,下一步移动到B地板,如果B地板也是干净的,那么就停一步,也就是在一个时间步之后再移动到A地板,如果B地板是脏的,那么就没有时间延迟.同理,如果从B地板移动到A地板后,根据环境,在之前的时间延迟之上再加一个时间步的时间延迟.</p>
+<p>&emsp;&emsp;这样的Agent仍然是基于规则-行动的,没有复杂的内部状态,只是基于当前的环境对执行时间进行推迟,以减少移动带来的惩罚.</p>
+<h5 id="3"><a href="#3" class="headerlink" title="3)"></a>3)</h5><p>&emsp;&emsp;对于地理环境不明的情况,最好是使用随机的方式,也就是让机器自己学习到地理信息.</p>
+<h4 id="2-3"><a href="#2-3" class="headerlink" title="2.3"></a>2.3</h4><h5 id="a"><a href="#a" class="headerlink" title="a)"></a>a)</h5><p>&emsp;&emsp;并非不可能是完全理性的,在限制条件下采取的理性也可能是完美理性的,局部最优解可能就是全局最优解.</p>
+<h5 id="b"><a href="#b" class="headerlink" title="b)"></a>b)</h5><p>&emsp;&emsp;存在这样的情况,比如扫地机在需要给地面铺上沙子的任务,原来的规则就和现有的任务相悖,因此行动也会是不理性的.</p>
+<h5 id="c"><a href="#c" class="headerlink" title="c)"></a>c)</h5><p>&emsp;&emsp;存在.自动驾驶任务下,每个自动驾驶的汽车都会选择当前最佳的行动.</p>
+<h5 id="d"><a href="#d" class="headerlink" title="d)"></a>d)</h5><p>&emsp;&emsp;不是的,Agent程序以当前感知为输入,Agent函数以整个历史作为输入.</p>
+<h5 id="e"><a href="#e" class="headerlink" title="e)"></a>e)</h5><p>&emsp;&emsp;是的,Agent函数都可以用程序/机器组合实现.</p>
+<h5 id="f"><a href="#f" class="headerlink" title="f)"></a>f)</h5><p>&emsp;&emsp;不存在,完全是随机的话,就不存在最优解,那也就无法判断Agent是否是理性的.</p>
+<h5 id="g"><a href="#g" class="headerlink" title="g)"></a>g)</h5><p>&emsp;&emsp;可能,任务环境不同但是相近的才能使这句话成立,因为性能度量要一致,给定的Agent才能进行任务迁移.</p>
+<h5 id="h"><a href="#h" class="headerlink" title="h)"></a>h)</h5><p>&emsp;&emsp;在无法观察环境下,Agent也可能是理性的.</p>
+<h4 id="2-5"><a href="#2-5" class="headerlink" title="2.5"></a>2.5</h4><p>Agent: AI的最小单元 \<br>Agent函数: AI行动的逻辑单元 \<br>Agent程序: Agent函数的实现 \<br>反射Agent: 基于条件-行动准则的Agent,只关注当前输入. \<br>基于模型的Agent: 根据过去历史维持内部状态,通过先验知识(对现实建模)和内部状态决定行动.比如自动驾驶的汽车观察到上一帧前面的车没有点亮车灯,而当前时间后车灯同时亮了,根据先验知识,可以知道前车在刹车,同样根据先验知识,得到自己也需要刹车.由此由模型和内部状态得到了减速行为. \<br>基于目标的Agent: 在前面的基础上加上目标信息.还是前车刹车的例子.基于目标的Agent是通过推理的形式得到,因为前车刹车了,为了不和前车相撞,我也需要刹车.也就是不同与前面是基于规则,基于目标的Agent能够推理进行决策. \<br>基于效用的Agent: 在上面的基础上再引入效用函数.用来评价行动和决策的分数.评价行为是否是经济,高效的. \<br>学习Agent: 能够实现自学习的Agent,通过Critic, Learning element, Performance element, Problem generator四个组件实现.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI/" rel="tag"># AI</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/10/AI-Chapter1/" rel="next" title="AI-Chapter1">
+                <i class="fa fa-chevron-left"></i> AI-Chapter1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/19/亚述/" rel="prev" title="亚述">
+                亚述 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Effe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1"><span class="nav-number">1.</span> <span class="nav-text">2.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2"><span class="nav-number">2.</span> <span class="nav-text">2.2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1"><span class="nav-number">2.1.</span> <span class="nav-text">1)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2"><span class="nav-number">2.2.</span> <span class="nav-text">2)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3"><span class="nav-number">2.3.</span> <span class="nav-text">3)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3"><span class="nav-number">3.</span> <span class="nav-text">2.3</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#a"><span class="nav-number">3.1.</span> <span class="nav-text">a)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#b"><span class="nav-number">3.2.</span> <span class="nav-text">b)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#c"><span class="nav-number">3.3.</span> <span class="nav-text">c)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#d"><span class="nav-number">3.4.</span> <span class="nav-text">d)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#e"><span class="nav-number">3.5.</span> <span class="nav-text">e)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#f"><span class="nav-number">3.6.</span> <span class="nav-text">f)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#g"><span class="nav-number">3.7.</span> <span class="nav-text">g)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#h"><span class="nav-number">3.8.</span> <span class="nav-text">h)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5"><span class="nav-number">4.</span> <span class="nav-text">2.5</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Effe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
