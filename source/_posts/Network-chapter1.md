@@ -79,3 +79,19 @@ whois google.com
 1. 总时延为$2*(5*10^3b/1Gbps+10*10^{-6})=30\mu s$
 2. 有三个交换机,即是有4个链路总时延为上题的两倍,即$60\mu s$
 3. 对于直通式转发,交换机上只有$128b/1Gbps=128ns$的延迟,加上4个传播延迟和1个传输延迟,总延迟为$45.384\mu s$.
+
+#### 1.27
+
+1. 带宽为$1920*1080*24*30=1.492992Gbps\approx 1.5Gbps$
+2. 带宽为$8000*8=64Kbps$
+3. 带宽为$260*50=13kbps$
+4. 带宽为$24*88200=2.1168Mbps\approx 2.1Mbps$
+
+#### 1.37
+
+![](https://i.loli.net/2019/07/24/5d37afba402a934744.png)
+&emsp;&emsp;这里只设置了5跳,星号可能是防火墙封掉了ICMP的返回.第一跳是我的网关,一共发送4个数据包,后面显示的是数据包返回的时间.
+
+&emsp;&emsp;traceroute是利用ICMP包和IP头的TTL位.具体是traceroute先发送一个TTL为1的数据包,当到达路径上第一个路由时,TTL减1,路由器收到TTL为0的包便会丢弃,并返回ICMP time exceeded的信息,traceroute收到返回的包,便可知道路径上的路由器信息.接着发送第二个包,TTL为2.以此累加,一直到到达目的地址.因为traceroute发送的包中port number是一个一般应用程序不会用到的端口(30000以上),因此目标主机会返回ICMP port unreachable的信息.traceroute收到信息就知道已到达了目标地址.
+
+&emsp;&emsp;很显然可以看出对于一些路由器丢弃TTL为0的包时,不返回信息,那么traceroute就没法工作.

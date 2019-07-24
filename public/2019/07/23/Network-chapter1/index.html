@@ -87,10 +87,12 @@
 <meta property="og:site_name" content="Effe&#39;s blog">
 <meta property="og:description" content="章节一的习题: 1.1&amp;emsp;&amp;emsp;匿名ftp有三种方法:  用户名为anonymous,密码为空 用户名为FTP,密码为空或FTP 用户名为USER,密码为pass  &amp;emsp;&amp;emsp;majaro可以使用fileZilla这个ftp工具. 题中的ftp站点结构和题目描述不符, 如果需要RFC规范可以在IETF(Internet Engineering Task Force)获取">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-23T08:05:35.988Z">
+<meta property="og:image" content="https://i.loli.net/2019/07/24/5d37afba402a934744.png">
+<meta property="og:updated_time" content="2019-07-24T01:25:56.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Network-chapter1">
 <meta name="twitter:description" content="章节一的习题: 1.1&amp;emsp;&amp;emsp;匿名ftp有三种方法:  用户名为anonymous,密码为空 用户名为FTP,密码为空或FTP 用户名为USER,密码为pass  &amp;emsp;&amp;emsp;majaro可以使用fileZilla这个ftp工具. 题中的ftp站点结构和题目描述不符, 如果需要RFC规范可以在IETF(Internet Engineering Task Force)获取">
+<meta name="twitter:image" content="https://i.loli.net/2019/07/24/5d37afba402a934744.png">
 
 
 
@@ -298,8 +300,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-07-23T16:05:35+08:00">
-                2019-07-23
+              <time title="Post modified" itemprop="dateModified" datetime="2019-07-24T09:25:56+08:00">
+                2019-07-24
               </time>
             
           </span>
@@ -392,6 +394,15 @@
 <li>有三个交换机,即是有4个链路总时延为上题的两倍,即$60\mu s$</li>
 <li>对于直通式转发,交换机上只有$128b/1Gbps=128ns$的延迟,加上4个传播延迟和1个传输延迟,总延迟为$45.384\mu s$.</li>
 </ol>
+<h4 id="1-27"><a href="#1-27" class="headerlink" title="1.27"></a>1.27</h4><ol>
+<li>带宽为$1920<em>1080</em>24*30=1.492992Gbps\approx 1.5Gbps$</li>
+<li>带宽为$8000*8=64Kbps$</li>
+<li>带宽为$260*50=13kbps$</li>
+<li>带宽为$24*88200=2.1168Mbps\approx 2.1Mbps$</li>
+</ol>
+<h4 id="1-37"><a href="#1-37" class="headerlink" title="1.37"></a>1.37</h4><p><img src="https://i.loli.net/2019/07/24/5d37afba402a934744.png" alt><br>&emsp;&emsp;这里只设置了5跳,星号可能是防火墙封掉了ICMP的返回.第一跳是我的网关,一共发送4个数据包,后面显示的是数据包返回的时间.</p>
+<p>&emsp;&emsp;traceroute是利用ICMP包和IP头的TTL位.具体是traceroute先发送一个TTL为1的数据包,当到达路径上第一个路由时,TTL减1,路由器收到TTL为0的包便会丢弃,并返回ICMP time exceeded的信息,traceroute收到返回的包,便可知道路径上的路由器信息.接着发送第二个包,TTL为2.以此累加,一直到到达目的地址.因为traceroute发送的包中port number是一个一般应用程序不会用到的端口(30000以上),因此目标主机会返回ICMP port unreachable的信息.traceroute收到信息就知道已到达了目标地址.</p>
+<p>&emsp;&emsp;很显然可以看出对于一些路由器丢弃TTL为0的包时,不返回信息,那么traceroute就没法工作.</p>
 
       
     </div>
@@ -562,7 +573,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1"><span class="nav-number">1.</span> <span class="nav-text">1.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2"><span class="nav-number">2.</span> <span class="nav-text">1.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3"><span class="nav-number">3.</span> <span class="nav-text">1.3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4"><span class="nav-number">4.</span> <span class="nav-text">1.4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-amp-1-6"><span class="nav-number">5.</span> <span class="nav-text">1.5&amp;1.6</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7"><span class="nav-number">6.</span> <span class="nav-text">1.7</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-8"><span class="nav-number">7.</span> <span class="nav-text">1.8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9"><span class="nav-number">8.</span> <span class="nav-text">1.9</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-10"><span class="nav-number">9.</span> <span class="nav-text">1.10</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-11"><span class="nav-number">10.</span> <span class="nav-text">1.11</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-12"><span class="nav-number">11.</span> <span class="nav-text">1.12</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-13-amp-1-14"><span class="nav-number">12.</span> <span class="nav-text">1.13&amp;1.14</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-17"><span class="nav-number">13.</span> <span class="nav-text">1.17</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1"><span class="nav-number">1.</span> <span class="nav-text">1.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2"><span class="nav-number">2.</span> <span class="nav-text">1.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3"><span class="nav-number">3.</span> <span class="nav-text">1.3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4"><span class="nav-number">4.</span> <span class="nav-text">1.4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-amp-1-6"><span class="nav-number">5.</span> <span class="nav-text">1.5&amp;1.6</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7"><span class="nav-number">6.</span> <span class="nav-text">1.7</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-8"><span class="nav-number">7.</span> <span class="nav-text">1.8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9"><span class="nav-number">8.</span> <span class="nav-text">1.9</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-10"><span class="nav-number">9.</span> <span class="nav-text">1.10</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-11"><span class="nav-number">10.</span> <span class="nav-text">1.11</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-12"><span class="nav-number">11.</span> <span class="nav-text">1.12</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-13-amp-1-14"><span class="nav-number">12.</span> <span class="nav-text">1.13&amp;1.14</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-17"><span class="nav-number">13.</span> <span class="nav-text">1.17</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-27"><span class="nav-number">14.</span> <span class="nav-text">1.27</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-37"><span class="nav-number">15.</span> <span class="nav-text">1.37</span></a></li></ol></div>
             
 
           </div>
