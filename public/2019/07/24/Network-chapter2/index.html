@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="machine learning,">
+  <meta name="keywords" content="Network,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="k近邻算法k近邻算法是一种简单的机器学习算法. 算法步骤: 对于给定的距离度量,在训练集中找到与实例$x$最近的$k$个点. 根据分类决策规则决定$x$的类别$y$.  &amp;emsp;&amp;emsp;距离度量通常用欧式距离,常用的分类据测规则是多数表决.k值通常使用交叉验证选择最优值. &amp;emsp;&amp;emsp;kd树实际上是二分法在k维空间的扩展,对于训练集中个数较少的情况,kd树的实际表现并不如暴力扫">
-<meta name="keywords" content="machine learning">
+<meta name="description" content="章节二的习题: 2.1&amp;emsp;&amp;emsp;几种编码方法的区分: NRZ:&amp;emsp;低电平时为0,高电平时为1.对于连续的1或0,基线漂移和时钟同步会带来问题.接收方一般是用信号的平均值作为基线判断高低电平,如果连续出现1或0,基线会变化,接收方检测信号就会出现问题.另外接收方必须与发送方的时钟完全同步才能解析NRZ信号,这样布线成本会很高,之后的编码方法通过在信号内的跳变让接收方能够恢复时钟">
+<meta name="keywords" content="Network">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KNN">
-<meta property="og:url" content="http://yoursite.com/2019/05/29/KNN/index.html">
+<meta property="og:title" content="Network-chapter2">
+<meta property="og:url" content="http://yoursite.com/2019/07/24/Network-chapter2/index.html">
 <meta property="og:site_name" content="Effe&#39;s blog">
-<meta property="og:description" content="k近邻算法k近邻算法是一种简单的机器学习算法. 算法步骤: 对于给定的距离度量,在训练集中找到与实例$x$最近的$k$个点. 根据分类决策规则决定$x$的类别$y$.  &amp;emsp;&amp;emsp;距离度量通常用欧式距离,常用的分类据测规则是多数表决.k值通常使用交叉验证选择最优值. &amp;emsp;&amp;emsp;kd树实际上是二分法在k维空间的扩展,对于训练集中个数较少的情况,kd树的实际表现并不如暴力扫">
+<meta property="og:description" content="章节二的习题: 2.1&amp;emsp;&amp;emsp;几种编码方法的区分: NRZ:&amp;emsp;低电平时为0,高电平时为1.对于连续的1或0,基线漂移和时钟同步会带来问题.接收方一般是用信号的平均值作为基线判断高低电平,如果连续出现1或0,基线会变化,接收方检测信号就会出现问题.另外接收方必须与发送方的时钟完全同步才能解析NRZ信号,这样布线成本会很高,之后的编码方法通过在信号内的跳变让接收方能够恢复时钟">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-10T07:42:24.964Z">
+<meta property="og:updated_time" content="2019-07-24T03:09:58.321Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KNN">
-<meta name="twitter:description" content="k近邻算法k近邻算法是一种简单的机器学习算法. 算法步骤: 对于给定的距离度量,在训练集中找到与实例$x$最近的$k$个点. 根据分类决策规则决定$x$的类别$y$.  &amp;emsp;&amp;emsp;距离度量通常用欧式距离,常用的分类据测规则是多数表决.k值通常使用交叉验证选择最优值. &amp;emsp;&amp;emsp;kd树实际上是二分法在k维空间的扩展,对于训练集中个数较少的情况,kd树的实际表现并不如暴力扫">
+<meta name="twitter:title" content="Network-chapter2">
+<meta name="twitter:description" content="章节二的习题: 2.1&amp;emsp;&amp;emsp;几种编码方法的区分: NRZ:&amp;emsp;低电平时为0,高电平时为1.对于连续的1或0,基线漂移和时钟同步会带来问题.接收方一般是用信号的平均值作为基线判断高低电平,如果连续出现1或0,基线会变化,接收方检测信号就会出现问题.另外接收方必须与发送方的时钟完全同步才能解析NRZ信号,这样布线成本会很高,之后的编码方法通过在信号内的跳变让接收方能够恢复时钟">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/29/KNN/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/24/Network-chapter2/">
 
 
 
 
 
-  <title>KNN | Effe's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Network-chapter2 | Effe's blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/29/KNN/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/24/Network-chapter2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Effe">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">KNN</h1>
+          <h1 class="post-title" itemprop="name headline">Network-chapter2</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-29T09:41:47+08:00">
-                2019-05-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-24T09:45:43+08:00">
+                2019-07-24
               </time>
             
 
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-06-10T15:42:24+08:00">
-                2019-06-10
+              <time title="Post modified" itemprop="dateModified" datetime="2019-07-24T11:09:58+08:00">
+                2019-07-24
               </time>
             
           </span>
@@ -317,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/统计学习方法/" itemprop="url" rel="index">
-                    <span itemprop="name">统计学习方法</span>
+                  <a href="/categories/Computer-Network-A-Systems-Approach/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Network A Systems Approach</span>
                   </a>
                 </span>
 
@@ -354,26 +354,18 @@
       
 
       
-        <h4 id="k近邻算法"><a href="#k近邻算法" class="headerlink" title="k近邻算法"></a>k近邻算法</h4><p>k近邻算法是一种简单的机器学习算法.</p>
-<h5 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤:"></a>算法步骤:</h5><ol>
-<li>对于给定的距离度量,在训练集中找到与实例$x$最近的$k$个点.</li>
-<li>根据分类决策规则决定$x$的类别$y$.</li>
-</ol>
-<p>&emsp;&emsp;距离度量通常用欧式距离,常用的分类据测规则是多数表决.k值通常使用交叉验证选择最优值.</p>
-<p>&emsp;&emsp;kd树实际上是二分法在k维空间的扩展,对于训练集中个数较少的情况,kd树的实际表现并不如暴力扫描.</p>
-<hr>
-<p>&emsp;&emsp;KNN算法作为一个简单直观的算法存在以下优点:</p>
-<ol>
-<li>可用于非线性分类.</li>
-<li>对类别的判断只与局部的数据点有关,能够较好地避免样本数量的不平衡问题.</li>
-<li>直接使用样本之间关系,减少类别特征选择不当造成的不利影响,体现分类规则独立性的优势.</li>
-</ol>
-<p>&emsp;&emsp;同时,也存在一些不足:</p>
-<ol>
-<li>对样本的依赖性较高,对噪声敏感.</li>
-<li>距离度量的计算开销大,时间空间复杂度高.</li>
-<li>k值难以确定.</li>
-</ol>
+        <p>章节二的习题:</p>
+<h4 id="2-1"><a href="#2-1" class="headerlink" title="2.1"></a>2.1</h4><p>&emsp;&emsp;几种编码方法的区分:</p>
+<p><strong>NRZ</strong>:&emsp;低电平时为0,高电平时为1.对于连续的1或0,基线漂移和时钟同步会带来问题.接收方一般是用信号的平均值作为基线判断高低电平,如果连续出现1或0,基线会变化,接收方检测信号就会出现问题.另外接收方必须与发送方的时钟完全同步才能解析NRZ信号,这样布线成本会很高,之后的编码方法通过在信号内的跳变让接收方能够恢复时钟.</p>
+<p><strong>NRZI</strong>:&emsp;信号为1时,进行跳变,信号为0时,不变.这种编码方式解决了连续的1的情况,但是没有解决连续的0的情况.</p>
+<p><strong>曼彻斯特编码</strong>:&emsp;用NRZ和时钟进行异或操作.信号为0时由低向高跳变,信号为1时由高向低跳变.因此接收方也能够很好的恢复时钟.但是因为跳变频率(波特率)加倍,曼彻斯特编码的效率只有NRZ和NRZI的一半.</p>
+<p><strong>4B/5B编码</strong>:&emsp;用5比特来编码4比特信号,然后使用NRZI编码传输.通过限制连续的0的数量(最多一个前导0,最多两个末尾0)来解决NRZI的问题,同时效率比曼彻斯特编码要高(80%).</p>
+<h4 id="2-2"><a href="#2-2" class="headerlink" title="2.2"></a>2.2</h4><p>&emsp;&emsp;4B/5B编码为11100 01011 11110 10101</p>
+<h4 id="2-4"><a href="#2-4" class="headerlink" title="2.4"></a>2.4</h4><p>&emsp;&emsp;HDLC中比特填充过程如下.发送方在5个连续的1后填充0(除了表示帧开始和结束的01111110),接收方在接收到5个1后分情况处理,如果后面跟着0,那么去掉0;如果后面是10,那么为帧特殊比特序列;如果后面是11,那么为无效帧,丢弃整个帧.</p>
+<p>因此比特序列为1101011111<font color="red">0</font>01011111<font color="red">0</font>101011111<font color="red">0</font>110</p>
+<h4 id="2-7"><a href="#2-7" class="headerlink" title="2.7"></a>2.7</h4><p>&emsp;&emsp;比特序列为01101011111<font color="red">0</font>1010011111<font color="red">1</font>10110<font color="red">01111110</font></p>
+<p>&emsp;&emsp;前一个0为应该移除的比特填充位,下一个1为传输错误造成的位,最后是表示帧结束的特殊比特序列.</p>
+<h4 id="2-8"><a href="#2-8" class="headerlink" title="2.8"></a>2.8</h4><p>&emsp;&emsp;</p>
 
       
     </div>
@@ -391,7 +383,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+            <a href="/tags/Network/" rel="tag"># Network</a>
           
         </div>
       
@@ -404,8 +396,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/27/Naive-Bayesian/" rel="next" title="Naive Bayesian">
-                <i class="fa fa-chevron-left"></i> Naive Bayesian
+              <a href="/2019/07/23/Network-chapter1/" rel="next" title="Network-chapter1">
+                <i class="fa fa-chevron-left"></i> Network-chapter1
               </a>
             
           </div>
@@ -413,10 +405,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/29/Perceptron/" rel="prev" title="Perceptron">
-                Perceptron <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -548,7 +536,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#k近邻算法"><span class="nav-number">1.</span> <span class="nav-text">k近邻算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#算法步骤"><span class="nav-number">1.1.</span> <span class="nav-text">算法步骤:</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1"><span class="nav-number">1.</span> <span class="nav-text">2.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2"><span class="nav-number">2.</span> <span class="nav-text">2.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4"><span class="nav-number">3.</span> <span class="nav-text">2.4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7"><span class="nav-number">4.</span> <span class="nav-text">2.7</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8"><span class="nav-number">5.</span> <span class="nav-text">2.8</span></a></li></ol></div>
             
 
           </div>
