@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Effe&#39;s blog">
 <meta property="og:description" content="章节二的习题: 2.1&amp;emsp;&amp;emsp;几种编码方法的区分: &amp;emsp;&amp;emsp;NRZ:&amp;emsp;低电平时为0,高电平时为1.对于连续的1或0,基线漂移和时钟同步会带来问题.接收方一般是用信号的平均值作为基线判断高低电平,如果连续出现1或0,基线会变化,接收方检测信号就会出现问题;另外接收方必须与发送方的时钟完全同步才能解析NRZ信号,这样布线成本会很高,之后的编码方法通过在信号内的">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-22T07:00:03.156Z">
+<meta property="og:updated_time" content="2019-08-24T04:21:06.433Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Network-chapter2">
 <meta name="twitter:description" content="章节二的习题: 2.1&amp;emsp;&amp;emsp;几种编码方法的区分: &amp;emsp;&amp;emsp;NRZ:&amp;emsp;低电平时为0,高电平时为1.对于连续的1或0,基线漂移和时钟同步会带来问题.接收方一般是用信号的平均值作为基线判断高低电平,如果连续出现1或0,基线会变化,接收方检测信号就会出现问题;另外接收方必须与发送方的时钟完全同步才能解析NRZ信号,这样布线成本会很高,之后的编码方法通过在信号内的">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-08-22T15:00:03+08:00">
-                2019-08-22
+              <time title="Post modified" itemprop="dateModified" datetime="2019-08-24T12:21:06+08:00">
+                2019-08-24
               </time>
             
           </span>
@@ -374,7 +374,14 @@
 <p>2)用得到的扩展后的消息除$C(x)$,得到余数.</p>
 <p>3)从扩展后的消息中减去余数(等于直接和k个0异或,即把k个0替换成余数)</p>
 <p>&emsp;&emsp;对消息1011 0010 0100 1011后面加8个0,然后除1000 00111,得余数1001 0011,最后应传输的信息为1011 0010 0100 1011 1001 0011</p>
-<h4 id="2-22"><a href="#2-22" class="headerlink" title="2.22"></a>2.22</h4>
+<h4 id="2-23"><a href="#2-23" class="headerlink" title="2.23"></a>2.23</h4><p>&emsp;&emsp;a) 时延$=40km/(2*10^8m/s)=0.2ms$</p>
+<p>&emsp;&emsp;b) 超时值$=2*EstinateRTT=0.8ms$</p>
+<p>&emsp;&emsp;c) 因为网络可能会有拥塞等情况,仍然可能出现超时.</p>
+<h4 id="2-25"><a href="#2-25" class="headerlink" title="2.25"></a>2.25</h4><p>&emsp;&emsp;$RTT=2<em>3</em>10^4km/(3*10^8m/s)=0.2s$</p>
+<p>&emsp;&emsp;时延带宽积为$10^6bps/(10^3<em>8b)</em>0.2s=25$帧.</p>
+<p>&emsp;&emsp;也就是在RWS=1的情况下,需要5比特作为序号.因为$MaxSeqNum\geq SWS+1$. </p>
+<p>&emsp;&emsp;在RWS=SWS的情况下,需要6比特,因为$SWS&lt;(MaxSeqNum+1)/2$.</p>
+
       
     </div>
     
@@ -413,6 +420,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/24/Network-chapter3/" rel="prev" title="Network-chapter3">
+                Network-chapter3 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -489,7 +500,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -544,7 +555,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1"><span class="nav-number">1.</span> <span class="nav-text">2.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2"><span class="nav-number">2.</span> <span class="nav-text">2.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4"><span class="nav-number">3.</span> <span class="nav-text">2.4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7"><span class="nav-number">4.</span> <span class="nav-text">2.7</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-11"><span class="nav-number">5.</span> <span class="nav-text">2.11</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-14"><span class="nav-number">6.</span> <span class="nav-text">2.14</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-19"><span class="nav-number">7.</span> <span class="nav-text">2.19</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-22"><span class="nav-number">8.</span> <span class="nav-text">2.22</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1"><span class="nav-number">1.</span> <span class="nav-text">2.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2"><span class="nav-number">2.</span> <span class="nav-text">2.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4"><span class="nav-number">3.</span> <span class="nav-text">2.4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7"><span class="nav-number">4.</span> <span class="nav-text">2.7</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-11"><span class="nav-number">5.</span> <span class="nav-text">2.11</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-14"><span class="nav-number">6.</span> <span class="nav-text">2.14</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-19"><span class="nav-number">7.</span> <span class="nav-text">2.19</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-23"><span class="nav-number">8.</span> <span class="nav-text">2.23</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-25"><span class="nav-number">9.</span> <span class="nav-text">2.25</span></a></li></ol></div>
             
 
           </div>
