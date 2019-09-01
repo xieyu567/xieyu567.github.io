@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Effe&#39;s blog">
 <meta property="og:description" content="章节三的习题: 3.2    Exercise Switch Input Output        {Port, VCI} {Port, VCI}   a) 1 0&amp;emsp;0 1&amp;emsp;0     2 3&amp;emsp;0 1&amp;emsp;0     4 3&amp;emsp;0 0&amp;emsp;0   b) 3 3&amp;emsp;0 0&amp;emsp;0     2 0&amp;emsp;0 1&amp;emsp;1">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-24T07:03:09.654Z">
+<meta property="og:updated_time" content="2019-08-30T02:49:58.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Network-chapter3">
 <meta name="twitter:description" content="章节三的习题: 3.2    Exercise Switch Input Output        {Port, VCI} {Port, VCI}   a) 1 0&amp;emsp;0 1&amp;emsp;0     2 3&amp;emsp;0 1&amp;emsp;0     4 3&amp;emsp;0 0&amp;emsp;0   b) 3 3&amp;emsp;0 0&amp;emsp;0     2 0&amp;emsp;0 1&amp;emsp;1">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-08-24T15:03:09+08:00">
-                2019-08-24
+              <time title="Post modified" itemprop="dateModified" datetime="2019-08-30T10:49:58+08:00">
+                2019-08-30
               </time>
             
           </span>
@@ -676,11 +676,97 @@
 </tbody>
 </table>
 </div>
-<h4 id="3-5"><a href="#3-5" class="headerlink" title="3.5"></a>3.5</h4><p>一共有三条VC</p>
+<h4 id="3-5"><a href="#3-5" class="headerlink" title="3.5"></a>3.5</h4><p>&emsp;&emsp;一共有三条VC</p>
 <p>1)从A到B,使用S1的1和2端口.</p>
 <p>2)从A到D,使用S1的1和3端口,S2的1和3端口,S3的1和2端口.</p>
 <p>3)从B到D,使用S1的2和3端口,S2的1和3端口,S3的1和2端口.</p>
-<h4 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h4>
+<h4 id="3-13"><a href="#3-13" class="headerlink" title="3.13"></a>3.13</h4><p>&emsp;&emsp;网桥和端口之间的映射关系为<br>Bridge | Port<br>:—-: | :—-:<br>B1|C&emsp;E<br>B2|A&emsp;B<br>B3|D&emsp;E&emsp;F&emsp;G&emsp;H<br>B4|G&emsp;I<br>B5|Idle<br>B6|J&emsp;H<br>B7|A&emsp;C</p>
+<h4 id="3-15"><a href="#3-15" class="headerlink" title="3.15"></a>3.15</h4><p>B1: A-interface: A; B2-interface: C<br>B2: B1-interface: A; B3-interface: C; B4-interface: D<br>B3: B2-interface: A,D; C-interface: C<br>B4: B2-interface: D; D-interface: D</p>
+<h4 id="3-22"><a href="#3-22" class="headerlink" title="3.22"></a>3.22</h4><p>&emsp;&emsp;集线器主要的问题是冲突问题,任何主机发送的包都会在集线器处冲突.</p>
+<h4 id="3-26"><a href="#3-26" class="headerlink" title="3.26"></a>3.26</h4><p>&emsp;&emsp;因为总线速度低于内存带宽,所以总线速度是瓶颈,因为每个包要经过总线两次,所以传输效率应为一半$800Mbps/2=400Mbps$,一共能处理$400Mbps/100Mbps=4$个接口.</p>
+<h4 id="3-29"><a href="#3-29" class="headerlink" title="3.29"></a>3.29</h4><p>&emsp;&emsp;a) 输入队列满的时候会丢失这样的分组</p>
+<p>&emsp;&emsp;b) 这叫做<em>head-of line blocking</em>(排头阻塞)</p>
+<p>&emsp;&emsp;c)在输出队列中配置缓存,这样只有在输出队列满的时候才会丢失分组.</p>
+<h4 id="3-33"><a href="#3-33" class="headerlink" title="3.33"></a>3.33</h4><p>&emsp;&emsp;有一种方法叫做”unnumbered point-to-point link”,用于发送的端口不和其他网络中其他主机通信,其他主机也无法访问到该端口,而这个端口只能发送数据.参考RFC1812,section2.2.7.</p>
+<h4 id="3-34"><a href="#3-34" class="headerlink" title="3.34"></a>3.34</h4><p>&emsp;&emsp;ipv4的offset字段为13位,而ip包的长度为$2^{16}$,因此分组的偏移应为$2^{16}/2^{13}=8$</p>
+<h4 id="3-46"><a href="#3-46" class="headerlink" title="3.46"></a>3.46</h4><p>a)<br>||A|B|C|D|E|F<br>:—-: | :—-: | :—-: | :—-: | :—-:| :—-: | :—-: | :—-:<br>A|0|$\infty$|3|8|$\infty$|$\infty$<br>B|$\infty$|0|$\infty$|$\infty$|2|$\infty$|<br>C|3|$\infty$|0|$\infty$|1|6|<br>D|8|$\infty$|$\infty$|0|2|$\infty$|<br>E|$\infty$|2|1|2|0|$\infty$|<br>F|$\infty$|$\infty$|6|$\infty$|$\infty$|0</p>
+<p>b)<br>||A|B|C|D|E|F<br>:—-: | :—-: | :—-: | :—-: | :—-:| :—-: | :—-: | :—-:<br>A|0|$\infty$|3|8|4|9<br>B|$\infty$|0|3|4|2|$\infty$<br>C|3|3|0|3|1|6<br>D|8|4|3|0|2|$\infty$<br>E|4|2|1|2|0|7<br>F|9|$\infty$|6|$\infty$|7|0</p>
+<p>c)<br>||A|B|C|D|E|F<br>:—-: | :—-: | :—-: | :—-: | :—-:| :—-: | :—-: | :—-:<br>A|0|6|3|8|4|9<br>B|6|0|3|4|2|9<br>C|3|3|0|3|1|6<br>D|8|4|3|0|2|9<br>E|4|2|1|2|0|7<br>F|9|9|6|9|7|0</p>
+<h4 id="3-48"><a href="#3-48" class="headerlink" title="3.48"></a>3.48</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Confirmed</th>
+<th style="text-align:center">Tentative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">(D,0,-)</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">(D,0,-)</td>
+<td style="text-align:center">(A,8,A)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td>(E,2,E)</td>
+</tr>
+<tr>
+<td style="text-align:center">(D,0,-), (E,2,E)</td>
+<td style="text-align:center">(B,4,E)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td>(C,3,E)</td>
+</tr>
+<tr>
+<td style="text-align:center">(D,0,-), (E,2,E), (C,3,E)</td>
+<td style="text-align:center">(A,6,E)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td>(F,9,E)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td>(B,4,E)</td>
+</tr>
+<tr>
+<td style="text-align:center">(D,0,-), (E,2,E), (C,3,E), (B,4,E)</td>
+<td style="text-align:center">(A,6,E)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td>(F,9,E)</td>
+</tr>
+<tr>
+<td style="text-align:center">(D,0,-), (E,2,E), (C,3,E), (B,4,E), (A,6,E)</td>
+<td style="text-align:center">(F,9,E)</td>
+</tr>
+<tr>
+<td style="text-align:center">(D,0,-), (E,2,E), (C,3,E), (B,4,E), (A,6,E),(F,9,E)</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="3-55"><a href="#3-55" class="headerlink" title="3.55"></a>3.55</h4><p>a)128.96.39.10和子网号128.96.39.0匹配,数据包会转发到接口0.</p>
+<p>b)同理,128.96.40.12地址的数据包转发给R2.</p>
+<p>c)因为子网掩码是255.255.255.128,所以对于目标地址128.96.40.151的子网号是128.96.40.128,可见路由表中没有这个子网号,所以转发到默认的R4.</p>
+<h4 id="3-68"><a href="#3-68" class="headerlink" title="3.68"></a>3.68</h4><p>a)根据四个子网的主机数量,A需要128个地址,B需要64个地址,C和D需要32个地址.<br>则可以设计:</p>
+<p>A的子网号为12.1.1.0/25</p>
+<p>B的子网号为12.1.1.128/26</p>
+<p>C的子网号为12.1.1.192/27</p>
+<p>D的子网号为12.1.1.224/27.</p>
+<p>b)以上的设计已经可以容纳32的主机数量,如果再增加主机可以通过网桥连接,或者是重新划分子网的方式.</p>
+
       
     </div>
     
@@ -719,6 +805,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/30/Network-chapter4/" rel="prev" title="Newtwork-chapter4 ">
+                Newtwork-chapter4  <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -795,7 +885,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -850,7 +940,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2"><span class="nav-number">1.</span> <span class="nav-text">3.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3"><span class="nav-number">2.</span> <span class="nav-text">3.3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5"><span class="nav-number">3.</span> <span class="nav-text">3.5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3"><span class="nav-number">4.</span> <span class="nav-text">3.</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2"><span class="nav-number">1.</span> <span class="nav-text">3.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3"><span class="nav-number">2.</span> <span class="nav-text">3.3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5"><span class="nav-number">3.</span> <span class="nav-text">3.5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-13"><span class="nav-number">4.</span> <span class="nav-text">3.13</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-15"><span class="nav-number">5.</span> <span class="nav-text">3.15</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-22"><span class="nav-number">6.</span> <span class="nav-text">3.22</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-26"><span class="nav-number">7.</span> <span class="nav-text">3.26</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-29"><span class="nav-number">8.</span> <span class="nav-text">3.29</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-33"><span class="nav-number">9.</span> <span class="nav-text">3.33</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-34"><span class="nav-number">10.</span> <span class="nav-text">3.34</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-46"><span class="nav-number">11.</span> <span class="nav-text">3.46</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-48"><span class="nav-number">12.</span> <span class="nav-text">3.48</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-55"><span class="nav-number">13.</span> <span class="nav-text">3.55</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-68"><span class="nav-number">14.</span> <span class="nav-text">3.68</span></a></li></ol></div>
             
 
           </div>
