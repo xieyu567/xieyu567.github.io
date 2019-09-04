@@ -21,5 +21,18 @@ $ESTABLISHED\rightarrow FIN\_WAIT\_1\rightarrow FIN\_WAIT\_2\rightarrow TIME\_WA
 对于主机B,状态转移的顺序是:
 $ESTABLISHED\rightarrow CLOSE\_WAIT\rightarrow TIME\_WAIT\rightarrow CLOSED$
 
-#### 5.5
-&emsp;&emsp;
+#### 5.9
+&emsp;&emsp;已知延迟带宽积为$100*10^{-3}s*1*10^9bps=10^8b=12.5MB$,因此接收端的窗口大小为24(因为$2^{24}=1.67*10^7$,并且报文段最小为1字节).
+
+&emsp;&emsp;SequenceNum用来防止在最大段生存期内回绕.在段最大生存期能够发送$30s*1Gbps=3.75GB$的数据,因此需要32位($2^{32}=4.3G$).
+
+#### 5.12
+a)TCP的序号字段有32位,也就是在达到回绕之前能够发送$2^{32}B$数据,因此需要$2^{32}B/(10^9bps/8)=34s$
+
+b)在回绕时间内增量1000次,就是每34ms增量一次.
+
+#### 5.14
+a)如果是重传,那么前后两个包的序号应该是一致的,如果是主机B崩溃重启,那么后发送的包序号和之前的不同.因为初始建立TCP连接时初始序号是随机选择的.
+
+#### 5.16
+a)伪造的分组发送到主机A后,A会返回分组给B,但是由于ACK+1,B识别这是个无效的分组后,发送RST给A,重置TCP连接.
