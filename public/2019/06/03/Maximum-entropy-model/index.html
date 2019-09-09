@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Effe&#39;s blog">
 <meta property="og:description" content="最大熵模型&amp;emsp;&amp;emsp;最大熵模型是生成模型,根据最大熵原理,在满足约束条件的模型集合中选择熵最大的模型.在模型集合C中,最大熵模型是条件概率分布$P(Y|X)$上的条件熵$H(P)$最大的模型: H(P)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)其中$\widetilde{P}{x}$是经验分布.  最大熵模型推导&amp;emsp;&amp;emsp;条件">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-10T07:42:39.644Z">
+<meta property="og:updated_time" content="2019-09-02T00:33:44.036Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Maximum-entropy-model">
 <meta name="twitter:description" content="最大熵模型&amp;emsp;&amp;emsp;最大熵模型是生成模型,根据最大熵原理,在满足约束条件的模型集合中选择熵最大的模型.在模型集合C中,最大熵模型是条件概率分布$P(Y|X)$上的条件熵$H(P)$最大的模型: H(P)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)其中$\widetilde{P}{x}$是经验分布.  最大熵模型推导&amp;emsp;&amp;emsp;条件">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-06-10T15:42:39+08:00">
-                2019-06-10
+              <time title="Post modified" itemprop="dateModified" datetime="2019-09-02T08:33:44+08:00">
+                2019-09-02
               </time>
             
           </span>
@@ -392,7 +392,7 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
     &=\sum_{x,y}\widetilde{P}(x)(logP(y|x)+1-\omega_0-\sum^n_{i=1}\omega_i f_i(x,y))
 \end{aligned}</script><p>&emsp;&emsp;令上式为0,$\widetilde{P}(x)$&gt;0时,</p>
 <script type="math/tex; mode=display">P(y|x)=exp(\sum^n_{i=1}\omega_i f_i(x,y)+\omega_0-1)=\frac{exp(\sum^n_{i=1}\omega_i f_i(x,y))}{exp(1-\omega_0)}</script><p>&emsp;&emsp;因为约束条件$\sum_y P(y|x)=1$:</p>
-<script type="math/tex; mode=display">\sum_yP(y|x)=\sum_y \frac{exp(\sum^n_{i=1}\omega_i f_i(x,y))}{exp(1-\omega_0)}=1</script><script type="math/tex; mode=display">exp(\omega_0-1)=\frac{1}{\sum_yexp(\sum^n_{i=1}\omega_i f_i(x,y))}</script><p>&emsp;&emsp;令$Z_\lambda(x)=\sum_yexp(\sum^n_{i=1}\omega_i f_i(x,y))$,$Z_\omega(x)$被称为规范化因子,最终的式子为:</p>
+<script type="math/tex; mode=display">\sum_yP(y|x)=\sum_y \frac{exp(\sum^n_{i=1}\omega_i f_i(x,y))}{exp(1-\omega_0)}=1</script><script type="math/tex; mode=display">exp(\omega_0-1)=\frac{1}{\sum_yexp(\sum^n_{i=1}\omega_i f_i(x,y))}</script><p>&emsp;&emsp;令$Z<em>\lambda(x)=\sum_yexp(\sum^n</em>{i=1}\omega<em>i f_i(x,y))$,$Z</em>\omega(x)$被称为规范化因子,最终的式子为:</p>
 <script type="math/tex; mode=display">P_\omega(y|x)=\frac{1}{Z_\omega(x)}exp(\sum^n_{i=1}\omega_i f_i(x,y))</script><p>&emsp;&emsp;然后再求极大值问题,也就是再对$\omega$求偏导,令式子为0,求得$\omega$的极大值:</p>
 <script type="math/tex; mode=display">argmax_\omega\Psi(\omega)</script><p>&emsp;&emsp;最后这一步求极大值等价于最大熵模型的极大似然函数,似然函数的形式为条件概率分布为$P(y|x)$的对数似然函数.</p>
 

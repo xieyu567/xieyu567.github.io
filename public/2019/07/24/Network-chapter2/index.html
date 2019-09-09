@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Effe&#39;s blog">
 <meta property="og:description" content="章节二的习题: 2.1&amp;emsp;&amp;emsp;几种编码方法的区分: &amp;emsp;&amp;emsp;NRZ:&amp;emsp;低电平时为0,高电平时为1.对于连续的1或0,基线漂移和时钟同步会带来问题.接收方一般是用信号的平均值作为基线判断高低电平,如果连续出现1或0,基线会变化,接收方检测信号就会出现问题;另外接收方必须与发送方的时钟完全同步才能解析NRZ信号,这样布线成本会很高,之后的编码方法通过在信号内的">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-24T04:21:06.433Z">
+<meta property="og:updated_time" content="2019-09-09T07:21:44.397Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Network-chapter2">
 <meta name="twitter:description" content="章节二的习题: 2.1&amp;emsp;&amp;emsp;几种编码方法的区分: &amp;emsp;&amp;emsp;NRZ:&amp;emsp;低电平时为0,高电平时为1.对于连续的1或0,基线漂移和时钟同步会带来问题.接收方一般是用信号的平均值作为基线判断高低电平,如果连续出现1或0,基线会变化,接收方检测信号就会出现问题;另外接收方必须与发送方的时钟完全同步才能解析NRZ信号,这样布线成本会很高,之后的编码方法通过在信号内的">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-08-24T12:21:06+08:00">
-                2019-08-24
+              <time title="Post modified" itemprop="dateModified" datetime="2019-09-09T15:21:44+08:00">
+                2019-09-09
               </time>
             
           </span>
@@ -369,7 +369,7 @@
 <p>&emsp;&emsp;出现3比特错.可能的情况有三行各出现1个比特错;一行出现2比特错,另一行出现1比特错;一行出现3比特错.第一种情况在每个校验位和检验字节都能检测到.第二种情况在检验字节能够检测和检验位能够检测到.第三种情况同样可以在检验字节和出现差错的检验位检测到.</p>
 <p>&emsp;&emsp;二维奇偶检验能够检测所有的1,3比特错及大部分2,4比特错,例外的4比特错情况为,两行各出现2比特错,并且比特位一致,二维奇偶检验无法检测这种情况.例外的2比特错情况为,同一行出现2比特错,则在行校验中无法检查出,即使通过列校验知道出错的比特位在哪一列.</p>
 <h4 id="2-14"><a href="#2-14" class="headerlink" title="2.14"></a>2.14</h4><p>&emsp;&emsp;对于两个非零数,在没有溢出的情况下,肯定不会为F0000,在溢出的情况下,需要加进位,则一定$&gt;$F0001.</p>
-<h4 id="2-19"><a href="#2-19" class="headerlink" title="2.19"></a>2.19</h4><p>&emsp;&emsp;CRC校验码的步骤,已知用于传输的多项式$C(x)$长为$k$.</p>
+<h4 id="2-19"><a href="#2-19" class="headerlink" title="2.19"></a>2.19</h4><p>&emsp;&emsp;CRC校验码的步骤,已知用于传输的多项式$C(x)$最高幂次为$k$.</p>
 <p>1)在消息的后面扩展$k$个0</p>
 <p>2)用得到的扩展后的消息除$C(x)$,得到余数.</p>
 <p>3)从扩展后的消息中减去余数(等于直接和k个0异或,即把k个0替换成余数)</p>

@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Effe&#39;s blog">
 <meta property="og:description" content="章节1的习题解习题1&amp;emsp;&amp;emsp;似然估计用于在已知一些参数的情况下,预测接下来在观测上所得到的结果.因为似然函数只与采样数据有关,因此也被称为采样分布. &amp;emsp;&amp;emsp;对于一个概率分布$D$,已知概率密度函数为$f_D$,一个参数$\theta$,抽出有n个值的采样,则似然函数为 L(x_1,...,x_n|\theta)=f_\theta(x_1,...,x_n)&amp;emsp">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-10T07:42:00.758Z">
+<meta property="og:updated_time" content="2019-09-02T00:33:44.035Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Exercise 1">
 <meta name="twitter:description" content="章节1的习题解习题1&amp;emsp;&amp;emsp;似然估计用于在已知一些参数的情况下,预测接下来在观测上所得到的结果.因为似然函数只与采样数据有关,因此也被称为采样分布. &amp;emsp;&amp;emsp;对于一个概率分布$D$,已知概率密度函数为$f_D$,一个参数$\theta$,抽出有n个值的采样,则似然函数为 L(x_1,...,x_n|\theta)=f_\theta(x_1,...,x_n)&amp;emsp">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-06-10T15:42:00+08:00">
-                2019-06-10
+              <time title="Post modified" itemprop="dateModified" datetime="2019-09-02T08:33:44+08:00">
+                2019-09-02
               </time>
             
           </span>
@@ -381,7 +381,7 @@
 <h5 id="习题2"><a href="#习题2" class="headerlink" title="习题2"></a>习题2</h5><p>&emsp;&emsp;经验风险最小化:</p>
 <script type="math/tex; mode=display">min_{f\in F}=\frac{1}{N}\sum^N_{i=1}L(y_i,f(x_i))</script><p>&emsp;&emsp;根据条件有,损失函数为对数损失函数,即:</p>
 <script type="math/tex; mode=display">L(y_i,f(x_i))=-logP(y_i|x_i)</script><p>&emsp;&emsp;将损失函数代入,得到:</p>
-<script type="math/tex; mode=display">min_{P}\frac{1}{N}\sum^N_{i=1}(-logP(y_i|x_i))=\frac{1}{N}max_plog(\prod^N_{i=1}P(y_i|x_i))</script><p>&emsp;&emsp;去掉不相关项得到$max_p\prod^N_{i=1}P(y_i|x_i)$.<br>显然这是极大似然估计,因此在模型是条件概率分布,损失函数是对数损失函数时,经验风险最小化等价于极大似然估计.</p>
+<script type="math/tex; mode=display">min_{P}\frac{1}{N}\sum^N_{i=1}(-logP(y_i|x_i))=\frac{1}{N}max_plog(\prod^N_{i=1}P(y_i|x_i))</script><p>&emsp;&emsp;去掉不相关项得到$max<em>p\prod^N</em>{i=1}P(y_i|x_i)$.<br>显然这是极大似然估计,因此在模型是条件概率分布,损失函数是对数损失函数时,经验风险最小化等价于极大似然估计.</p>
 
       
     </div>
