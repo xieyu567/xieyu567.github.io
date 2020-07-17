@@ -13,6 +13,7 @@ mathjax: true
     brew install hadoop
     brew install apache-spark
     brew install apache-flink
+    brew install redis
 ```
 
 需要注意的点
@@ -67,8 +68,9 @@ mathjax: true
 
 这个提示不会影响运行，但是很烦，需要用源码编译出native-hadoop library。但是试了几次都没有成功，暂时先搁置。
 
-默认端口：
+默认命令和端口：
 1. namenode：localhost:9870
 2. ResourceManager: localhost:8088
 3. Flink: localhost:8081
 4. Spark: localhost: 8080
+5. brew services start redis
