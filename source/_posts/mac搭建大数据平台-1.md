@@ -24,7 +24,7 @@ mathjax: true
     ~/.ssh/id_rsa.pub >> ~/.ssh authorized_keys
 ```
 
-1. secondary namenode配置。因为安装了IDEA，所以0.0.0.0与secondary namenode的默认值冲突，会显示
+2. secondary namenode配置。因为安装了IDEA，所以0.0.0.0与secondary namenode的默认值冲突，会显示
    
 ```bash
    secondary namenodes [account.jetbrains.com]
@@ -41,7 +41,7 @@ mathjax: true
 
 另外在伪分布模式中需要将dfs.replication的值改为1，默认值为3。
 
-1. 修改JAVA_HOME
+3. 修改JAVA_HOME
 
 ```bash
    /usr/libexec/JAVA_HOME -V
@@ -53,7 +53,7 @@ mathjax: true
     export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home
 ```
 
-1. hdfs安全模式
+4. hdfs安全模式
 
 ```bash
     hdfs dfsadmin -safemode leave/get/enter
@@ -61,7 +61,7 @@ mathjax: true
 
 参数分别是退出safemode，取得safemode状态和进入safemode。
 
-1. 错误提示的消除方法
+5. 错误提示的消除方法
    
 ```bash
     WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
@@ -73,5 +73,5 @@ mathjax: true
 1. namenode：localhost:9870
 2. ResourceManager: localhost:8088
 3. Flink: localhost:8081
-4. Spark: localhost: 8080
+4. Spark: localhost:8080
 5. brew services start redis
