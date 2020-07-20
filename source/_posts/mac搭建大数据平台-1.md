@@ -1,5 +1,5 @@
 ---
-title: mac搭建大数据平台
+title: mac搭建大数据平台(1)-hadoop
 date: 2020-07-16 21:51:36
 categories: big data
 tags: big data
@@ -14,6 +14,7 @@ mathjax: true
     brew install apache-spark
     brew install apache-flink
     brew install redis
+    brew install hive
 ```
 
 需要注意的点
