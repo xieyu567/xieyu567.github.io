@@ -61,6 +61,7 @@ hive的配置比较简单，在mac上配置postgresql作为元数据库
         <value>*</value>
     </property>
 
+2. 关闭hive服务。直接kill掉jps显示的jar进程
 
 
 默认命令和端口:

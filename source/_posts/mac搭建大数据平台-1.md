@@ -72,6 +72,7 @@ mathjax: true
 默认命令和端口：
 1. namenode：localhost:9870
 2. ResourceManager: localhost:8088
-3. Flink: localhost:8081
-4. Spark: localhost:8080
-5. brew services start redis
+3. hadoop namenode -format
+4. Flink: localhost:8081
+5. Spark: localhost:8080
+6. brew services start redis
