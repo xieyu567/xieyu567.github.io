@@ -7,15 +7,16 @@ mathjax: true
 ---
 hbase的分布式配置要基于zookeeper，记录一下配置流程
 用brew安装好hbase后，先配置conf/hbase-env.sh
-
+```bash
     export JAVA_HOME={JAVA_HOME}
     export HBASE_MANAGES_ZK=true
     export HBASE_CLASS={HBASE}/conf
+```
 
 现在还没有装zookeeper，所以HBASE_MANAGES_ZK先设置为true，使用hbase自带的zookeeper
 
 然后编辑conf/hbase-site.xml
-
+```bash
     <property>
         <name>hbase.rootdir</name>
         <value>hdfs://localhost:9000/hbase</value>
@@ -36,10 +37,17 @@ hbase的分布式配置要基于zookeeper，记录一下配置流程
         <name>hbase.master.info.port</name>
         <value>60010</value>
     </property>
+```
 
 出现的问题
 1. HMaster进程自动关闭
    需要将dfs.namenode.name.dir和dfs.datanode.data.dir里的current删除，重新执行format
+
+2. 删除表需要两步
+```bash
+    disabel {tablename}
+    drop {tablename}
+```
 
 默认命令和端口:
 1. bin/start-hbase.sh  bin/stop-hbase.sh
