@@ -14,3 +14,4 @@ flink的安装比较简单
 1. bin/start-cluster.sh  bin/stop-cluster.sh
 2. localhost:8081
 3. bin/flink run {jar} #运行jar包程序
+4. bin/flink run --class effe.WordCount {jar} #运行jar包中的类
