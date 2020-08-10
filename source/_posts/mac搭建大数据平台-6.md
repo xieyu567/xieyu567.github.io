@@ -31,3 +31,4 @@ export HADOOP_CONF_DIR={hadoop}/etc/hadoop
 默认命令和端口:
 1. bin/zeppelin-daemon.sh start  bin/zeppelin-daemon.sh stop
 2. localhost:9981  #通常修改为其他端口，把默认的8080端口空出来
+3. 在单元格第一行写%md   #插入markdown格式的单元格
