@@ -1,5 +1,5 @@
 ---
-title: mac搭建大数据平台-8
+title: mac搭建大数据平台(8)-kafka
 date: 2020-08-13 08:14:34
 categories: big data
 tags: big data
