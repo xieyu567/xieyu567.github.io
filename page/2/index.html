@@ -1,23 +1,1673 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Effe&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Effe&#39;s blog">
+<meta property="og:locale">
+<meta property="article:author" content="Effe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'default'
+  };
+</script>
+
+  <title>Effe's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Effe's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/17/%E7%BD%91%E9%A1%B5%E6%96%87%E6%9C%AC%E5%8A%A0%E5%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/17/%E7%BD%91%E9%A1%B5%E6%96%87%E6%9C%AC%E5%8A%A0%E5%AF%86/" class="post-title-link" itemprop="url">网页文本加密</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-04-17 10:15:50" itemprop="dateCreated datePublished" datetime="2020-04-17T10:15:50+08:00">2020-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>&emsp;&emsp;今天遇到了一个很有意思的问题，需要从一个网站复制文本，但是复制下来的文本和网页展示的文本不一致。</p>
+<p>&emsp;&emsp;显然先打开检查工具看源码，源码中文本也是乱码的，但是所有文本不对应的标签都是属于ccw-font-style这个类，对应的字体是ccw mix font，用万能的github搜索了一下。发现已经有人共享了这个字体变换的映射表，很明显这是个很简单的替换加密方法，只要有映射表，很快就能写好脚本解密。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/10/%E7%96%AB%E6%83%85%E6%9C%9F%E9%97%B4%E5%81%9A%E6%95%B0%E6%8D%AE%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%B8%80%E7%82%B9%E5%BF%83%E5%BE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/10/%E7%96%AB%E6%83%85%E6%9C%9F%E9%97%B4%E5%81%9A%E6%95%B0%E6%8D%AE%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%B8%80%E7%82%B9%E5%BF%83%E5%BE%97/" class="post-title-link" itemprop="url">疫情期间做数据项目的一点心得</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-10 09:17:57" itemprop="dateCreated datePublished" datetime="2020-03-10T09:17:57+08:00">2020-03-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/big-data/" itemprop="url" rel="index"><span itemprop="name">big data</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>疫情期间，帮家里的领导整理项目数据库，对数据治理有了新的一点认识，也让我重新好好学了一遍数据库。</p>
+<p>因为需要处理的是一大堆excel表格，根据以往的经验，我很快想到了用python的pandas包处理，用pandas处理数据很方便，但是读取数据的时间过长，分批读取超过2w条的数据，花了差不多20分钟时间，时间开销是很大的瓶颈，为了提高处理效率，我还是选择了mysql用来存储和简单筛选数据。</p>
+<p>用mysql处理数据的时间开销是毫秒级的，比python快得不是一点点。但是查询语句写起来就比python麻烦多了，因为表的格式已经固定了，而且数量太多，难以重构，每次需要联合n张表处理，用内嵌语句的话很繁杂，读起来和写起来都很累。使用临时表能极大地降低维护的成本，避免自己过了几个月就读不懂自己写的代码的尴尬，但是临时表占用内存和IO开销是这个方法的弊端。CTE是我现阶段了解的最优解决方法。使用with将CTE语句将查询结果联合，性能也能够接受。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/17/grub-problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/17/grub-problem/" class="post-title-link" itemprop="url">grub problem</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-17 11:33:18" itemprop="dateCreated datePublished" datetime="2019-11-17T11:33:18+08:00">2019-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/solved-problem/" itemprop="url" rel="index"><span itemprop="name">solved problem</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>昨天随手在Win10里删掉了一个用户,结果进入manjaro时出现grub问题.</p>
+<pre><code>unknown filesystem
+</code></pre><p>按照网上的帖子,在rescue模式下,使用set查看grub设置信息.</p>
+<pre><code>cmdpath=(hd0,gpt2)/MANJARO
+prefix=(hd0,gpt7)/boot/grub
+root=hd0,gpt7
+</code></pre><p>重新设置grub信息</p>
+<pre><code>set root=(hd0,gpt8)
+set prefix=(hd0,gpt8)/boot/grub
+</code></pre><p>使用insmod normal命令保存时,提示:</p>
+<pre><code>(hd0,gpt8)/boot/grub/x86_64-grub/grub.mod not found
+</code></pre><p>可以改为</p>
+<pre><code>insmod (hd0,gpt8)/boot/grub/x86_64-grub/normal.mod
+</code></pre><p>这样就可以进入manjaro系统了,接下来先用df查看/boot/efi的挂载点,我的电脑是在/dev/nvme0n1p2,然后用命令修复:</p>
+<pre><code>sudo update-grub
+sudo grub-install /dev/nvme0n1p2
+</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/01/pacman-update-problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/01/pacman-update-problem/" class="post-title-link" itemprop="url">pacman update problem</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-09-01 11:43:09" itemprop="dateCreated datePublished" datetime="2019-09-01T11:43:09+08:00">2019-09-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/solved-problem/" itemprop="url" rel="index"><span itemprop="name">solved problem</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在使用pacman更新npm时出现问题.</p>
+<pre><code>npm: /usr/lib/node_modules/npm/node_modules/socks-proxy-agent/yarn.lock exists in filesystem
+Errors occurred, no packages were upgraded.
+</code></pre><p>需要用以下命令强制更新</p>
+<pre><code>pacman -S package-name --overwrite &#39;*&#39;
+</code></pre><p>用man查看pacman,可以得到—overwrite是更新(-S或-U)的参数</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/31/Network-chapter5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/31/Network-chapter5/" class="post-title-link" itemprop="url">Network-chapter5</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-08-31 09:19:03" itemprop="dateCreated datePublished" datetime="2019-08-31T09:19:03+08:00">2019-08-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Network-A-Systems-Approach/" itemprop="url" rel="index"><span itemprop="name">Computer Network A Systems Approach</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>章节五的习题:</p>
+<h4 id="5-2"><a href="#5-2" class="headerlink" title="5.2"></a>5.2</h4><p>a)可以考虑这样的情况:客户端想要请求文件a,但是发出了请求文件b的数据包.随即撤回,并发送新的数据包请求文件a.但是请求数据包丢失了.最后服务器端只收到了请求文件b的数据包,并给客户端返回了文件b.</p>
+<p>b)每次发送请求使用不同的端口号;每个数据包带上序号或者是时间戳,这样错序到达的数据包可以丢弃.</p>
+<h4 id="5-4"><a href="#5-4" class="headerlink" title="5.4"></a>5.4</h4><p>&emsp;&emsp;在主机A发送给主机B数据包(Flags=FIN)后,会转移到状态FIN_WAIT_1,然后主机A会收到主机B回复的数据包(Flags=ACK+FIN).这种情况会发生在主机B在收到主机A发送的(Flags=FIN)后,立即关闭连接,并发送返回自己的FIN和从主机A收到的ACK.</p>
+<p>&emsp;&emsp;这种情况不常见,因为一般情况是主机B一般先返回ACK,之后再返回FIN.也就是说对于主机A,状态转移的顺序是:<br>$ESTABLISHED\rightarrow FIN_WAIT_1\rightarrow FIN_WAIT_2\rightarrow TIME_WAIT\rightarrow CLOSED$<br>对于主机B,状态转移的顺序是:<br>$ESTABLISHED\rightarrow CLOSE_WAIT\rightarrow TIME_WAIT\rightarrow CLOSED$</p>
+<h4 id="5-9"><a href="#5-9" class="headerlink" title="5.9"></a>5.9</h4><p>&emsp;&emsp;已知延迟带宽积为$100<em>10^{-3}s</em>1<em>10^9bps=10^8b=12.5MB$,因此接收端的窗口大小为24(因为$2^{24}=1.67</em>10^7$,并且报文段最小为1字节).</p>
+<p>&emsp;&emsp;SequenceNum用来防止在最大段生存期内回绕.在段最大生存期能够发送$30s*1Gbps=3.75GB$的数据,因此需要32位($2^{32}=4.3G$).</p>
+<h4 id="5-12"><a href="#5-12" class="headerlink" title="5.12"></a>5.12</h4><p>a)TCP的序号字段有32位,也就是在达到回绕之前能够发送$2^{32}B$数据,因此需要$2^{32}B/(10^9bps/8)=34s$</p>
+<p>b)在回绕时间内增量1000次,就是每34ms增量一次.</p>
+<h4 id="5-14"><a href="#5-14" class="headerlink" title="5.14"></a>5.14</h4><p>a)如果是重传,那么前后两个包的序号应该是一致的,如果是主机B崩溃重启,那么后发送的包序号和之前的不同.因为初始建立TCP连接时初始序号是随机选择的.</p>
+<h4 id="5-16"><a href="#5-16" class="headerlink" title="5.16"></a>5.16</h4><p>a)伪造的分组发送到主机A后,A会返回分组给B,但是由于ACK+1,B识别这是个无效的分组后,发送RST给A,重置TCP连接.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/30/Network-chapter4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/30/Network-chapter4/" class="post-title-link" itemprop="url">Newtwork-chapter4 </a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-08-30 10:50:18" itemprop="dateCreated datePublished" datetime="2019-08-30T10:50:18+08:00">2019-08-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Network-A-Systems-Approach/" itemprop="url" rel="index"><span itemprop="name">Computer Network A Systems Approach</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>章节四的习题:</p>
+<h4 id="4-1"><a href="#4-1" class="headerlink" title="4.1"></a>4.1</h4><p>a)总共可以收到3条路由,由1,2,3链路.</p>
+<p>b)$A\rightarrow B$采用链路1,$B\rightarrow A$采用链路2.</p>
+<p>c)修改路由信息,或是阻止流量通过链路1.</p>
+<h4 id="4-5"><a href="#4-5" class="headerlink" title="4.5"></a>4.5</h4><p>a)<br>Switch|Address | Next-hop<br>:—-: | :—-:| :—-:<br>P||<br>||C1.A3.0.0/16|PA<br>||C1.B0.0.0/12|PB<br>||C2.0.0.0/8|Q<br>||C3.0.0.0/8|R</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Switch</th>
+<th style="text-align:center">Address</th>
+<th style="text-align:center">Next-hop </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Q</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">C2.0A.10.0/20</td>
+<td>QA</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">C2.0B.0.0/16</td>
+<td>QB</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">C1.0.0.0/8</td>
+<td>P</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">C3.0.0.0/8</td>
+<td>R</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Switch</th>
+<th style="text-align:center">Address</th>
+<th style="text-align:center">Next-hop </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">R</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">C1.0.0.0/8</td>
+<td>P</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">C2.0.0.0/8</td>
+<td>Q</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>b)同上,但是P的路由表中C3.0.0.0/8 R改为C3.0.0.0/8 Q,</p>
+<p>R的路由表中C1.0.0.0/8 P改为C1.0.0.0/8 Q.</p>
+<p>c)同a,除了在去掉R的路由信息,P的路由表中添加C2.0A.10.0/20 QA,</p>
+<p>Q的路由表中添加C1.A3.0.0/16 PA</p>
+<h4 id="4-12"><a href="#4-12" class="headerlink" title="4.12"></a>4.12</h4><p>IPv6中使用以11111111为前缀的地址作为多播地址. IPv4中使用D类地址作为多播地址,以1110作为前缀.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/24/Network-chapter3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/24/Network-chapter3/" class="post-title-link" itemprop="url">Network-chapter3</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-08-24 13:43:33" itemprop="dateCreated datePublished" datetime="2019-08-24T13:43:33+08:00">2019-08-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Network-A-Systems-Approach/" itemprop="url" rel="index"><span itemprop="name">Computer Network A Systems Approach</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>章节三的习题:</p>
+<h4 id="3-2"><a href="#3-2" class="headerlink" title="3.2"></a>3.2</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Exercise</th>
+<th style="text-align:center">Switch</th>
+<th style="text-align:center">Input</th>
+<th style="text-align:center">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">{Port, VCI}</td>
+<td>{Port, VCI}</td>
+</tr>
+<tr>
+<td style="text-align:center">a)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0&emsp;0</td>
+<td style="text-align:center">1&emsp;0</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3&emsp;0</td>
+<td>1&emsp;0</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">3&emsp;0</td>
+<td>0&emsp;0</td>
+</tr>
+<tr>
+<td style="text-align:center">b)</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3&emsp;0</td>
+<td style="text-align:center">0&emsp;0</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0&emsp;0</td>
+<td>1&emsp;1</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">3&emsp;1</td>
+<td>1&emsp;0</td>
+</tr>
+<tr>
+<td style="text-align:center">c)</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">2&emsp;0</td>
+<td style="text-align:center">3&emsp;2</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1&emsp;2</td>
+<td>3&emsp;1</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1&emsp;1</td>
+<td>2&emsp;0</td>
+</tr>
+<tr>
+<td style="text-align:center">d)</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0&emsp;1</td>
+<td style="text-align:center">3&emsp;3</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1&emsp;3</td>
+<td>3&emsp;2</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1&emsp;2</td>
+<td>3&emsp;0</td>
+</tr>
+<tr>
+<td style="text-align:center">e)</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">2&emsp;0</td>
+<td style="text-align:center">0&emsp;1</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0&emsp;1</td>
+<td>2&emsp;0</td>
+</tr>
+<tr>
+<td style="text-align:center">f)</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0&emsp;2</td>
+<td style="text-align:center">3&emsp;4</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1&emsp;4</td>
+<td>0&emsp;2</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0&emsp;2</td>
+<td>1&emsp;0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="3-3"><a href="#3-3" class="headerlink" title="3.3"></a>3.3</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Switch</th>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Next hip</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">C</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">C</td>
+<td>C</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">D</td>
+<td>C</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">E</td>
+<td>C</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">F</td>
+<td>C</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">E</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">C</td>
+<td>E</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">D</td>
+<td>E </td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">E</td>
+<td>E</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">F</td>
+<td>E</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">A</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">B</td>
+<td>E</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">D</td>
+<td>E</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">E</td>
+<td>E</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">F</td>
+<td>F</td>
+</tr>
+<tr>
+<td style="text-align:center">D</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">E</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">B</td>
+<td>E</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">C</td>
+<td>E</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">E</td>
+<td>E</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">F</td>
+<td>E</td>
+</tr>
+<tr>
+<td style="text-align:center">E</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">C</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">B</td>
+<td>B</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">C</td>
+<td>C</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">D</td>
+<td>D</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">F</td>
+<td>C</td>
+</tr>
+<tr>
+<td style="text-align:center">F</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">C</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">B</td>
+<td>C</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">C</td>
+<td>C</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">D</td>
+<td>C</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">E</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="3-5"><a href="#3-5" class="headerlink" title="3.5"></a>3.5</h4><p>&emsp;&emsp;一共有三条VC</p>
+<p>1)从A到B,使用S1的1和2端口.</p>
+<p>2)从A到D,使用S1的1和3端口,S2的1和3端口,S3的1和2端口.</p>
+<p>3)从B到D,使用S1的2和3端口,S2的1和3端口,S3的1和2端口.</p>
+<h4 id="3-13"><a href="#3-13" class="headerlink" title="3.13"></a>3.13</h4><p>&emsp;&emsp;网桥和端口之间的映射关系为<br>Bridge | Port<br>:—-: | :—-:<br>B1|C&emsp;E<br>B2|A&emsp;B<br>B3|D&emsp;E&emsp;F&emsp;G&emsp;H<br>B4|G&emsp;I<br>B5|Idle<br>B6|J&emsp;H<br>B7|A&emsp;C</p>
+<h4 id="3-15"><a href="#3-15" class="headerlink" title="3.15"></a>3.15</h4><p>B1: A-interface: A; B2-interface: C<br>B2: B1-interface: A; B3-interface: C; B4-interface: D<br>B3: B2-interface: A,D; C-interface: C<br>B4: B2-interface: D; D-interface: D</p>
+<h4 id="3-22"><a href="#3-22" class="headerlink" title="3.22"></a>3.22</h4><p>&emsp;&emsp;集线器主要的问题是冲突问题,任何主机发送的包都会在集线器处冲突.</p>
+<h4 id="3-26"><a href="#3-26" class="headerlink" title="3.26"></a>3.26</h4><p>&emsp;&emsp;因为总线速度低于内存带宽,所以总线速度是瓶颈,因为每个包要经过总线两次,所以传输效率应为一半$800Mbps/2=400Mbps$,一共能处理$400Mbps/100Mbps=4$个接口.</p>
+<h4 id="3-29"><a href="#3-29" class="headerlink" title="3.29"></a>3.29</h4><p>&emsp;&emsp;a) 输入队列满的时候会丢失这样的分组</p>
+<p>&emsp;&emsp;b) 这叫做<em>head-of line blocking</em>(排头阻塞)</p>
+<p>&emsp;&emsp;c)在输出队列中配置缓存,这样只有在输出队列满的时候才会丢失分组.</p>
+<h4 id="3-33"><a href="#3-33" class="headerlink" title="3.33"></a>3.33</h4><p>&emsp;&emsp;有一种方法叫做”unnumbered point-to-point link”,用于发送的端口不和其他网络中其他主机通信,其他主机也无法访问到该端口,而这个端口只能发送数据.参考RFC1812,section2.2.7.</p>
+<h4 id="3-34"><a href="#3-34" class="headerlink" title="3.34"></a>3.34</h4><p>&emsp;&emsp;ipv4的offset字段为13位,而ip包的长度为$2^{16}$,因此分组的偏移应为$2^{16}/2^{13}=8$</p>
+<h4 id="3-46"><a href="#3-46" class="headerlink" title="3.46"></a>3.46</h4><p>a)<br>||A|B|C|D|E|F<br>:—-: | :—-: | :—-: | :—-: | :—-:| :—-: | :—-: | :—-:<br>A|0|$\infty$|3|8|$\infty$|$\infty$<br>B|$\infty$|0|$\infty$|$\infty$|2|$\infty$|<br>C|3|$\infty$|0|$\infty$|1|6|<br>D|8|$\infty$|$\infty$|0|2|$\infty$|<br>E|$\infty$|2|1|2|0|$\infty$|<br>F|$\infty$|$\infty$|6|$\infty$|$\infty$|0</p>
+<p>b)<br>||A|B|C|D|E|F<br>:—-: | :—-: | :—-: | :—-: | :—-:| :—-: | :—-: | :—-:<br>A|0|$\infty$|3|8|4|9<br>B|$\infty$|0|3|4|2|$\infty$<br>C|3|3|0|3|1|6<br>D|8|4|3|0|2|$\infty$<br>E|4|2|1|2|0|7<br>F|9|$\infty$|6|$\infty$|7|0</p>
+<p>c)<br>||A|B|C|D|E|F<br>:—-: | :—-: | :—-: | :—-: | :—-:| :—-: | :—-: | :—-:<br>A|0|6|3|8|4|9<br>B|6|0|3|4|2|9<br>C|3|3|0|3|1|6<br>D|8|4|3|0|2|9<br>E|4|2|1|2|0|7<br>F|9|9|6|9|7|0</p>
+<h4 id="3-48"><a href="#3-48" class="headerlink" title="3.48"></a>3.48</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Confirmed</th>
+<th style="text-align:center">Tentative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">(D,0,-)</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">(D,0,-)</td>
+<td style="text-align:center">(A,8,A)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td>(E,2,E)</td>
+</tr>
+<tr>
+<td style="text-align:center">(D,0,-), (E,2,E)</td>
+<td style="text-align:center">(B,4,E)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td>(C,3,E)</td>
+</tr>
+<tr>
+<td style="text-align:center">(D,0,-), (E,2,E), (C,3,E)</td>
+<td style="text-align:center">(A,6,E)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td>(F,9,E)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td>(B,4,E)</td>
+</tr>
+<tr>
+<td style="text-align:center">(D,0,-), (E,2,E), (C,3,E), (B,4,E)</td>
+<td style="text-align:center">(A,6,E)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td>(F,9,E)</td>
+</tr>
+<tr>
+<td style="text-align:center">(D,0,-), (E,2,E), (C,3,E), (B,4,E), (A,6,E)</td>
+<td style="text-align:center">(F,9,E)</td>
+</tr>
+<tr>
+<td style="text-align:center">(D,0,-), (E,2,E), (C,3,E), (B,4,E), (A,6,E),(F,9,E)</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="3-55"><a href="#3-55" class="headerlink" title="3.55"></a>3.55</h4><p>a)128.96.39.10和子网号128.96.39.0匹配,数据包会转发到接口0.</p>
+<p>b)同理,128.96.40.12地址的数据包转发给R2.</p>
+<p>c)因为子网掩码是255.255.255.128,所以对于目标地址128.96.40.151的子网号是128.96.40.128,可见路由表中没有这个子网号,所以转发到默认的R4.</p>
+<h4 id="3-68"><a href="#3-68" class="headerlink" title="3.68"></a>3.68</h4><p>a)根据四个子网的主机数量,A需要128个地址,B需要64个地址,C和D需要32个地址.<br>则可以设计:</p>
+<p>A的子网号为12.1.1.0/25</p>
+<p>B的子网号为12.1.1.128/26</p>
+<p>C的子网号为12.1.1.192/27</p>
+<p>D的子网号为12.1.1.224/27.</p>
+<p>b)以上的设计已经可以容纳32的主机数量,如果再增加主机可以通过网桥连接,或者是重新划分子网的方式.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/24/Network-chapter2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/24/Network-chapter2/" class="post-title-link" itemprop="url">Network-chapter2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-24 09:45:43" itemprop="dateCreated datePublished" datetime="2019-07-24T09:45:43+08:00">2019-07-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Network-A-Systems-Approach/" itemprop="url" rel="index"><span itemprop="name">Computer Network A Systems Approach</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>章节二的习题:</p>
+<h4 id="2-1"><a href="#2-1" class="headerlink" title="2.1"></a>2.1</h4><p>&emsp;&emsp;几种编码方法的区分:</p>
+<p>&emsp;&emsp;<strong>NRZ</strong>:&emsp;低电平时为0,高电平时为1.对于连续的1或0,基线漂移和时钟同步会带来问题.接收方一般是用信号的平均值作为基线判断高低电平,如果连续出现1或0,基线会变化,接收方检测信号就会出现问题;另外接收方必须与发送方的时钟完全同步才能解析NRZ信号,这样布线成本会很高,之后的编码方法通过在信号内的跳变让接收方能够恢复时钟.</p>
+<p>&emsp;&emsp;<strong>NRZI</strong>:&emsp;信号为1时,进行跳变,信号为0时,不变.这种编码方式解决了连续的1的情况,但是没有解决连续的0的情况.</p>
+<p>&emsp;&emsp;<strong>曼彻斯特编码</strong>:&emsp;用NRZ和时钟进行异或操作.信号为0时由低向高跳变,信号为1时由高向低跳变.因此接收方也能够很好的恢复时钟.但是因为跳变频率(波特率)加倍,曼彻斯特编码的效率只有NRZ和NRZI的一半.</p>
+<p>&emsp;&emsp;<strong>4B/5B编码</strong>:&emsp;用5比特来编码4比特信号,然后使用NRZI编码传输.通过限制连续的0的数量(最多一个前导0,最多两个末尾0)来解决NRZI的问题,同时效率比曼彻斯特编码要高(80%).</p>
+<h4 id="2-2"><a href="#2-2" class="headerlink" title="2.2"></a>2.2</h4><p>&emsp;&emsp;4B/5B编码为11100 01011 11110 10101</p>
+<h4 id="2-4"><a href="#2-4" class="headerlink" title="2.4"></a>2.4</h4><p>&emsp;&emsp;HDLC中<strong>比特填充</strong>过程如下.发送方在5个连续的1后填充0(除了表示帧开始和结束的01111110),接收方在接收到5个1后分情况处理,如果后面跟着0,那么去掉0;如果后面是10,那么为帧特殊比特序列;如果后面是11,那么为无效帧,丢弃整个帧.</p>
+<p>&emsp;&emsp;因此比特序列为1101011111<font color="red">0</font>01011111<font color="red">0</font>101011111<font color="red">0</font>110</p>
+<h4 id="2-7"><a href="#2-7" class="headerlink" title="2.7"></a>2.7</h4><p>&emsp;&emsp;比特序列为01101011111<font color="red">0</font>1010011111<font color="red">1</font>10110<font color="red">01111110</font></p>
+<p>&emsp;&emsp;前一个0为应该移除的比特填充位,下一个1为传输错误造成的位,最后是表示帧结束的特殊比特序列.</p>
+<h4 id="2-11"><a href="#2-11" class="headerlink" title="2.11"></a>2.11</h4><p>&emsp;&emsp;差错检测.最简单的二维奇偶校验.对每个7比特附加1比特的平衡1的个数,使1的个数为偶数.最后的检验字节对每个比特位进行奇偶校验.</p>
+<p>&emsp;&emsp;出现3比特错.可能的情况有三行各出现1个比特错;一行出现2比特错,另一行出现1比特错;一行出现3比特错.第一种情况在每个校验位和检验字节都能检测到.第二种情况在检验字节能够检测和检验位能够检测到.第三种情况同样可以在检验字节和出现差错的检验位检测到.</p>
+<p>&emsp;&emsp;二维奇偶检验能够检测所有的1,3比特错及大部分2,4比特错,例外的4比特错情况为,两行各出现2比特错,并且比特位一致,二维奇偶检验无法检测这种情况.例外的2比特错情况为,同一行出现2比特错,则在行校验中无法检查出,即使通过列校验知道出错的比特位在哪一列.</p>
+<h4 id="2-14"><a href="#2-14" class="headerlink" title="2.14"></a>2.14</h4><p>&emsp;&emsp;对于两个非零数,在没有溢出的情况下,肯定不会为F0000,在溢出的情况下,需要加进位,则一定$&gt;$F0001.</p>
+<h4 id="2-19"><a href="#2-19" class="headerlink" title="2.19"></a>2.19</h4><p>&emsp;&emsp;CRC校验码的步骤,已知用于传输的多项式$C(x)$最高幂次为$k$.</p>
+<p>1)在消息的后面扩展$k$个0</p>
+<p>2)用得到的扩展后的消息除$C(x)$,得到余数.</p>
+<p>3)从扩展后的消息中减去余数(等于直接和k个0异或,即把k个0替换成余数)</p>
+<p>&emsp;&emsp;对消息1011 0010 0100 1011后面加8个0,然后除1000 00111,得余数1001 0011,最后应传输的信息为1011 0010 0100 1011 1001 0011</p>
+<h4 id="2-23"><a href="#2-23" class="headerlink" title="2.23"></a>2.23</h4><p>&emsp;&emsp;a) 时延$=40km/(2*10^8m/s)=0.2ms$</p>
+<p>&emsp;&emsp;b) 超时值$=2*EstinateRTT=0.8ms$</p>
+<p>&emsp;&emsp;c) 因为网络可能会有拥塞等情况,仍然可能出现超时.</p>
+<h4 id="2-25"><a href="#2-25" class="headerlink" title="2.25"></a>2.25</h4><p>&emsp;&emsp;$RTT=2<em>3</em>10^4km/(3*10^8m/s)=0.2s$</p>
+<p>&emsp;&emsp;时延带宽积为$10^6bps/(10^3<em>8b)</em>0.2s=25$帧.</p>
+<p>&emsp;&emsp;也就是在RWS=1的情况下,需要5比特作为序号.因为$MaxSeqNum\geq SWS+1$. </p>
+<p>&emsp;&emsp;在RWS=SWS的情况下,需要6比特,因为$SWS&lt;(MaxSeqNum+1)/2$.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/23/Network-chapter1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/23/Network-chapter1/" class="post-title-link" itemprop="url">Network-chapter1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-23 09:59:02" itemprop="dateCreated datePublished" datetime="2019-07-23T09:59:02+08:00">2019-07-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Network-A-Systems-Approach/" itemprop="url" rel="index"><span itemprop="name">Computer Network A Systems Approach</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>章节一的习题:</p>
+<h4 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h4><p>&emsp;&emsp;匿名ftp有三种方法:</p>
+<ol>
+<li>用户名为anonymous,密码为空</li>
+<li>用户名为FTP,密码为空或FTP</li>
+<li>用户名为USER,密码为pass</li>
+</ol>
+<p>&emsp;&emsp;majaro可以使用fileZilla这个ftp工具. 题中的ftp站点结构和题目描述不符, 如果需要RFC规范可以在IETF(Internet Engineering Task Force)获取. <a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/">https://www.ietf.org/rfc/</a></p>
+<h4 id="1-2"><a href="#1-2" class="headerlink" title="1.2"></a>1.2</h4><p>&emsp;&emsp;whois用于查询域名和组织,例如查询google的域名信息,可以使用两种方法:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">whois google</span><br><span class="line">whois google.com</span><br></pre></td></tr></table></figure></p>
+<h4 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h4><ol>
+<li>&emsp;$2\times RTT+1000KB/1.5Mbps+RTT/2\approx 5.458s$<br>第一项是题目给出的初始握手阶段的时延,第二项是传输的时延$Size/Bandwidth=8Mb/1.5Mbps\approx 5.333s$.第三项是单程的传播时延.</li>
+<li>在上一题的基础上再加上999个RTT, $5.458s+RTT*999=55.408s$</li>
+<li>一共需要49.5个RTT(最后一次传输只用0.5RTT),加上初始时延,$(49.5+2)*RTT=2.575s$</li>
+<li>一共需要9.5个RTT,因此为$(9.5+2)*RTT=0.575s$</li>
+</ol>
+<h4 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h4><ol>
+<li>&emsp;$2\times RTT+1.5MB/10Mbps+RTT/2\approx 1.4s$ </li>
+<li>&emsp;$1.4s+(1.5*10^3-1)RTT=121.32s$</li>
+<li>一共需要1499.5个RTT,$(74.5+2)*RTT=6.12s$</li>
+<li>一共需要10.5个RTT,因此为$(10.5+2)*RTT=1s$</li>
+</ol>
+<h4 id="1-5-amp-1-6"><a href="#1-5-amp-1-6" class="headerlink" title="1.5&amp;1.6"></a>1.5&amp;1.6</h4><p>可得$50<em>10^3m/(2</em>10^8m/s)=100*8b/x$,解得带宽为3.2Mbps.在512字节的情况下带宽为16.384Mbps.</p>
+<h4 id="1-7"><a href="#1-7" class="headerlink" title="1.7"></a>1.7</h4><p>&emsp;&emsp;在同一市下属的各个区,邮政地址中前面的若干位是相同的,变动的是后几位的数字.可变的位数是根据下属区的个数而定.电话号码类似,不同的位数有特殊的含义,并且有可变的掩码.</p>
+<h4 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h4><p>&emsp;&emsp;存在地址不唯一的情况,在不同的内网,两个节点的地址是可能相等的,也就是说两个节点在各自的内网地址是同样的地址,如192.168.1.2</p>
+<h4 id="1-9"><a href="#1-9" class="headerlink" title="1.9"></a>1.9</h4><p>&emsp;&emsp;组播能够有效减少冗余广播,常见的应用场景包括电视电话会议,在线教育等.</p>
+<h4 id="1-10"><a href="#1-10" class="headerlink" title="1.10"></a>1.10</h4><p>&emsp;&emsp;FDM和STDM的问题是信道的利用率不够高,在传统的电视和电话网络中,没有足够的交互性,如电视的数据流是单向的,用户只接受数据流.电话类似,两个人不会同时都在说话.但是计算机网络中,很多突发性和长时间的数据流.使用FDM和STDM的话,信道效率不高.</p>
+<h4 id="1-11"><a href="#1-11" class="headerlink" title="1.11"></a>1.11</h4><p>每比特的传输时间为$1/10^9bps=1\mu s$, 长度为$1<em>10^{-9} s</em>2.3*10^8m/s=0.23m$</p>
+<h4 id="1-12"><a href="#1-12" class="headerlink" title="1.12"></a>1.12</h4><p>共需要$(x<em>8</em>10^3)/(y<em>10^6)=8x/y</em>10^{-3}=8x/y\text{ms}$</p>
+<h4 id="1-13-amp-1-14"><a href="#1-13-amp-1-14" class="headerlink" title="1.13&amp;1.14"></a>1.13&amp;1.14</h4><ol>
+<li>最小RTT为$2<em>55</em>10^9/3*10^{-8}=1100/3s=367s$</li>
+<li>延迟带宽积为$RTT/2<em>128</em>10^3=2.348*10^7bit=2.93MB$</li>
+<li>总时延为$5MB/128kbps+RTT/2=5<em>8</em>10^6/128*10^3+183.5=496s$</li>
+</ol>
+<h4 id="1-17"><a href="#1-17" class="headerlink" title="1.17"></a>1.17</h4><ol>
+<li>总时延为$2<em>(5</em>10^3b/1Gbps+10*10^{-6})=30\mu s$</li>
+<li>有三个交换机,即是有4个链路总时延为上题的两倍,即$60\mu s$</li>
+<li>对于直通式转发,交换机上只有$128b/1Gbps=128ns$的延迟,加上4个传播延迟和1个传输延迟,总延迟为$45.384\mu s$.</li>
+</ol>
+<h4 id="1-27"><a href="#1-27" class="headerlink" title="1.27"></a>1.27</h4><ol>
+<li>带宽为$1920<em>1080</em>24*30=1.492992Gbps\approx 1.5Gbps$</li>
+<li>带宽为$8000*8=64Kbps$</li>
+<li>带宽为$260*50=13kbps$</li>
+<li>带宽为$24*88200=2.1168Mbps\approx 2.1Mbps$</li>
+</ol>
+<h4 id="1-37"><a href="#1-37" class="headerlink" title="1.37"></a>1.37</h4><p><img src="https://i.loli.net/2019/07/24/5d37afba402a934744.png" alt><br>&emsp;&emsp;这里只设置了5跳,星号可能是防火墙封掉了ICMP的返回.第一跳是我的网关,一共发送4个数据包,后面显示的是数据包返回的时间.</p>
+<p>&emsp;&emsp;traceroute是利用ICMP包和IP头的TTL位.具体是traceroute先发送一个TTL为1的数据包,当到达路径上第一个路由时,TTL减1,路由器收到TTL为0的包便会丢弃,并返回ICMP time exceeded的信息,traceroute收到返回的包,便可知道路径上的路由器信息.接着发送第二个包,TTL为2.以此累加,一直到到达目的地址.因为traceroute发送的包中port number是一个一般应用程序不会用到的端口(30000以上),因此目标主机会返回ICMP port unreachable的信息.traceroute收到信息就知道已到达了目标地址.</p>
+<p>&emsp;&emsp;很显然可以看出对于一些路由器丢弃TTL为0的包时,不返回信息,那么traceroute就没法工作.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/27/Transformer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/27/Transformer/" class="post-title-link" itemprop="url">Transformer</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-27 14:07:58" itemprop="dateCreated datePublished" datetime="2019-06-27T14:07:58+08:00">2019-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>&emsp;&emsp;这是2017年Google Brain的一篇论文,使用self-attention机制构建模型.和之前完全不同的思路,</p>
+<ul>
+<li>RNN因为是递归式的结构,无法做到并行,而且要获得全局信息必须要做双向RNN.</li>
+<li>CNN则是因为感受域限制,只能获取局部信息.</li>
+<li>Transformer能够一步获取全局信息,在做NLP任务时表现很优异,如共指消解.</li>
+</ul>
+<p>&emsp;&emsp;Transformer使用传统的Encoder-Decoder结构,给定一个序列$(x_1,…,x_n)$经过处理得到$(y_1,…,y_m)$.模型的每一步都是自回归的,每次生成都使用之前的生成作为附加信息输入.</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79gy1g4fpkw99egg30m80jo4ni.gif" width="80%" height="80%"></p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79gy1g4fpbsaicwj30ng0ystfy.jpg" width="80%" height="80%" aligns="center"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EncoderDecoder</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, encoder, decoder, src_embed, tgt_embed, generator</span>):</span></span><br><span class="line">        super(EncoderDecoder, self).__init__()</span><br><span class="line">        self.encoder = encoder</span><br><span class="line">        self.decoder = decoder</span><br><span class="line">        self.src_embed = src_embed</span><br><span class="line">        self.tgt_embed = tgt_embed</span><br><span class="line">        self.generator = generator</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, src, tgt, src_mask, tgt_mask</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.decode(self.encode(src, src_mask), src_mask, tgt, tgt_mask)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">encode</span>(<span class="params">self, src, src_mask</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.encode(self.src_embed(src), src_mask)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decode</span>(<span class="params">self, memory, src_mask, tgt, tgt_mask</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.decoder(self.tgt_embed(tgt), memory, src_mask, tgt_mask)</span><br></pre></td></tr></table></figure>
+<p>这是构建EncoderDecoder框架,注意到encode(src, src_mask)就是memory,也就是用encode的输出作为了Decode的输入,图上两个部分相连的那条线.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Generator</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, d_model, vocab</span>):</span></span><br><span class="line">        super(Generator, self).__init__()</span><br><span class="line">        self.proj = nn.Linear(d_model, vocab)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        <span class="keyword">return</span> F.log_softmax(self.proj(x), dim=<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这里是定义一个标准的线性然后softmax的标准生成步骤.因为之前没有用过pytorch,所以还是记录一下用到的内置函数. </p>
+<ul>
+<li>$nn.Linear()$函数是用来做线性变化的,输入一个维度为$m\times n$的矩阵,经过线性变化$nn.Linear(n,t,bias=None)$得到的输入维度为$m\times t$.具体的实现是输入矩阵乘$t\times n$矩阵再加上一个维度为$m$的$\text{bias}$.<script type="math/tex; mode=display">y=xA^T+\text{bias}</script></li>
+<li>$\text{F.log_softmax()}$函数就是在softmax函数外面再加一个$\text{log}$函数.需要注意的是$\text{dim}$的指定,以二维函数为例,取$\text{dim}=1$时,是对每一行进行softmax,而取0时是每一列进行计算.可以理解为沿着某条轴,将数据集中到轴上.<script type="math/tex; mode=display">\log(\text{Softmax}(x_{i})) = \log(\frac{\exp(x_i) }{ \sum_j \exp(x_j)})</script></li>
+</ul>
+<hr>
+<p>接下来是Encoder部分<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clones</span>(<span class="params">module, N</span>):</span></span><br><span class="line">    <span class="keyword">return</span> nn.ModuleList([copy.deepcopy(module) <span class="keyword">for</span> _ <span class="keyword">in</span> range(N)])</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;首先定义一个clone方法,因为Encoder是由多个相同的层构成的.这里设$N=6$<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Encoder</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, layer, N</span>):</span></span><br><span class="line">        super(Encoder, self).__init__()</span><br><span class="line">        self.layers = clones(layer, N)</span><br><span class="line">        self.norm = LayerNorm(layer.size)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, mask</span>):</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers:</span><br><span class="line">            x = layer(x, mask)</span><br><span class="line">        <span class="keyword">return</span> self.norm(x)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LayerNorm</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, features, eps=<span class="number">1e-6</span></span>):</span></span><br><span class="line">        super(LayerNorm, self).__init__()</span><br><span class="line">        self.a_2 = nn.Parameter(torch.ones(features))</span><br><span class="line">        self.b_2 = nn.Parameter(torch.zeros(features))</span><br><span class="line">        self.eps = eps</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        mean = x.mean(<span class="number">-1</span>, keepdim=<span class="literal">True</span>)</span><br><span class="line">        std = x.std(<span class="number">-1</span>, keepdim=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> self.a_2 * (x - mean) / (std + self.eps) + self.b_2</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;然后定义Encoder和LN模块.LayerNorm本来torch里也有内置函数.这里是自己实现的.</p>
+<script type="math/tex; mode=display">y=\frac{x-E[x]}{\sqrt{Var[x]+\epsilon}}\times \gamma +\beta</script><p>&emsp;&emsp;其中$\gamma$和$\beta$是参数,$\epsilon$是一个很小数,torch中取$e^{-5}$,为了保持数值的稳定性,防止分母趋近0.</p>
+<p>&emsp;&emsp;对应到图上就是$\text{Add\&amp;Norm}$这一块,对于每个sublayer有$LayerNorm(x+Sublayer(x))$.具体是$dropout\rightarrow sublayer的input相加\rightarrow Normalized$.但是在实际编码中,将Norm放到了dropout前面.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SublayerConnection</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, size, dropout</span>):</span></span><br><span class="line">        super(SublayerConnection, self).__init__()</span><br><span class="line">        self.norm = LayerNorm(size)</span><br><span class="line">        self.dropout = nn.Dropout(dropout)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, sublayer</span>):</span></span><br><span class="line">        <span class="keyword">return</span> x + self.dropout(sublayer(self.norm(x)))</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;定义sublayer的残差连接.残差连接实际上就是$f(x)+x$,目的是为了反向传播的时候,梯度连乘,不会造成梯度消失.因为会出现常数项.可以看到是先normalizion再dropout.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EncoderLayer</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, size, self_attn, feed_forward, dropout</span>):</span></span><br><span class="line">        super(EncoderLayer, self).__init__()</span><br><span class="line">        self.self_attn = self_attn</span><br><span class="line">        self.feed_forward = feed_forward</span><br><span class="line">        self.sublayer = clones(SublayerConnection(size, dropout), <span class="number">2</span>)</span><br><span class="line">        self.size = size</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, mask</span>):</span></span><br><span class="line">        x = self.sublayer[<span class="number">0</span>](x, <span class="keyword">lambda</span> x: self.self_attn(x, x, x, mask))</span><br><span class="line">        <span class="keyword">return</span> self.sublayer[<span class="number">1</span>](x, self.feed_forward)</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;Encoder每层有两个sublayer,第一个sublayer[0]用多头注意力机制,第二个sublayer[1]用位置全连接前馈网络.</p>
+<hr>
+<p>然后是Decoder层<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Decoder</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, layer, N</span>):</span></span><br><span class="line">        super(Decoder, self).__init__()</span><br><span class="line">        self.layers = clones(layer, N)</span><br><span class="line">        self.norm = LayerNorm(layer.size)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, memory, src_mask, tgt_mask</span>):</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers:</span><br><span class="line">            x = layer(x, memory, src_mask, tgt_mask)</span><br><span class="line">        <span class="keyword">return</span> self.norm(x)</span><br></pre></td></tr></table></figure><br>和Encoder一样,设计为6个相同的层.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DecoderLayer</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, size, self_attn, src_attn, feed_forward, dropout</span>):</span></span><br><span class="line">        super(DecoderLayer, self).__init__()</span><br><span class="line">        self.size = size</span><br><span class="line">        self.self_attn = self_attn</span><br><span class="line">        self.src_attn = src_attn</span><br><span class="line">        self.feed_forward = feed_forward</span><br><span class="line">        self.sublayer = clones(SublayerConnection(size, dropout), <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, memory, src_mask, tgt_mask</span>):</span></span><br><span class="line">        m = memory</span><br><span class="line">        x = self.sublayer[<span class="number">0</span>](x, <span class="keyword">lambda</span> x: self.self_attn(x, x, x, tgt_mask))</span><br><span class="line">        x = self.sublayer[<span class="number">1</span>](x, <span class="keyword">lambda</span> x: self.src_attn(x, m, m, src_mask))</span><br><span class="line">        <span class="keyword">return</span> self.sublayer[<span class="number">2</span>](x, self.feed_forward)</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;Decoder的sublayer有三个,其中sublayer[0]和Encoder一样用自注意力机制,sublayer[2]同样是前馈网络,sublayer[1]是对Encoder的输出用多头注意力机制.残差网络和Norm和Encoder一样.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subsequent_mask</span>(<span class="params">size</span>):</span></span><br><span class="line">    attn_shape = (<span class="number">1</span>, size, size)</span><br><span class="line">    subsequent_mask = np.triu(np.ones(attn_shape), k=<span class="number">1</span>).astype(<span class="string">&#x27;uint8&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> torch.from_numpy(subsequent_mask) == <span class="number">0</span></span><br></pre></td></tr></table></figure><br>&emsp;&emsp;定义subsequent_mask方法,为了在Decoder时遮盖当前位置后的内容. $np.triu$方法是取上三角矩阵,$k$为偏移量,正数时向上偏移,比如有矩阵$\begin{vmatrix} 1&amp;2 \ 2&amp;3 \ 3&amp;4 \end{vmatrix}$, 其上三角矩阵为$\begin{vmatrix} 1&amp;2 \ 0&amp;3 \ 0&amp;0 \end{vmatrix}$, $k=1$时为$\begin{vmatrix} 0&amp;2 \ 0&amp;0 \ 0&amp;0 \end{vmatrix}$.最后返回的是取反后的矩阵.也就是上三角为0.</p>
+<hr>
+<p>接下来是attent模块.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Effe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Effe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
