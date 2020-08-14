@@ -31,6 +31,8 @@ f) | 4 | 0&emsp;2 | 3&emsp;4
 || 2 | 1&emsp;4 | 0&emsp;2
 || 3 | 0&emsp;2 | 1&emsp;0
 
+<!--more-->
+
 #### 3.3
 
 Switch | Destination | Next hip

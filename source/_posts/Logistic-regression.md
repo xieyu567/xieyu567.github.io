@@ -17,6 +17,8 @@ $$
 &emsp;&emsp;其中$\mu$是位置参数,$\gamma>0$是形状参数.
 分布函数曲线以点$(\mu,\frac{1}{2})$为中心对称.
 
+<!--more-->
+
 &emsp;&emsp;对于二项Logistic回归模型,条件概率分布为:
 $$
     \begin{aligned}

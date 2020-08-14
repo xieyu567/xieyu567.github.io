@@ -12,6 +12,8 @@ hive的配置比较简单，在mac上配置postgresql作为元数据库
     cp hive-default.xml.template hive-site.xml
 ```
 
+<!--more-->
+
 主要配置以下项目
 ```bash
     <name>javax.jdo.option.ConnectionURL</name>

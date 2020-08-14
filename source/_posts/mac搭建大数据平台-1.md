@@ -17,6 +17,8 @@ mathjax: true
     brew install hive
 ```
 
+<!--more-->
+
 需要注意的点
 1. ssh需要免密登录
 

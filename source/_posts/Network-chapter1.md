@@ -17,6 +17,8 @@ tags: Network
 
 &emsp;&emsp;majaro可以使用fileZilla这个ftp工具. 题中的ftp站点结构和题目描述不符, 如果需要RFC规范可以在IETF(Internet Engineering Task Force)获取. https://www.ietf.org/rfc/
 
+<!--more-->
+
 #### 1.2
 
 &emsp;&emsp;whois用于查询域名和组织,例如查询google的域名信息,可以使用两种方法:

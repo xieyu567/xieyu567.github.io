@@ -9,6 +9,7 @@ mathjax: true
 ```bash
 brew install kafka
 ```
+
 这里使用kafka自带的zookeeper
 
 默认命令和端口:

@@ -16,6 +16,8 @@ b)$A\rightarrow B$采用链路1,$B\rightarrow A$采用链路2.
 
 c)修改路由信息,或是阻止流量通过链路1.
 
+<!--more-->
+
 #### 4.5
 a)
 Switch|Address | Next-hop 

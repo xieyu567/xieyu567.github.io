@@ -13,6 +13,8 @@ hbase的分布式配置要基于zookeeper，记录一下配置流程
     export HBASE_CLASS={HBASE}/conf
 ```
 
+<!--more-->
+
 现在还没有装zookeeper，所以HBASE_MANAGES_ZK先设置为true，使用hbase自带的zookeeper
 
 然后编辑conf/hbase-site.xml

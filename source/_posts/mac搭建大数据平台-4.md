@@ -17,6 +17,8 @@ sqoop的安装比较简单
     export HIVE_HOME="{HIVE}/libexec"
 ```
 
+<!--more-->
+
 将postgresql的jdbc包放到{sqoop}/lib文件夹中，
 测试连接
 ```bash

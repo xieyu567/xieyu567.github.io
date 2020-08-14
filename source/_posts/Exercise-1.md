@@ -13,6 +13,8 @@ mathjax: true
 $$L(x_1,...,x_n|\theta)=f_\theta(x_1,...,x_n)$$
 &emsp;&emsp;因此求极大似然估计就是将要估计的参数代入概率密度函数后求导.
 
+<!--more-->
+
 &emsp;&emsp;对于伯努利模型,将结果为1的概率$\theta$代入概率密度函数:
 $$L(\theta)=\prod^n_{i=1}P(x_i)=\theta^k(1-\theta)^{n-k}$$
 &emsp;&emsp;对公式求导:

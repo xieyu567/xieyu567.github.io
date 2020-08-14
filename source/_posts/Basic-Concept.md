@@ -11,6 +11,8 @@ mathjax: true
 $$P(\theta |D)=\frac{P(\theta)P(D|\theta)}{P(D)}$$
 &emsp;&emsp;其中$D$是数据, $\theta$是模型参数, $P(\theta)$是先验概率, $P(D|\theta)$是似然函数, $P(\theta |D)$是后验概率. 通常是取后验概率最大的模型.
 
+<!--more-->
+
 ----
 ##### 经验风险最小化和结构风险最小化
 &emsp;&emsp;在数据量足够大的时候,经验风险趋于期望风险,这时经验风险最小化就是求解模型最优化等价问题.

@@ -13,6 +13,8 @@ tags: machine learning
 
 &emsp;&emsp;Transformer使用传统的Encoder-Decoder结构,给定一个序列$(x_1,...,x_n)$经过处理得到$(y_1,...,y_m)$.模型的每一步都是自回归的,每次生成都使用之前的生成作为附加信息输入.
 
+<!--more-->
+
 <img src="http://ww1.sinaimg.cn/large/006tNc79gy1g4fpkw99egg30m80jo4ni.gif" width="80%" height="80%">
 
 <img src="http://ww4.sinaimg.cn/large/006tNc79gy1g4fpbsaicwj30ng0ystfy.jpg" width="80%" height="80%" aligns=center>

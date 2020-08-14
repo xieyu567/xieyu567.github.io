@@ -14,6 +14,8 @@ export SPARK_CONF_DIR={spark}/conf
 export HADOOP_CONF_DIR={hadoop}/etc/hadoop
 ```
 
+<!--more-->
+
 配置zeppelin-site.xml
 ```bash
 <property>
