@@ -290,7 +290,7 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 15:58:54" itemprop="dateModified" datetime="2020-08-14T15:58:54+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:41:12" itemprop="dateModified" datetime="2020-08-14T16:41:12+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -319,21 +319,14 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
         F(x)&=\frac{1}{1+e^{-(x-\mu)/\gamma}} \\
         f(x)&=\frac{e^{-(x-\mu)/\gamma}}{\gamma(1+e^{-(x-\mu)/\gamma})^2}
     \end{aligned}</script><p>&emsp;&emsp;其中$\mu$是位置参数,$\gamma&gt;0$是形状参数.<br>分布函数曲线以点$(\mu,\frac{1}{2})$为中心对称.</p>
-<p>&emsp;&emsp;对于二项Logistic回归模型,条件概率分布为:</p>
-<script type="math/tex; mode=display">
-    \begin{aligned}
-        P(Y=1|x)&=\frac{exp(\omega\cdot x)}{1+exp(\omega\cdot x)} \\
-        P(Y=0|x)&=\frac{1}{1+exp(\omega\cdot x)}
-    \end{aligned}</script><p>&emsp;&emsp;其中$\omega$是参数,可以用极大似然估计法估计参数,似然估计函数为:</p>
-<script type="math/tex; mode=display">\prod^N_{i=1}[P(Y=1|x_i)]^{y_i}[1-P(Y=1|x_i)]^{1-y_i}</script><p>&emsp;&emsp;对数似然函数就是:</p>
-<script type="math/tex; mode=display">
-    \begin{aligned}
-        L(\omega)&=\sum^N_{i=1}[y_ilogP(Y=1|x_i)+(1-y_i)log(1-P(Y=1|x_i))] \\
-        &=\sum^N_{i=1}[y_i(\omega\cdot x_i)-log(1+exp(\omega\cdot x_i))]
-    \end{aligned}</script><p>&emsp;&emsp;问题就等价于以对数似然函数为目标函数的最优化问题,可以用梯度下降法或牛顿法.</p>
-<hr>
-<p>&emsp;&emsp;Logistic算法实现简单,速度快,但是当特征空间很大时,性能不是很好；容易欠拟合,一般准确率不太高；对于非线性特征需要转换</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/03/Logistic-regression/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -383,7 +376,7 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:41:36" itemprop="dateModified" datetime="2020-08-14T16:41:36+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -409,32 +402,14 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
           <h4 id="章节1的习题解"><a href="#章节1的习题解" class="headerlink" title="章节1的习题解"></a>章节1的习题解</h4><h5 id="习题1"><a href="#习题1" class="headerlink" title="习题1"></a>习题1</h5><p>&emsp;&emsp;似然估计用于在已知一些参数的情况下,预测接下来在观测上所得到的结果.因为似然函数只与采样数据有关,因此也被称为采样分布.</p>
 <p>&emsp;&emsp;对于一个概率分布$D$,已知概率密度函数为$f_D$,一个参数$\theta$,抽出有n个值的采样,则似然函数为</p>
 <script type="math/tex; mode=display">L(x_1,...,x_n|\theta)=f_\theta(x_1,...,x_n)</script><p>&emsp;&emsp;因此求极大似然估计就是将要估计的参数代入概率密度函数后求导.</p>
-<p>&emsp;&emsp;对于伯努利模型,将结果为1的概率$\theta$代入概率密度函数:</p>
-<script type="math/tex; mode=display">L(\theta)=\prod^n_{i=1}P(x_i)=\theta^k(1-\theta)^{n-k}</script><p>&emsp;&emsp;对公式求导:</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-    \frac{\partial L(\theta)}{\partial \theta}&=k\theta^{k-1}(1-\theta)^{n-k-1}-n\theta^k(1-\theta)^{n-k-1} \\
-    &=(k-n\theta)\theta^{k-1}(1-\theta)^{n-k-1}
-\end{aligned}</script><p>&emsp;&emsp;令上式为0,得到$\theta=\frac{k}{n}$</p>
-<hr>
-<p>&emsp;&emsp;贝叶斯估计的公式为:</p>
-<script type="math/tex; mode=display">P(\theta|x)=\frac{P(x|\theta)P(\theta)}{P(x)}</script><p>&emsp;&emsp;因为$P(x)$与$\theta$无关:</p>
-<script type="math/tex; mode=display">P(\theta|x)\propto P(x|\theta)P(\theta)</script><p>&emsp;&emsp;可以看到贝叶斯估计相当于似然函数乘上一个先验分布.$t$和$r$是先验信息.将参数代入到上式:</p>
-<script type="math/tex; mode=display">
-    \begin{aligned}
-        argmax_\theta P(\theta|x)&=\theta^k(1-\theta)^{n-k}\theta^t(1-\theta)^r \\
-        &=\theta^{k+t}(1-\theta)^{n-k+r} \\
-    \end{aligned}</script><script type="math/tex; mode=display">
-    \begin{aligned}
-        \frac{\partial P(\theta|x)}{\partial\theta}&=(k+t)\theta^{k+t-1}(1-\theta)^{n-k+r}-(n-k+r)\theta^{k+t}(1-\theta)^{n+r-k-1} \\
-        &=[k+t-(t+n+r)\theta]\theta^{k+t=1}(1-\theta)^{n-k+r-1}
-    \end{aligned}</script><p>&emsp;&emsp;令上式为0,得到$\theta=\frac{k+t}{n+t+r}$</p>
-<hr>
-<h5 id="习题2"><a href="#习题2" class="headerlink" title="习题2"></a>习题2</h5><p>&emsp;&emsp;经验风险最小化:</p>
-<script type="math/tex; mode=display">min_{f\in F}=\frac{1}{N}\sum^N_{i=1}L(y_i,f(x_i))</script><p>&emsp;&emsp;根据条件有,损失函数为对数损失函数,即:</p>
-<script type="math/tex; mode=display">L(y_i,f(x_i))=-logP(y_i|x_i)</script><p>&emsp;&emsp;将损失函数代入,得到:</p>
-<script type="math/tex; mode=display">min_{P}\frac{1}{N}\sum^N_{i=1}(-logP(y_i|x_i))=\frac{1}{N}max_plog(\prod^N_{i=1}P(y_i|x_i))</script><p>&emsp;&emsp;去掉不相关项得到$max<em>p\prod^N</em>{i=1}P(y_i|x_i)$.<br>显然这是极大似然估计,因此在模型是条件概率分布,损失函数是对数损失函数时,经验风险最小化等价于极大似然估计.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/05/30/Exercise-1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -484,7 +459,7 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:41:58" itemprop="dateModified" datetime="2020-08-14T16:41:58+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -509,46 +484,14 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
       
           <h4 id="机器学习中的一些基本概念"><a href="#机器学习中的一些基本概念" class="headerlink" title="机器学习中的一些基本概念"></a>机器学习中的一些基本概念</h4><h5 id="贝叶斯学习"><a href="#贝叶斯学习" class="headerlink" title="贝叶斯学习"></a>贝叶斯学习</h5><p>&emsp;&emsp;在概率模型的学习中, 利用贝叶斯定理, 计算后验概率,并进行模型估计, 对数据进行预测.将模型,未观测要素及其参数用变量表示.基本公式如下:</p>
 <script type="math/tex; mode=display">P(\theta |D)=\frac{P(\theta)P(D|\theta)}{P(D)}</script><p>&emsp;&emsp;其中$D$是数据, $\theta$是模型参数, $P(\theta)$是先验概率, $P(D|\theta)$是似然函数, $P(\theta |D)$是后验概率. 通常是取后验概率最大的模型.</p>
-<hr>
-<h5 id="经验风险最小化和结构风险最小化"><a href="#经验风险最小化和结构风险最小化" class="headerlink" title="经验风险最小化和结构风险最小化"></a>经验风险最小化和结构风险最小化</h5><p>&emsp;&emsp;在数据量足够大的时候,经验风险趋于期望风险,这时经验风险最小化就是求解模型最优化等价问题.</p>
-<script type="math/tex; mode=display">min_{f\in \mathcal{F}}\frac{1}{N}\sum^N_{i=1}L(y_i,f(x_i))</script><p>&emsp;&emsp;但是当样本量较小时,会存在过拟合现象.这时需要引入结构风险来防止过拟合.</p>
-<script type="math/tex; mode=display">min_{f\in \mathcal{F}}\frac{1}{N}\sum^N_{i=1}L(y_i,f(x_i))+\lambda J(f)</script><p>&emsp;&emsp;其中$J(f)$是模型复杂度,经典的方法是使用一个正则化项(如一范数,二范数),$\lambda$是用来权衡经验风险和模型复杂度的系数</p>
-<p>&emsp;&emsp;极大似然估计是经验风险最小化的例子.也就是损失函数是对数损失函数时,极大似然估计等价于经验风险最小化；贝叶斯估计中的最大后验概率估计是结构风险最小化的例子.也就是损失函数是对数损失函数,模型复杂度由模型先验概率表示时,最大后验概率估计等价于结构风险最小化.</p>
-<hr>
-<h5 id="模型泛化"><a href="#模型泛化" class="headerlink" title="模型泛化"></a>模型泛化</h5><p>&emsp;&emsp;泛化误差实际上就是学习到模型的期望风险.泛化能力分析通常是求泛化误差上界.# Todo(公式推导)</p>
-<hr>
-<h5 id="生成模型和判别模型"><a href="#生成模型和判别模型" class="headerlink" title="生成模型和判别模型"></a>生成模型和判别模型</h5><p>&emsp;&emsp;生成模型是由数据学习联合概率分布$P(X,Y)$,然后求出条件概率分布$P(Y|X)$作为预测的模型.典型的生成模型有朴素贝叶斯和隐马尔可夫模型.</p>
-<script type="math/tex; mode=display">P(Y|X)=\frac{P(X,Y)}{P(X)}</script><p>&emsp;&emsp;判别模型是由数据直接学习决策函数$f(X)$或者条件概率分布$P(Y|X)$作为预测的模型.</p>
-<p>&emsp;&emsp;显然生成模型关注输入$X$产生输出$Y$的生成关系,而判别模型关心给定输入$X$,应该预测什么样的输出$Y$；当样本容量增加时,生成模型的收敛速度更快；存在隐变量的时候,就只能使用生成模型；判别模型能够简化学习问题,对数据进行一定程度的抽象.</p>
-<hr>
-<h5 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h5><div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">样本\预测</th>
-<th style="text-align:center">0</th>
-<th style="text-align:center">1</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">TN</td>
-<td style="text-align:center">FP</td>
-</tr>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">FN</td>
-<td style="text-align:center">TP</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>精确率(precision): $P=\frac{TP}{TP+FP}$</p>
-<p>准确率(accuracy): $A=\frac{TP+TN}{TP+FP+FN+TN}$</p>
-<p>召回率(recall): $R=\frac{TP}{TP+FN}$</p>
-<p>F1值: $F_1=\frac{2PR}{P+R}=\frac{2TP}{2TP+FP+FN}$ </p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/05/30/Basic-Concept/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -598,7 +541,7 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:41:50" itemprop="dateModified" datetime="2020-08-14T16:41:50+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -630,15 +573,14 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
 <li>否则,对$A_g$的每一可能值$a_i$,依$A_g=a_i$将$D$分割为若干非空子集$D_i$,将$D_i$中实例数最大的类作为标记,构建子结点,由节点及其子节点构成数$T$,返回$T$.</li>
 <li>对第$i$个子节点,以$D_i$为训练集,以$A-{A_g}$为特征集,递归地调用之前的算法,得到子树$T_i$,返回$T_i$.</li>
 </ol>
-<hr>
-<h5 id="信息增益和信息增益比"><a href="#信息增益和信息增益比" class="headerlink" title="信息增益和信息增益比"></a>信息增益和信息增益比</h5><p>信息增益(也被称为互信息)的算法是:</p>
-<ol>
-<li>计算数据集$D$的经验熵$H(D)$<script type="math/tex; mode=display">H(D)=-\sum^K_{k=1}\frac{|C_k|}{|D|}log_2\frac{|C_k|}{|D|}</script></li>
-<li>计算特征$A$对数据集$D$的经验条件熵$H(D|A)$<script type="math/tex; mode=display">H(D|A)=\sum^n_{i=1}\frac{|D_i|}{|D|}H(D_i)=-\sum^n_{i=1}\frac{|D_i|}{|D|}\sum^K_{k=1}\frac{|D_{ik}|}{|D_i|}log_2\frac{|D_{ik}|}{|D_i|}</script></li>
-<li>计算信息增益<script type="math/tex; mode=display">g(D,A)=H(D)-H(D|A)</script></li>
-</ol>
-<p>信息增益比:</p>
-<script type="math/tex; mode=display">g_R(D,A)=\frac{g(D,A)}{H_A(D)}</script>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/05/29/Decision-Tree/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -688,7 +630,7 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:40:13" itemprop="dateModified" datetime="2020-08-14T16:40:13+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -723,22 +665,14 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
 \end{aligned}</script></li>
 <li>重复算法,直至没有误分类点.</li>
 </ol>
-<h5 id="感知机算法的对偶形式"><a href="#感知机算法的对偶形式" class="headerlink" title="感知机算法的对偶形式:"></a>感知机算法的对偶形式:</h5><ol>
-<li>$\alpha\leftarrow0,b\leftarrow0$</li>
-<li>在训练集中选取数据$(x_i,y_i)$</li>
-<li>如果$y<em>i(\sum^N</em>{j=1}\alpha_jy_jx_j\cdot x_i+b)\leq0$</li>
-</ol>
-<script type="math/tex; mode=display">
-    \begin{aligned}
-        \alpha_i&\leftarrow \alpha_i +\eta \\
-        b&\leftarrow b+\eta y_i
-    \end{aligned}</script><ol>
-<li>重复算法,直至没有误分类点.</li>
-</ol>
-<p>对偶形式中用到了Gram矩阵,也就是对样本集做内积:</p>
-<script type="math/tex; mode=display">G=[x_i\cdot x_j]_{N\times N}</script><hr>
-<p>感知机算法的缺点让这个算法的应用范围很窄,基本不会被实际用到.但是通过不同方向的改进,能够得到一些新的算法:比如因为感知机算法得到的解,依赖于初值的选择和迭代过程中选择误分类点的顺序,为了得到唯一超平面,需要引入约束条件,这就是线性SVM的思想；针对线性不可分的问题,通过多层感知机算法解决.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/05/29/Perceptron/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -788,7 +722,7 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:41:17" itemprop="dateModified" datetime="2020-08-14T16:41:17+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -818,20 +752,14 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
 </ol>
 <p>&emsp;&emsp;距离度量通常用欧式距离,常用的分类据测规则是多数表决.k值通常使用交叉验证选择最优值.</p>
 <p>&emsp;&emsp;kd树实际上是二分法在k维空间的扩展,对于训练集中个数较少的情况,kd树的实际表现并不如暴力扫描.</p>
-<hr>
-<p>&emsp;&emsp;KNN算法作为一个简单直观的算法存在以下优点:</p>
-<ol>
-<li>可用于非线性分类.</li>
-<li>对类别的判断只与局部的数据点有关,能够较好地避免样本数量的不平衡问题.</li>
-<li>直接使用样本之间关系,减少类别特征选择不当造成的不利影响,体现分类规则独立性的优势.</li>
-</ol>
-<p>&emsp;&emsp;同时,也存在一些不足:</p>
-<ol>
-<li>对样本的依赖性较高,对噪声敏感.</li>
-<li>距离度量的计算开销大,时间空间复杂度高.</li>
-<li>k值难以确定.</li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/05/29/KNN/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

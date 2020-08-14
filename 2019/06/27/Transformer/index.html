@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006tNc79gy1g4fpkw99egg30m80jo4ni.gif">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/006tNc79gy1g4fpbsaicwj30ng0ystfy.jpg">
 <meta property="article:published_time" content="2019-06-27T06:07:58.000Z">
-<meta property="article:modified_time" content="2020-08-14T06:29:06.304Z">
+<meta property="article:modified_time" content="2020-08-14T08:40:24.503Z">
 <meta property="article:author" content="Effe">
 <meta property="article:tag" content="machine learning">
 <meta name="twitter:card" content="summary">
@@ -184,7 +184,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:40:24" itemprop="dateModified" datetime="2020-08-14T16:40:24+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -214,6 +214,7 @@
 <li>Transformer能够一步获取全局信息,在做NLP任务时表现很优异,如共指消解.</li>
 </ul>
 <p>&emsp;&emsp;Transformer使用传统的Encoder-Decoder结构,给定一个序列$(x_1,…,x_n)$经过处理得到$(y_1,…,y_m)$.模型的每一步都是自回归的,每次生成都使用之前的生成作为附加信息输入.</p>
+<a id="more"></a>
 <p><img src="http://ww1.sinaimg.cn/large/006tNc79gy1g4fpkw99egg30m80jo4ni.gif" width="80%" height="80%"></p>
 <p><img src="http://ww4.sinaimg.cn/large/006tNc79gy1g4fpbsaicwj30ng0ystfy.jpg" width="80%" height="80%" aligns="center"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EncoderDecoder</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, encoder, decoder, src_embed, tgt_embed, generator</span>):</span></span><br><span class="line">        super(EncoderDecoder, self).__init__()</span><br><span class="line">        self.encoder = encoder</span><br><span class="line">        self.decoder = decoder</span><br><span class="line">        self.src_embed = src_embed</span><br><span class="line">        self.tgt_embed = tgt_embed</span><br><span class="line">        self.generator = generator</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, src, tgt, src_mask, tgt_mask</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.decode(self.encode(src, src_mask), src_mask, tgt, tgt_mask)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">encode</span>(<span class="params">self, src, src_mask</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.encode(self.src_embed(src), src_mask)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decode</span>(<span class="params">self, memory, src_mask, tgt, tgt_mask</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.decoder(self.tgt_embed(tgt), memory, src_mask, tgt_mask)</span><br></pre></td></tr></table></figure>

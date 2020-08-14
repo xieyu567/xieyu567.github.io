@@ -572,7 +572,7 @@ Errors occurred, no packages were upgraded.
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:40:02" itemprop="dateModified" datetime="2020-08-14T16:40:02+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -598,15 +598,14 @@ Errors occurred, no packages were upgraded.
           <p>章节五的习题:</p>
 <h4 id="5-2"><a href="#5-2" class="headerlink" title="5.2"></a>5.2</h4><p>a)可以考虑这样的情况:客户端想要请求文件a,但是发出了请求文件b的数据包.随即撤回,并发送新的数据包请求文件a.但是请求数据包丢失了.最后服务器端只收到了请求文件b的数据包,并给客户端返回了文件b.</p>
 <p>b)每次发送请求使用不同的端口号;每个数据包带上序号或者是时间戳,这样错序到达的数据包可以丢弃.</p>
-<h4 id="5-4"><a href="#5-4" class="headerlink" title="5.4"></a>5.4</h4><p>&emsp;&emsp;在主机A发送给主机B数据包(Flags=FIN)后,会转移到状态FIN_WAIT_1,然后主机A会收到主机B回复的数据包(Flags=ACK+FIN).这种情况会发生在主机B在收到主机A发送的(Flags=FIN)后,立即关闭连接,并发送返回自己的FIN和从主机A收到的ACK.</p>
-<p>&emsp;&emsp;这种情况不常见,因为一般情况是主机B一般先返回ACK,之后再返回FIN.也就是说对于主机A,状态转移的顺序是:<br>$ESTABLISHED\rightarrow FIN_WAIT_1\rightarrow FIN_WAIT_2\rightarrow TIME_WAIT\rightarrow CLOSED$<br>对于主机B,状态转移的顺序是:<br>$ESTABLISHED\rightarrow CLOSE_WAIT\rightarrow TIME_WAIT\rightarrow CLOSED$</p>
-<h4 id="5-9"><a href="#5-9" class="headerlink" title="5.9"></a>5.9</h4><p>&emsp;&emsp;已知延迟带宽积为$100<em>10^{-3}s</em>1<em>10^9bps=10^8b=12.5MB$,因此接收端的窗口大小为24(因为$2^{24}=1.67</em>10^7$,并且报文段最小为1字节).</p>
-<p>&emsp;&emsp;SequenceNum用来防止在最大段生存期内回绕.在段最大生存期能够发送$30s*1Gbps=3.75GB$的数据,因此需要32位($2^{32}=4.3G$).</p>
-<h4 id="5-12"><a href="#5-12" class="headerlink" title="5.12"></a>5.12</h4><p>a)TCP的序号字段有32位,也就是在达到回绕之前能够发送$2^{32}B$数据,因此需要$2^{32}B/(10^9bps/8)=34s$</p>
-<p>b)在回绕时间内增量1000次,就是每34ms增量一次.</p>
-<h4 id="5-14"><a href="#5-14" class="headerlink" title="5.14"></a>5.14</h4><p>a)如果是重传,那么前后两个包的序号应该是一致的,如果是主机B崩溃重启,那么后发送的包序号和之前的不同.因为初始建立TCP连接时初始序号是随机选择的.</p>
-<h4 id="5-16"><a href="#5-16" class="headerlink" title="5.16"></a>5.16</h4><p>a)伪造的分组发送到主机A后,A会返回分组给B,但是由于ACK+1,B识别这是个无效的分组后,发送RST给A,重置TCP连接.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/08/31/Network-chapter5/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -656,7 +655,7 @@ Errors occurred, no packages were upgraded.
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:39:56" itemprop="dateModified" datetime="2020-08-14T16:39:56+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -683,85 +682,14 @@ Errors occurred, no packages were upgraded.
 <h4 id="4-1"><a href="#4-1" class="headerlink" title="4.1"></a>4.1</h4><p>a)总共可以收到3条路由,由1,2,3链路.</p>
 <p>b)$A\rightarrow B$采用链路1,$B\rightarrow A$采用链路2.</p>
 <p>c)修改路由信息,或是阻止流量通过链路1.</p>
-<h4 id="4-5"><a href="#4-5" class="headerlink" title="4.5"></a>4.5</h4><p>a)<br>Switch|Address | Next-hop<br>:—-: | :—-:| :—-:<br>P||<br>||C1.A3.0.0/16|PA<br>||C1.B0.0.0/12|PB<br>||C2.0.0.0/8|Q<br>||C3.0.0.0/8|R</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Switch</th>
-<th style="text-align:center">Address</th>
-<th style="text-align:center">Next-hop </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Q</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">C2.0A.10.0/20</td>
-<td>QA</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">C2.0B.0.0/16</td>
-<td>QB</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">C1.0.0.0/8</td>
-<td>P</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">C3.0.0.0/8</td>
-<td>R</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Switch</th>
-<th style="text-align:center">Address</th>
-<th style="text-align:center">Next-hop </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">R</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">C1.0.0.0/8</td>
-<td>P</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">C2.0.0.0/8</td>
-<td>Q</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>b)同上,但是P的路由表中C3.0.0.0/8 R改为C3.0.0.0/8 Q,</p>
-<p>R的路由表中C1.0.0.0/8 P改为C1.0.0.0/8 Q.</p>
-<p>c)同a,除了在去掉R的路由信息,P的路由表中添加C2.0A.10.0/20 QA,</p>
-<p>Q的路由表中添加C1.A3.0.0/16 PA</p>
-<h4 id="4-12"><a href="#4-12" class="headerlink" title="4.12"></a>4.12</h4><p>IPv6中使用以11111111为前缀的地址作为多播地址. IPv4中使用D类地址作为多播地址,以1110作为前缀.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/08/30/Network-chapter4/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -811,7 +739,7 @@ Errors occurred, no packages were upgraded.
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:39:51" itemprop="dateModified" datetime="2020-08-14T16:39:51+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -969,284 +897,14 @@ Errors occurred, no packages were upgraded.
 </tbody>
 </table>
 </div>
-<h4 id="3-3"><a href="#3-3" class="headerlink" title="3.3"></a>3.3</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Switch</th>
-<th style="text-align:center">Destination</th>
-<th style="text-align:center">Next hip</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">A</td>
-<td style="text-align:center">B</td>
-<td style="text-align:center">C</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">C</td>
-<td>C</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">D</td>
-<td>C</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">E</td>
-<td>C</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">F</td>
-<td>C</td>
-</tr>
-<tr>
-<td style="text-align:center">B</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">E</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">C</td>
-<td>E</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">D</td>
-<td>E </td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">E</td>
-<td>E</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">F</td>
-<td>E</td>
-</tr>
-<tr>
-<td style="text-align:center">C</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">A</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">B</td>
-<td>E</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">D</td>
-<td>E</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">E</td>
-<td>E</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">F</td>
-<td>F</td>
-</tr>
-<tr>
-<td style="text-align:center">D</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">E</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">B</td>
-<td>E</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">C</td>
-<td>E</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">E</td>
-<td>E</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">F</td>
-<td>E</td>
-</tr>
-<tr>
-<td style="text-align:center">E</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">C</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">B</td>
-<td>B</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">C</td>
-<td>C</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">D</td>
-<td>D</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">F</td>
-<td>C</td>
-</tr>
-<tr>
-<td style="text-align:center">F</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">C</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">B</td>
-<td>C</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">C</td>
-<td>C</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">D</td>
-<td>C</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">E</td>
-<td>C</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h4 id="3-5"><a href="#3-5" class="headerlink" title="3.5"></a>3.5</h4><p>&emsp;&emsp;一共有三条VC</p>
-<p>1)从A到B,使用S1的1和2端口.</p>
-<p>2)从A到D,使用S1的1和3端口,S2的1和3端口,S3的1和2端口.</p>
-<p>3)从B到D,使用S1的2和3端口,S2的1和3端口,S3的1和2端口.</p>
-<h4 id="3-13"><a href="#3-13" class="headerlink" title="3.13"></a>3.13</h4><p>&emsp;&emsp;网桥和端口之间的映射关系为<br>Bridge | Port<br>:—-: | :—-:<br>B1|C&emsp;E<br>B2|A&emsp;B<br>B3|D&emsp;E&emsp;F&emsp;G&emsp;H<br>B4|G&emsp;I<br>B5|Idle<br>B6|J&emsp;H<br>B7|A&emsp;C</p>
-<h4 id="3-15"><a href="#3-15" class="headerlink" title="3.15"></a>3.15</h4><p>B1: A-interface: A; B2-interface: C<br>B2: B1-interface: A; B3-interface: C; B4-interface: D<br>B3: B2-interface: A,D; C-interface: C<br>B4: B2-interface: D; D-interface: D</p>
-<h4 id="3-22"><a href="#3-22" class="headerlink" title="3.22"></a>3.22</h4><p>&emsp;&emsp;集线器主要的问题是冲突问题,任何主机发送的包都会在集线器处冲突.</p>
-<h4 id="3-26"><a href="#3-26" class="headerlink" title="3.26"></a>3.26</h4><p>&emsp;&emsp;因为总线速度低于内存带宽,所以总线速度是瓶颈,因为每个包要经过总线两次,所以传输效率应为一半$800Mbps/2=400Mbps$,一共能处理$400Mbps/100Mbps=4$个接口.</p>
-<h4 id="3-29"><a href="#3-29" class="headerlink" title="3.29"></a>3.29</h4><p>&emsp;&emsp;a) 输入队列满的时候会丢失这样的分组</p>
-<p>&emsp;&emsp;b) 这叫做<em>head-of line blocking</em>(排头阻塞)</p>
-<p>&emsp;&emsp;c)在输出队列中配置缓存,这样只有在输出队列满的时候才会丢失分组.</p>
-<h4 id="3-33"><a href="#3-33" class="headerlink" title="3.33"></a>3.33</h4><p>&emsp;&emsp;有一种方法叫做”unnumbered point-to-point link”,用于发送的端口不和其他网络中其他主机通信,其他主机也无法访问到该端口,而这个端口只能发送数据.参考RFC1812,section2.2.7.</p>
-<h4 id="3-34"><a href="#3-34" class="headerlink" title="3.34"></a>3.34</h4><p>&emsp;&emsp;ipv4的offset字段为13位,而ip包的长度为$2^{16}$,因此分组的偏移应为$2^{16}/2^{13}=8$</p>
-<h4 id="3-46"><a href="#3-46" class="headerlink" title="3.46"></a>3.46</h4><p>a)<br>||A|B|C|D|E|F<br>:—-: | :—-: | :—-: | :—-: | :—-:| :—-: | :—-: | :—-:<br>A|0|$\infty$|3|8|$\infty$|$\infty$<br>B|$\infty$|0|$\infty$|$\infty$|2|$\infty$|<br>C|3|$\infty$|0|$\infty$|1|6|<br>D|8|$\infty$|$\infty$|0|2|$\infty$|<br>E|$\infty$|2|1|2|0|$\infty$|<br>F|$\infty$|$\infty$|6|$\infty$|$\infty$|0</p>
-<p>b)<br>||A|B|C|D|E|F<br>:—-: | :—-: | :—-: | :—-: | :—-:| :—-: | :—-: | :—-:<br>A|0|$\infty$|3|8|4|9<br>B|$\infty$|0|3|4|2|$\infty$<br>C|3|3|0|3|1|6<br>D|8|4|3|0|2|$\infty$<br>E|4|2|1|2|0|7<br>F|9|$\infty$|6|$\infty$|7|0</p>
-<p>c)<br>||A|B|C|D|E|F<br>:—-: | :—-: | :—-: | :—-: | :—-:| :—-: | :—-: | :—-:<br>A|0|6|3|8|4|9<br>B|6|0|3|4|2|9<br>C|3|3|0|3|1|6<br>D|8|4|3|0|2|9<br>E|4|2|1|2|0|7<br>F|9|9|6|9|7|0</p>
-<h4 id="3-48"><a href="#3-48" class="headerlink" title="3.48"></a>3.48</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Confirmed</th>
-<th style="text-align:center">Tentative</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">(D,0,-)</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">(D,0,-)</td>
-<td style="text-align:center">(A,8,A)</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td>(E,2,E)</td>
-</tr>
-<tr>
-<td style="text-align:center">(D,0,-), (E,2,E)</td>
-<td style="text-align:center">(B,4,E)</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td>(C,3,E)</td>
-</tr>
-<tr>
-<td style="text-align:center">(D,0,-), (E,2,E), (C,3,E)</td>
-<td style="text-align:center">(A,6,E)</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td>(F,9,E)</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td>(B,4,E)</td>
-</tr>
-<tr>
-<td style="text-align:center">(D,0,-), (E,2,E), (C,3,E), (B,4,E)</td>
-<td style="text-align:center">(A,6,E)</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td>(F,9,E)</td>
-</tr>
-<tr>
-<td style="text-align:center">(D,0,-), (E,2,E), (C,3,E), (B,4,E), (A,6,E)</td>
-<td style="text-align:center">(F,9,E)</td>
-</tr>
-<tr>
-<td style="text-align:center">(D,0,-), (E,2,E), (C,3,E), (B,4,E), (A,6,E),(F,9,E)</td>
-<td style="text-align:center"></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h4 id="3-55"><a href="#3-55" class="headerlink" title="3.55"></a>3.55</h4><p>a)128.96.39.10和子网号128.96.39.0匹配,数据包会转发到接口0.</p>
-<p>b)同理,128.96.40.12地址的数据包转发给R2.</p>
-<p>c)因为子网掩码是255.255.255.128,所以对于目标地址128.96.40.151的子网号是128.96.40.128,可见路由表中没有这个子网号,所以转发到默认的R4.</p>
-<h4 id="3-68"><a href="#3-68" class="headerlink" title="3.68"></a>3.68</h4><p>a)根据四个子网的主机数量,A需要128个地址,B需要64个地址,C和D需要32个地址.<br>则可以设计:</p>
-<p>A的子网号为12.1.1.0/25</p>
-<p>B的子网号为12.1.1.128/26</p>
-<p>C的子网号为12.1.1.192/27</p>
-<p>D的子网号为12.1.1.224/27.</p>
-<p>b)以上的设计已经可以容纳32的主机数量,如果再增加主机可以通过网桥连接,或者是重新划分子网的方式.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/08/24/Network-chapter3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1296,7 +954,7 @@ Errors occurred, no packages were upgraded.
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:39:44" itemprop="dateModified" datetime="2020-08-14T16:39:44+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1325,28 +983,14 @@ Errors occurred, no packages were upgraded.
 <p>&emsp;&emsp;<strong>NRZI</strong>:&emsp;信号为1时,进行跳变,信号为0时,不变.这种编码方式解决了连续的1的情况,但是没有解决连续的0的情况.</p>
 <p>&emsp;&emsp;<strong>曼彻斯特编码</strong>:&emsp;用NRZ和时钟进行异或操作.信号为0时由低向高跳变,信号为1时由高向低跳变.因此接收方也能够很好的恢复时钟.但是因为跳变频率(波特率)加倍,曼彻斯特编码的效率只有NRZ和NRZI的一半.</p>
 <p>&emsp;&emsp;<strong>4B/5B编码</strong>:&emsp;用5比特来编码4比特信号,然后使用NRZI编码传输.通过限制连续的0的数量(最多一个前导0,最多两个末尾0)来解决NRZI的问题,同时效率比曼彻斯特编码要高(80%).</p>
-<h4 id="2-2"><a href="#2-2" class="headerlink" title="2.2"></a>2.2</h4><p>&emsp;&emsp;4B/5B编码为11100 01011 11110 10101</p>
-<h4 id="2-4"><a href="#2-4" class="headerlink" title="2.4"></a>2.4</h4><p>&emsp;&emsp;HDLC中<strong>比特填充</strong>过程如下.发送方在5个连续的1后填充0(除了表示帧开始和结束的01111110),接收方在接收到5个1后分情况处理,如果后面跟着0,那么去掉0;如果后面是10,那么为帧特殊比特序列;如果后面是11,那么为无效帧,丢弃整个帧.</p>
-<p>&emsp;&emsp;因此比特序列为1101011111<font color="red">0</font>01011111<font color="red">0</font>101011111<font color="red">0</font>110</p>
-<h4 id="2-7"><a href="#2-7" class="headerlink" title="2.7"></a>2.7</h4><p>&emsp;&emsp;比特序列为01101011111<font color="red">0</font>1010011111<font color="red">1</font>10110<font color="red">01111110</font></p>
-<p>&emsp;&emsp;前一个0为应该移除的比特填充位,下一个1为传输错误造成的位,最后是表示帧结束的特殊比特序列.</p>
-<h4 id="2-11"><a href="#2-11" class="headerlink" title="2.11"></a>2.11</h4><p>&emsp;&emsp;差错检测.最简单的二维奇偶校验.对每个7比特附加1比特的平衡1的个数,使1的个数为偶数.最后的检验字节对每个比特位进行奇偶校验.</p>
-<p>&emsp;&emsp;出现3比特错.可能的情况有三行各出现1个比特错;一行出现2比特错,另一行出现1比特错;一行出现3比特错.第一种情况在每个校验位和检验字节都能检测到.第二种情况在检验字节能够检测和检验位能够检测到.第三种情况同样可以在检验字节和出现差错的检验位检测到.</p>
-<p>&emsp;&emsp;二维奇偶检验能够检测所有的1,3比特错及大部分2,4比特错,例外的4比特错情况为,两行各出现2比特错,并且比特位一致,二维奇偶检验无法检测这种情况.例外的2比特错情况为,同一行出现2比特错,则在行校验中无法检查出,即使通过列校验知道出错的比特位在哪一列.</p>
-<h4 id="2-14"><a href="#2-14" class="headerlink" title="2.14"></a>2.14</h4><p>&emsp;&emsp;对于两个非零数,在没有溢出的情况下,肯定不会为F0000,在溢出的情况下,需要加进位,则一定$&gt;$F0001.</p>
-<h4 id="2-19"><a href="#2-19" class="headerlink" title="2.19"></a>2.19</h4><p>&emsp;&emsp;CRC校验码的步骤,已知用于传输的多项式$C(x)$最高幂次为$k$.</p>
-<p>1)在消息的后面扩展$k$个0</p>
-<p>2)用得到的扩展后的消息除$C(x)$,得到余数.</p>
-<p>3)从扩展后的消息中减去余数(等于直接和k个0异或,即把k个0替换成余数)</p>
-<p>&emsp;&emsp;对消息1011 0010 0100 1011后面加8个0,然后除1000 00111,得余数1001 0011,最后应传输的信息为1011 0010 0100 1011 1001 0011</p>
-<h4 id="2-23"><a href="#2-23" class="headerlink" title="2.23"></a>2.23</h4><p>&emsp;&emsp;a) 时延$=40km/(2*10^8m/s)=0.2ms$</p>
-<p>&emsp;&emsp;b) 超时值$=2*EstinateRTT=0.8ms$</p>
-<p>&emsp;&emsp;c) 因为网络可能会有拥塞等情况,仍然可能出现超时.</p>
-<h4 id="2-25"><a href="#2-25" class="headerlink" title="2.25"></a>2.25</h4><p>&emsp;&emsp;$RTT=2<em>3</em>10^4km/(3*10^8m/s)=0.2s$</p>
-<p>&emsp;&emsp;时延带宽积为$10^6bps/(10^3<em>8b)</em>0.2s=25$帧.</p>
-<p>&emsp;&emsp;也就是在RWS=1的情况下,需要5比特作为序号.因为$MaxSeqNum\geq SWS+1$. </p>
-<p>&emsp;&emsp;在RWS=SWS的情况下,需要6比特,因为$SWS&lt;(MaxSeqNum+1)/2$.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/07/24/Network-chapter2/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1396,7 +1040,7 @@ Errors occurred, no packages were upgraded.
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:39:35" itemprop="dateModified" datetime="2020-08-14T16:39:35+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1427,46 +1071,14 @@ Errors occurred, no packages were upgraded.
 <li>用户名为USER,密码为pass</li>
 </ol>
 <p>&emsp;&emsp;majaro可以使用fileZilla这个ftp工具. 题中的ftp站点结构和题目描述不符, 如果需要RFC规范可以在IETF(Internet Engineering Task Force)获取. <a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/">https://www.ietf.org/rfc/</a></p>
-<h4 id="1-2"><a href="#1-2" class="headerlink" title="1.2"></a>1.2</h4><p>&emsp;&emsp;whois用于查询域名和组织,例如查询google的域名信息,可以使用两种方法:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">whois google</span><br><span class="line">whois google.com</span><br></pre></td></tr></table></figure></p>
-<h4 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h4><ol>
-<li>&emsp;$2\times RTT+1000KB/1.5Mbps+RTT/2\approx 5.458s$<br>第一项是题目给出的初始握手阶段的时延,第二项是传输的时延$Size/Bandwidth=8Mb/1.5Mbps\approx 5.333s$.第三项是单程的传播时延.</li>
-<li>在上一题的基础上再加上999个RTT, $5.458s+RTT*999=55.408s$</li>
-<li>一共需要49.5个RTT(最后一次传输只用0.5RTT),加上初始时延,$(49.5+2)*RTT=2.575s$</li>
-<li>一共需要9.5个RTT,因此为$(9.5+2)*RTT=0.575s$</li>
-</ol>
-<h4 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h4><ol>
-<li>&emsp;$2\times RTT+1.5MB/10Mbps+RTT/2\approx 1.4s$ </li>
-<li>&emsp;$1.4s+(1.5*10^3-1)RTT=121.32s$</li>
-<li>一共需要1499.5个RTT,$(74.5+2)*RTT=6.12s$</li>
-<li>一共需要10.5个RTT,因此为$(10.5+2)*RTT=1s$</li>
-</ol>
-<h4 id="1-5-amp-1-6"><a href="#1-5-amp-1-6" class="headerlink" title="1.5&amp;1.6"></a>1.5&amp;1.6</h4><p>可得$50<em>10^3m/(2</em>10^8m/s)=100*8b/x$,解得带宽为3.2Mbps.在512字节的情况下带宽为16.384Mbps.</p>
-<h4 id="1-7"><a href="#1-7" class="headerlink" title="1.7"></a>1.7</h4><p>&emsp;&emsp;在同一市下属的各个区,邮政地址中前面的若干位是相同的,变动的是后几位的数字.可变的位数是根据下属区的个数而定.电话号码类似,不同的位数有特殊的含义,并且有可变的掩码.</p>
-<h4 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h4><p>&emsp;&emsp;存在地址不唯一的情况,在不同的内网,两个节点的地址是可能相等的,也就是说两个节点在各自的内网地址是同样的地址,如192.168.1.2</p>
-<h4 id="1-9"><a href="#1-9" class="headerlink" title="1.9"></a>1.9</h4><p>&emsp;&emsp;组播能够有效减少冗余广播,常见的应用场景包括电视电话会议,在线教育等.</p>
-<h4 id="1-10"><a href="#1-10" class="headerlink" title="1.10"></a>1.10</h4><p>&emsp;&emsp;FDM和STDM的问题是信道的利用率不够高,在传统的电视和电话网络中,没有足够的交互性,如电视的数据流是单向的,用户只接受数据流.电话类似,两个人不会同时都在说话.但是计算机网络中,很多突发性和长时间的数据流.使用FDM和STDM的话,信道效率不高.</p>
-<h4 id="1-11"><a href="#1-11" class="headerlink" title="1.11"></a>1.11</h4><p>每比特的传输时间为$1/10^9bps=1\mu s$, 长度为$1<em>10^{-9} s</em>2.3*10^8m/s=0.23m$</p>
-<h4 id="1-12"><a href="#1-12" class="headerlink" title="1.12"></a>1.12</h4><p>共需要$(x<em>8</em>10^3)/(y<em>10^6)=8x/y</em>10^{-3}=8x/y\text{ms}$</p>
-<h4 id="1-13-amp-1-14"><a href="#1-13-amp-1-14" class="headerlink" title="1.13&amp;1.14"></a>1.13&amp;1.14</h4><ol>
-<li>最小RTT为$2<em>55</em>10^9/3*10^{-8}=1100/3s=367s$</li>
-<li>延迟带宽积为$RTT/2<em>128</em>10^3=2.348*10^7bit=2.93MB$</li>
-<li>总时延为$5MB/128kbps+RTT/2=5<em>8</em>10^6/128*10^3+183.5=496s$</li>
-</ol>
-<h4 id="1-17"><a href="#1-17" class="headerlink" title="1.17"></a>1.17</h4><ol>
-<li>总时延为$2<em>(5</em>10^3b/1Gbps+10*10^{-6})=30\mu s$</li>
-<li>有三个交换机,即是有4个链路总时延为上题的两倍,即$60\mu s$</li>
-<li>对于直通式转发,交换机上只有$128b/1Gbps=128ns$的延迟,加上4个传播延迟和1个传输延迟,总延迟为$45.384\mu s$.</li>
-</ol>
-<h4 id="1-27"><a href="#1-27" class="headerlink" title="1.27"></a>1.27</h4><ol>
-<li>带宽为$1920<em>1080</em>24*30=1.492992Gbps\approx 1.5Gbps$</li>
-<li>带宽为$8000*8=64Kbps$</li>
-<li>带宽为$260*50=13kbps$</li>
-<li>带宽为$24*88200=2.1168Mbps\approx 2.1Mbps$</li>
-</ol>
-<h4 id="1-37"><a href="#1-37" class="headerlink" title="1.37"></a>1.37</h4><p><img src="https://i.loli.net/2019/07/24/5d37afba402a934744.png" alt><br>&emsp;&emsp;这里只设置了5跳,星号可能是防火墙封掉了ICMP的返回.第一跳是我的网关,一共发送4个数据包,后面显示的是数据包返回的时间.</p>
-<p>&emsp;&emsp;traceroute是利用ICMP包和IP头的TTL位.具体是traceroute先发送一个TTL为1的数据包,当到达路径上第一个路由时,TTL减1,路由器收到TTL为0的包便会丢弃,并返回ICMP time exceeded的信息,traceroute收到返回的包,便可知道路径上的路由器信息.接着发送第二个包,TTL为2.以此累加,一直到到达目的地址.因为traceroute发送的包中port number是一个一般应用程序不会用到的端口(30000以上),因此目标主机会返回ICMP port unreachable的信息.traceroute收到信息就知道已到达了目标地址.</p>
-<p>&emsp;&emsp;很显然可以看出对于一些路由器丢弃TTL为0的包时,不返回信息,那么traceroute就没法工作.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/07/23/Network-chapter1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

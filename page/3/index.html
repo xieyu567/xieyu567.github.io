@@ -176,7 +176,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:40:24" itemprop="dateModified" datetime="2020-08-14T16:40:24+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -206,25 +206,14 @@
 <li>Transformer能够一步获取全局信息,在做NLP任务时表现很优异,如共指消解.</li>
 </ul>
 <p>&emsp;&emsp;Transformer使用传统的Encoder-Decoder结构,给定一个序列$(x_1,…,x_n)$经过处理得到$(y_1,…,y_m)$.模型的每一步都是自回归的,每次生成都使用之前的生成作为附加信息输入.</p>
-<p><img src="http://ww1.sinaimg.cn/large/006tNc79gy1g4fpkw99egg30m80jo4ni.gif" width="80%" height="80%"></p>
-<p><img src="http://ww4.sinaimg.cn/large/006tNc79gy1g4fpbsaicwj30ng0ystfy.jpg" width="80%" height="80%" aligns="center"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EncoderDecoder</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, encoder, decoder, src_embed, tgt_embed, generator</span>):</span></span><br><span class="line">        super(EncoderDecoder, self).__init__()</span><br><span class="line">        self.encoder = encoder</span><br><span class="line">        self.decoder = decoder</span><br><span class="line">        self.src_embed = src_embed</span><br><span class="line">        self.tgt_embed = tgt_embed</span><br><span class="line">        self.generator = generator</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, src, tgt, src_mask, tgt_mask</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.decode(self.encode(src, src_mask), src_mask, tgt, tgt_mask)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">encode</span>(<span class="params">self, src, src_mask</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.encode(self.src_embed(src), src_mask)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decode</span>(<span class="params">self, memory, src_mask, tgt, tgt_mask</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.decoder(self.tgt_embed(tgt), memory, src_mask, tgt_mask)</span><br></pre></td></tr></table></figure>
-<p>这是构建EncoderDecoder框架,注意到encode(src, src_mask)就是memory,也就是用encode的输出作为了Decode的输入,图上两个部分相连的那条线.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Generator</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, d_model, vocab</span>):</span></span><br><span class="line">        super(Generator, self).__init__()</span><br><span class="line">        self.proj = nn.Linear(d_model, vocab)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        <span class="keyword">return</span> F.log_softmax(self.proj(x), dim=<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;这里是定义一个标准的线性然后softmax的标准生成步骤.因为之前没有用过pytorch,所以还是记录一下用到的内置函数. </p>
-<ul>
-<li>$nn.Linear()$函数是用来做线性变化的,输入一个维度为$m\times n$的矩阵,经过线性变化$nn.Linear(n,t,bias=None)$得到的输入维度为$m\times t$.具体的实现是输入矩阵乘$t\times n$矩阵再加上一个维度为$m$的$\text{bias}$.<script type="math/tex; mode=display">y=xA^T+\text{bias}</script></li>
-<li>$\text{F.log_softmax()}$函数就是在softmax函数外面再加一个$\text{log}$函数.需要注意的是$\text{dim}$的指定,以二维函数为例,取$\text{dim}=1$时,是对每一行进行softmax,而取0时是每一列进行计算.可以理解为沿着某条轴,将数据集中到轴上.<script type="math/tex; mode=display">\log(\text{Softmax}(x_{i})) = \log(\frac{\exp(x_i) }{ \sum_j \exp(x_j)})</script></li>
-</ul>
-<hr>
-<p>接下来是Encoder部分<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clones</span>(<span class="params">module, N</span>):</span></span><br><span class="line">    <span class="keyword">return</span> nn.ModuleList([copy.deepcopy(module) <span class="keyword">for</span> _ <span class="keyword">in</span> range(N)])</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;首先定义一个clone方法,因为Encoder是由多个相同的层构成的.这里设$N=6$<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Encoder</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, layer, N</span>):</span></span><br><span class="line">        super(Encoder, self).__init__()</span><br><span class="line">        self.layers = clones(layer, N)</span><br><span class="line">        self.norm = LayerNorm(layer.size)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, mask</span>):</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers:</span><br><span class="line">            x = layer(x, mask)</span><br><span class="line">        <span class="keyword">return</span> self.norm(x)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LayerNorm</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, features, eps=<span class="number">1e-6</span></span>):</span></span><br><span class="line">        super(LayerNorm, self).__init__()</span><br><span class="line">        self.a_2 = nn.Parameter(torch.ones(features))</span><br><span class="line">        self.b_2 = nn.Parameter(torch.zeros(features))</span><br><span class="line">        self.eps = eps</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        mean = x.mean(<span class="number">-1</span>, keepdim=<span class="literal">True</span>)</span><br><span class="line">        std = x.std(<span class="number">-1</span>, keepdim=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> self.a_2 * (x - mean) / (std + self.eps) + self.b_2</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;然后定义Encoder和LN模块.LayerNorm本来torch里也有内置函数.这里是自己实现的.</p>
-<script type="math/tex; mode=display">y=\frac{x-E[x]}{\sqrt{Var[x]+\epsilon}}\times \gamma +\beta</script><p>&emsp;&emsp;其中$\gamma$和$\beta$是参数,$\epsilon$是一个很小数,torch中取$e^{-5}$,为了保持数值的稳定性,防止分母趋近0.</p>
-<p>&emsp;&emsp;对应到图上就是$\text{Add\&amp;Norm}$这一块,对于每个sublayer有$LayerNorm(x+Sublayer(x))$.具体是$dropout\rightarrow sublayer的input相加\rightarrow Normalized$.但是在实际编码中,将Norm放到了dropout前面.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SublayerConnection</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, size, dropout</span>):</span></span><br><span class="line">        super(SublayerConnection, self).__init__()</span><br><span class="line">        self.norm = LayerNorm(size)</span><br><span class="line">        self.dropout = nn.Dropout(dropout)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, sublayer</span>):</span></span><br><span class="line">        <span class="keyword">return</span> x + self.dropout(sublayer(self.norm(x)))</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;定义sublayer的残差连接.残差连接实际上就是$f(x)+x$,目的是为了反向传播的时候,梯度连乘,不会造成梯度消失.因为会出现常数项.可以看到是先normalizion再dropout.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EncoderLayer</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, size, self_attn, feed_forward, dropout</span>):</span></span><br><span class="line">        super(EncoderLayer, self).__init__()</span><br><span class="line">        self.self_attn = self_attn</span><br><span class="line">        self.feed_forward = feed_forward</span><br><span class="line">        self.sublayer = clones(SublayerConnection(size, dropout), <span class="number">2</span>)</span><br><span class="line">        self.size = size</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, mask</span>):</span></span><br><span class="line">        x = self.sublayer[<span class="number">0</span>](x, <span class="keyword">lambda</span> x: self.self_attn(x, x, x, mask))</span><br><span class="line">        <span class="keyword">return</span> self.sublayer[<span class="number">1</span>](x, self.feed_forward)</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;Encoder每层有两个sublayer,第一个sublayer[0]用多头注意力机制,第二个sublayer[1]用位置全连接前馈网络.</p>
-<hr>
-<p>然后是Decoder层<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Decoder</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, layer, N</span>):</span></span><br><span class="line">        super(Decoder, self).__init__()</span><br><span class="line">        self.layers = clones(layer, N)</span><br><span class="line">        self.norm = LayerNorm(layer.size)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, memory, src_mask, tgt_mask</span>):</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers:</span><br><span class="line">            x = layer(x, memory, src_mask, tgt_mask)</span><br><span class="line">        <span class="keyword">return</span> self.norm(x)</span><br></pre></td></tr></table></figure><br>和Encoder一样,设计为6个相同的层.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DecoderLayer</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, size, self_attn, src_attn, feed_forward, dropout</span>):</span></span><br><span class="line">        super(DecoderLayer, self).__init__()</span><br><span class="line">        self.size = size</span><br><span class="line">        self.self_attn = self_attn</span><br><span class="line">        self.src_attn = src_attn</span><br><span class="line">        self.feed_forward = feed_forward</span><br><span class="line">        self.sublayer = clones(SublayerConnection(size, dropout), <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, memory, src_mask, tgt_mask</span>):</span></span><br><span class="line">        m = memory</span><br><span class="line">        x = self.sublayer[<span class="number">0</span>](x, <span class="keyword">lambda</span> x: self.self_attn(x, x, x, tgt_mask))</span><br><span class="line">        x = self.sublayer[<span class="number">1</span>](x, <span class="keyword">lambda</span> x: self.src_attn(x, m, m, src_mask))</span><br><span class="line">        <span class="keyword">return</span> self.sublayer[<span class="number">2</span>](x, self.feed_forward)</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;Decoder的sublayer有三个,其中sublayer[0]和Encoder一样用自注意力机制,sublayer[2]同样是前馈网络,sublayer[1]是对Encoder的输出用多头注意力机制.残差网络和Norm和Encoder一样.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subsequent_mask</span>(<span class="params">size</span>):</span></span><br><span class="line">    attn_shape = (<span class="number">1</span>, size, size)</span><br><span class="line">    subsequent_mask = np.triu(np.ones(attn_shape), k=<span class="number">1</span>).astype(<span class="string">&#x27;uint8&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> torch.from_numpy(subsequent_mask) == <span class="number">0</span></span><br></pre></td></tr></table></figure><br>&emsp;&emsp;定义subsequent_mask方法,为了在Decoder时遮盖当前位置后的内容. $np.triu$方法是取上三角矩阵,$k$为偏移量,正数时向上偏移,比如有矩阵$\begin{vmatrix} 1&amp;2 \ 2&amp;3 \ 3&amp;4 \end{vmatrix}$, 其上三角矩阵为$\begin{vmatrix} 1&amp;2 \ 0&amp;3 \ 0&amp;0 \end{vmatrix}$, $k=1$时为$\begin{vmatrix} 0&amp;2 \ 0&amp;0 \ 0&amp;0 \end{vmatrix}$.最后返回的是取反后的矩阵.也就是上三角为0.</p>
-<hr>
-<p>接下来是attent模块.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/27/Transformer/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -349,7 +338,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:42:48" itemprop="dateModified" datetime="2020-08-14T16:42:48+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -373,10 +362,14 @@
 
       
           <p>&emsp;&emsp;腓尼基人是闪米特人的一支,以擅长航海与经商著称.使用腓尼基语和布匿语,使用腓尼基文字.属于亚非语系闪米特语族中闪米特语支.比较有意思的是,腓尼基字母是由楔形字母改造的,而希腊字母是以腓尼基字母改造而来的.腓尼基语现已消亡.</p>
-<p>&emsp;&emsp;腓尼基文明十分古老,早期臣服于古埃及.后来古埃及衰落后,迅速崛起.最强盛时是地中海当之无愧的霸主.之后和古希腊在地中海形成分庭抗礼之势.由腓尼基人统治的迦太基占据了西地中海,然而在经过三次布匿战争之后走向了衰落.迦太基城便是现在的突尼斯,在古罗马的文献中称为”布匿”.</p>
-<p>&emsp;&emsp;腓尼基人原本是在地中海东岸,范围是现在的黎巴嫩和叙利亚.在公元前8世纪,狄多公主被排挤,为免遭迫害,逃到了突尼斯,并在柏柏人的领地建成了迦太基城.</p>
-<p>&emsp;&emsp;在布匿战争中最为亮眼的是迦太基将军汉尼拔,在坎尼战争中围歼了七万罗马士兵,战损比达到7:1.直至今日仍是军事史上最伟大的战役之一.可惜在罗马反攻时,汉尼拔军队因为驰援导致兵力下降,最终导致战争失败.在第三次布匿战争中,迦太基惨遭亡国.在十字军东征时,迦太基城几乎全部损坏殆尽.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/21/%E8%85%93%E5%B0%BC%E5%9F%BA/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -585,7 +578,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:42:31" itemprop="dateModified" datetime="2020-08-14T16:42:31+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -609,12 +602,14 @@
 
       
           <p>&emsp;&emsp;补一点语言学的知识.顺便再复习一下历史.按照&lt;远征记&gt;的写作方法,先了解一下那些在古代有名的民族.语言学分类主要参考Glottolog,一个由马克思$\cdot$普朗克人类历史科学研究所维护的目录学数据库.辅助参考Ethnologue,由基督教语言学研究机构SIL国际出版.</p>
-<p>&emsp;&emsp;亚述人,以创建亚述帝国(公元前935-前612年)而闻名于世.主要使用阿卡德语亚述方言,阿卡德语(Akkadian)是已知最早的闪族语言,属亚非语系闪米特语族东闪米特语支.文字使用源于古苏美尔语的楔形文字.阿卡德语这一分支现已灭绝.当今的亚述人主要使用新阿拉姆语(Aramaic, 属于亚非语系闪米特语族中闪米特语支,古阿拉姆语是圣经所使用的语言),他们称为新亚述语.亚述人主要信奉基督教.</p>
-<p>&emsp;&emsp;在公元前2600年左右,胡里特人和闪米特人逐渐融合成亚述人.有记录的亚述国王名单可以追溯到大约公元前2000年,在两河流域延续了几千年.在亚述帝国时空前强大,主要在现在的伊拉克境内,最强盛时版图包含了巴勒斯坦,叙利亚,一部分埃及.这个横跨亚非大陆的军事奴隶制帝国是当时中东最大的势力.当代亚述人仍然以伊拉克为最集中的区域.</p>
-<p>&emsp;&emsp;亚述帝国的国都定在尼尼微,位于现在伊拉克的摩苏尔附近.摩苏尔在阿拉伯语中是”连接点”的意思,位于两河流域,土耳其,伊朗的连接位置.也让这里受尽了无数的劫难.这里在圣经中被提及了多次,相传是诺亚的曾孙Nimrod所建.因为亚述帝国在征服战争中极为残暴,而且亚述人喜欢猎狮,犹太人将尼尼微成为”血腥的狮穴”.</p>
-<p>&emsp;&emsp;在中世纪阿拉伯人侵入两河流域时,亚述人由于没有改信伊斯兰教而受到压迫,原因就是因为基督教的礼拜可以使用亚述人自己的阿拉姆语,而伊斯兰教只能使用阿拉伯语.近代,伊拉克战争以及之后的ISIS对亚述人造成了很深远的影响,再次迫使他们离散到各地.</p>
-<p>&emsp;&emsp;经过千年的磨难,亚述人从过去的阿卡德语改为了阿拉米语,从过去的多神崇拜变成现在的基督教(当然也有部分改信伊斯兰教,称为穆哈拉米人Mhallami),但仍然认同自己是亚述人.过去的亚述帝国Assyria现在已经演变成Syria,也就是叙利亚.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/19/%E4%BA%9A%E8%BF%B0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -664,7 +659,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:42:11" itemprop="dateModified" datetime="2020-08-14T16:42:11+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -689,21 +684,14 @@
       
           <p>第二章的习题</p>
 <h4 id="2-1"><a href="#2-1" class="headerlink" title="2.1"></a>2.1</h4><p>&emsp;&emsp;还是以扫地机为例子,如果之前的序列是扫地机一直向右走并清扫灰尘,但是当前已经到了墙角下,无法再向右走,如果扫地机只依赖于之前的时间步,那么就会一直停止.因此理性Agent的行动不仅依赖于环境状态,也要考虑它到达的时间点.</p>
-<h4 id="2-2"><a href="#2-2" class="headerlink" title="2.2"></a>2.2</h4><h5 id="1"><a href="#1" class="headerlink" title="1)"></a>1)</h5><p>&emsp;&emsp;要证明这个扫地机是理性Agent,就是要证明对每个可能的感知序列,根据已知的感知序列提供的证据和Agent具有的先验知识,扫地机会选择能使其性能度量最大化的行动.先验知识是环境,也就是地板的分布.性能度量是每个时间步对每块清洁的方格奖励1分.因为只有左右两块地板,扫地机只具备向左,向右和打扫地面三个行动.按照之前的行动序列,可以认为这是能使性能度量分值的期望最高的行动.因此这个Agent是理性的.</p>
-<h5 id="2"><a href="#2" class="headerlink" title="2)"></a>2)</h5><p>&emsp;&emsp;如果给移动加一个代价,那么在扫地机就不能积极地进行移动.可以设计这样的一个函数:</p>
-<p>&emsp;&emsp;当A地板是干净的,下一步移动到B地板,如果B地板也是干净的,那么就停一步,也就是在一个时间步之后再移动到A地板,如果B地板是脏的,那么就没有时间延迟.同理,如果从B地板移动到A地板后,根据环境,在之前的时间延迟之上再加一个时间步的时间延迟.</p>
-<p>&emsp;&emsp;这样的Agent仍然是基于规则-行动的,没有复杂的内部状态,只是基于当前的环境对执行时间进行推迟,以减少移动带来的惩罚.</p>
-<h5 id="3"><a href="#3" class="headerlink" title="3)"></a>3)</h5><p>&emsp;&emsp;对于地理环境不明的情况,最好是使用随机的方式,也就是让机器自己学习到地理信息.</p>
-<h4 id="2-3"><a href="#2-3" class="headerlink" title="2.3"></a>2.3</h4><h5 id="a"><a href="#a" class="headerlink" title="a)"></a>a)</h5><p>&emsp;&emsp;并非不可能是完全理性的,在限制条件下采取的理性也可能是完美理性的,局部最优解可能就是全局最优解.</p>
-<h5 id="b"><a href="#b" class="headerlink" title="b)"></a>b)</h5><p>&emsp;&emsp;存在这样的情况,比如扫地机在需要给地面铺上沙子的任务,原来的规则就和现有的任务相悖,因此行动也会是不理性的.</p>
-<h5 id="c"><a href="#c" class="headerlink" title="c)"></a>c)</h5><p>&emsp;&emsp;存在.自动驾驶任务下,每个自动驾驶的汽车都会选择当前最佳的行动.</p>
-<h5 id="d"><a href="#d" class="headerlink" title="d)"></a>d)</h5><p>&emsp;&emsp;不是的,Agent程序以当前感知为输入,Agent函数以整个历史作为输入.</p>
-<h5 id="e"><a href="#e" class="headerlink" title="e)"></a>e)</h5><p>&emsp;&emsp;是的,Agent函数都可以用程序/机器组合实现.</p>
-<h5 id="f"><a href="#f" class="headerlink" title="f)"></a>f)</h5><p>&emsp;&emsp;不存在,完全是随机的话,就不存在最优解,那也就无法判断Agent是否是理性的.</p>
-<h5 id="g"><a href="#g" class="headerlink" title="g)"></a>g)</h5><p>&emsp;&emsp;可能,任务环境不同但是相近的才能使这句话成立,因为性能度量要一致,给定的Agent才能进行任务迁移.</p>
-<h5 id="h"><a href="#h" class="headerlink" title="h)"></a>h)</h5><p>&emsp;&emsp;在无法观察环境下,Agent也可能是理性的.</p>
-<h4 id="2-5"><a href="#2-5" class="headerlink" title="2.5"></a>2.5</h4><p>Agent: AI的最小单元 \<br>Agent函数: AI行动的逻辑单元 \<br>Agent程序: Agent函数的实现 \<br>反射Agent: 基于条件-行动准则的Agent,只关注当前输入. \<br>基于模型的Agent: 根据过去历史维持内部状态,通过先验知识(对现实建模)和内部状态决定行动.比如自动驾驶的汽车观察到上一帧前面的车没有点亮车灯,而当前时间后车灯同时亮了,根据先验知识,可以知道前车在刹车,同样根据先验知识,得到自己也需要刹车.由此由模型和内部状态得到了减速行为. \<br>基于目标的Agent: 在前面的基础上加上目标信息.还是前车刹车的例子.基于目标的Agent是通过推理的形式得到,因为前车刹车了,为了不和前车相撞,我也需要刹车.也就是不同与前面是基于规则,基于目标的Agent能够推理进行决策. \<br>基于效用的Agent: 在上面的基础上再引入效用函数.用来评价行动和决策的分数.评价行为是否是经济,高效的. \<br>学习Agent: 能够实现自学习的Agent,通过Critic, Learning element, Performance element, Problem generator四个组件实现.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/11/AI-chapter2/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -753,7 +741,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:42:20" itemprop="dateModified" datetime="2020-08-14T16:42:20+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -777,13 +765,15 @@
 
       
           <p>第一章的习题:</p>
-<h4 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h4><h5 id="a-智能-能够按照人类一样思考和判断"><a href="#a-智能-能够按照人类一样思考和判断" class="headerlink" title="a) 智能: 能够按照人类一样思考和判断."></a>a) 智能: 能够按照人类一样思考和判断.</h5><h5 id="b-人工智能-制造能够理解智能实体的实体"><a href="#b-人工智能-制造能够理解智能实体的实体" class="headerlink" title="b) 人工智能: 制造能够理解智能实体的实体."></a>b) 人工智能: 制造能够理解智能实体的实体.</h5><h5 id="c-Agent-能够行动的某种东西-可以是机械臂或者是机器人等"><a href="#c-Agent-能够行动的某种东西-可以是机械臂或者是机器人等" class="headerlink" title="c) Agent: 能够行动的某种东西,可以是机械臂或者是机器人等."></a>c) Agent: 能够行动的某种东西,可以是机械臂或者是机器人等.</h5><h5 id="d-理性-思维方式和行动方式合理并且符合逻辑"><a href="#d-理性-思维方式和行动方式合理并且符合逻辑" class="headerlink" title="d) 理性: 思维方式和行动方式合理并且符合逻辑."></a>d) 理性: 思维方式和行动方式合理并且符合逻辑.</h5><h5 id="e-逻辑推理-严密按照逻辑规则从初始条件机械地推导出结论"><a href="#e-逻辑推理-严密按照逻辑规则从初始条件机械地推导出结论" class="headerlink" title="e) 逻辑推理: 严密按照逻辑规则从初始条件机械地推导出结论."></a>e) 逻辑推理: 严密按照逻辑规则从初始条件机械地推导出结论.</h5><h4 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h4><p>&emsp;&emsp;反射行动是理性的,因为理性是行为和思考合理.但是不是智能的,因为反射行动不包含逻辑思考,而判断是否智能的关键是能否像人类一样的思考和行动,反射行动即使是无脊椎动物也具有.</p>
-<h4 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h4><p>&emsp;&emsp;我认为不是的,智商测试主要测试的是人的逻辑思维,推理能力等,如果ANALOGY程序在测试中比人类的得分更高,那么可以得出ANALOGY在逻辑思维,推理能力上比人类的表现更优秀,但是像人类一样思考和判断并不代表人类的思维方式是机械的完全理性的思维方式.因此我认为这只能表示这个程序在逻辑思维能力上比人类表现更好,但是并不代表它是一个比人更智能的程序.</p>
-<h4 id="1-7"><a href="#1-7" class="headerlink" title="1.7"></a>1.7</h4><p>&emsp;&emsp;超市条码扫描器和网络搜索引擎不是人工智能,语音激活和对网络状态动态相应的网络路由算法是人工智能.</p>
-<h4 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h4><p>&emsp;&emsp;我认为现有的模型都是用一个复杂的映射关系逼近人类的认知过程,这些复杂的数学工具只是实现的手段.现在流行的神经网络方法在可解释性上还比较差,而人类的认知过程也没有完全解析,因此还是一个黑盒.</p>
-<h4 id="1-9"><a href="#1-9" class="headerlink" title="1.9"></a>1.9</h4><p>&emsp;&emsp;生物的进化是随着环境的改变而改变的,对人来说,既包括自然环境也包括社会环境.进化的意义在于更好地适应环境生存下去.系统一般是趋向于熵增的方向.如果生物不进化,那么只有可能全部死亡或是全部生存.进化让生物也向熵增的方向发展,一部分不适应环境的基因会消失,而适应环境的基因会存续.</p>
-<h4 id="1-10"><a href="#1-10" class="headerlink" title="1.10"></a>1.10</h4><p>&emsp;&emsp;AI是一门科学,也是一门工程.首先AI需要用机器来重现人类的认知和行为方式,需要用到心理学,生物学等不同学科的领域知识来研究人类认知过程.同时也需要用到计算机工程,机器人等工程学领域知识将AI进行实现.</p>
-
+<h4 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h4><h5 id="a-智能-能够按照人类一样思考和判断"><a href="#a-智能-能够按照人类一样思考和判断" class="headerlink" title="a) 智能: 能够按照人类一样思考和判断."></a>a) 智能: 能够按照人类一样思考和判断.</h5><h5 id="b-人工智能-制造能够理解智能实体的实体"><a href="#b-人工智能-制造能够理解智能实体的实体" class="headerlink" title="b) 人工智能: 制造能够理解智能实体的实体."></a>b) 人工智能: 制造能够理解智能实体的实体.</h5><h5 id="c-Agent-能够行动的某种东西-可以是机械臂或者是机器人等"><a href="#c-Agent-能够行动的某种东西-可以是机械臂或者是机器人等" class="headerlink" title="c) Agent: 能够行动的某种东西,可以是机械臂或者是机器人等."></a>c) Agent: 能够行动的某种东西,可以是机械臂或者是机器人等.</h5><h5 id="d-理性-思维方式和行动方式合理并且符合逻辑"><a href="#d-理性-思维方式和行动方式合理并且符合逻辑" class="headerlink" title="d) 理性: 思维方式和行动方式合理并且符合逻辑."></a>d) 理性: 思维方式和行动方式合理并且符合逻辑.</h5><h5 id="e-逻辑推理-严密按照逻辑规则从初始条件机械地推导出结论"><a href="#e-逻辑推理-严密按照逻辑规则从初始条件机械地推导出结论" class="headerlink" title="e) 逻辑推理: 严密按照逻辑规则从初始条件机械地推导出结论."></a>e) 逻辑推理: 严密按照逻辑规则从初始条件机械地推导出结论.</h5>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/10/AI-Chapter1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

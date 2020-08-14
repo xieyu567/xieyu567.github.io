@@ -28,7 +28,7 @@
 <meta property="og:description" content="决策树算法决策树算法是一种简单的机器学习算法. 算法步骤: 如果$D$中所有实例属于同一类$C_k$,则$T$为单节点树,并将类$C_k$作为该结点的类标记.返回$T$. 如果特征集$A&#x3D;\varnothing$,则$T$为单节点树,并将$D$中实例数最大的类$C_k$作为该节点的类标记.返回$T$. 否则,计算$A$中各特征对D的信息增益或是信息增益比,选择信息增益(信息增益比)最大的特征$A_">
 <meta property="og:locale">
 <meta property="article:published_time" content="2019-05-29T02:52:20.000Z">
-<meta property="article:modified_time" content="2020-08-14T06:29:06.301Z">
+<meta property="article:modified_time" content="2020-08-14T08:41:50.703Z">
 <meta property="article:author" content="Effe">
 <meta property="article:tag" content="machine learning">
 <meta name="twitter:card" content="summary">
@@ -181,7 +181,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:41:50" itemprop="dateModified" datetime="2020-08-14T16:41:50+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -213,6 +213,7 @@
 <li>否则,对$A_g$的每一可能值$a_i$,依$A_g=a_i$将$D$分割为若干非空子集$D_i$,将$D_i$中实例数最大的类作为标记,构建子结点,由节点及其子节点构成数$T$,返回$T$.</li>
 <li>对第$i$个子节点,以$D_i$为训练集,以$A-{A_g}$为特征集,递归地调用之前的算法,得到子树$T_i$,返回$T_i$.</li>
 </ol>
+<a id="more"></a>
 <hr>
 <h5 id="信息增益和信息增益比"><a href="#信息增益和信息增益比" class="headerlink" title="信息增益和信息增益比"></a>信息增益和信息增益比</h5><p>信息增益(也被称为互信息)的算法是:</p>
 <ol>
