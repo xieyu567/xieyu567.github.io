@@ -300,7 +300,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 16:01:19" itemprop="dateModified" datetime="2020-08-14T16:01:19+08:00">2020-08-14</time>
+                <time title="Modified: 2020-08-14 16:37:51" itemprop="dateModified" datetime="2020-08-14T16:37:51+08:00">2020-08-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -323,19 +323,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>使用brew安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install kafka</span><br></pre></td></tr></table></figure><br>这里使用kafka自带的zookeeper</p>
-<p>默认命令和端口:</p>
-<ol>
-<li>zookeeper-server-start {kafka}/config/zookeeper.properties #在启动kafka之前需要先启动zookeeper</li>
-<li>kafka-server-start {kafka}/config/server.properties #启动kafka</li>
-<li>kafka-topics —create —zookeeper localhost:2181 —replication -factor 1 —partitions 1 —topic {topicName} #新建topic</li>
-<li>kafka-console-producer —broker-list localhost:9092 —topic {topicName} #producer生产数据，在&gt;后可以输入需要的数据，ctrl+c退出即可</li>
-<li>kafka-console-consumer —bootstrap-server localhost:9092 —topic {topicName} —from-beginning #在consumer端读取数据</li>
-<li>localhost:2181 #zookeeper端口</li>
-<li>localhost:9092 #kafka端口</li>
-<li>zookeeper-server-stop kafka-server-stop #停止服务</li>
-</ol>
-
+          <p>使用brew安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install kafka</span><br></pre></td></tr></table></figure><br></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/13/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-8/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
