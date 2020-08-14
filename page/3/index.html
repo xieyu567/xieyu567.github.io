@@ -145,6 +145,104 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/27/Transformer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/27/Transformer/" class="post-title-link" itemprop="url">Transformer</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-27 14:07:58" itemprop="dateCreated datePublished" datetime="2019-06-27T14:07:58+08:00">2019-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>&emsp;&emsp;这是2017年Google Brain的一篇论文,使用self-attention机制构建模型.和之前完全不同的思路,</p>
+<ul>
+<li>RNN因为是递归式的结构,无法做到并行,而且要获得全局信息必须要做双向RNN.</li>
+<li>CNN则是因为感受域限制,只能获取局部信息.</li>
+<li>Transformer能够一步获取全局信息,在做NLP任务时表现很优异,如共指消解.</li>
+</ul>
+<p>&emsp;&emsp;Transformer使用传统的Encoder-Decoder结构,给定一个序列$(x_1,…,x_n)$经过处理得到$(y_1,…,y_m)$.模型的每一步都是自回归的,每次生成都使用之前的生成作为附加信息输入.</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tNc79gy1g4fpkw99egg30m80jo4ni.gif" width="80%" height="80%"></p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79gy1g4fpbsaicwj30ng0ystfy.jpg" width="80%" height="80%" aligns="center"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EncoderDecoder</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, encoder, decoder, src_embed, tgt_embed, generator</span>):</span></span><br><span class="line">        super(EncoderDecoder, self).__init__()</span><br><span class="line">        self.encoder = encoder</span><br><span class="line">        self.decoder = decoder</span><br><span class="line">        self.src_embed = src_embed</span><br><span class="line">        self.tgt_embed = tgt_embed</span><br><span class="line">        self.generator = generator</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, src, tgt, src_mask, tgt_mask</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.decode(self.encode(src, src_mask), src_mask, tgt, tgt_mask)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">encode</span>(<span class="params">self, src, src_mask</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.encode(self.src_embed(src), src_mask)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decode</span>(<span class="params">self, memory, src_mask, tgt, tgt_mask</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.decoder(self.tgt_embed(tgt), memory, src_mask, tgt_mask)</span><br></pre></td></tr></table></figure>
+<p>这是构建EncoderDecoder框架,注意到encode(src, src_mask)就是memory,也就是用encode的输出作为了Decode的输入,图上两个部分相连的那条线.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Generator</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, d_model, vocab</span>):</span></span><br><span class="line">        super(Generator, self).__init__()</span><br><span class="line">        self.proj = nn.Linear(d_model, vocab)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        <span class="keyword">return</span> F.log_softmax(self.proj(x), dim=<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这里是定义一个标准的线性然后softmax的标准生成步骤.因为之前没有用过pytorch,所以还是记录一下用到的内置函数. </p>
+<ul>
+<li>$nn.Linear()$函数是用来做线性变化的,输入一个维度为$m\times n$的矩阵,经过线性变化$nn.Linear(n,t,bias=None)$得到的输入维度为$m\times t$.具体的实现是输入矩阵乘$t\times n$矩阵再加上一个维度为$m$的$\text{bias}$.<script type="math/tex; mode=display">y=xA^T+\text{bias}</script></li>
+<li>$\text{F.log_softmax()}$函数就是在softmax函数外面再加一个$\text{log}$函数.需要注意的是$\text{dim}$的指定,以二维函数为例,取$\text{dim}=1$时,是对每一行进行softmax,而取0时是每一列进行计算.可以理解为沿着某条轴,将数据集中到轴上.<script type="math/tex; mode=display">\log(\text{Softmax}(x_{i})) = \log(\frac{\exp(x_i) }{ \sum_j \exp(x_j)})</script></li>
+</ul>
+<hr>
+<p>接下来是Encoder部分<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clones</span>(<span class="params">module, N</span>):</span></span><br><span class="line">    <span class="keyword">return</span> nn.ModuleList([copy.deepcopy(module) <span class="keyword">for</span> _ <span class="keyword">in</span> range(N)])</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;首先定义一个clone方法,因为Encoder是由多个相同的层构成的.这里设$N=6$<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Encoder</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, layer, N</span>):</span></span><br><span class="line">        super(Encoder, self).__init__()</span><br><span class="line">        self.layers = clones(layer, N)</span><br><span class="line">        self.norm = LayerNorm(layer.size)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, mask</span>):</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers:</span><br><span class="line">            x = layer(x, mask)</span><br><span class="line">        <span class="keyword">return</span> self.norm(x)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LayerNorm</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, features, eps=<span class="number">1e-6</span></span>):</span></span><br><span class="line">        super(LayerNorm, self).__init__()</span><br><span class="line">        self.a_2 = nn.Parameter(torch.ones(features))</span><br><span class="line">        self.b_2 = nn.Parameter(torch.zeros(features))</span><br><span class="line">        self.eps = eps</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        mean = x.mean(<span class="number">-1</span>, keepdim=<span class="literal">True</span>)</span><br><span class="line">        std = x.std(<span class="number">-1</span>, keepdim=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> self.a_2 * (x - mean) / (std + self.eps) + self.b_2</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;然后定义Encoder和LN模块.LayerNorm本来torch里也有内置函数.这里是自己实现的.</p>
+<script type="math/tex; mode=display">y=\frac{x-E[x]}{\sqrt{Var[x]+\epsilon}}\times \gamma +\beta</script><p>&emsp;&emsp;其中$\gamma$和$\beta$是参数,$\epsilon$是一个很小数,torch中取$e^{-5}$,为了保持数值的稳定性,防止分母趋近0.</p>
+<p>&emsp;&emsp;对应到图上就是$\text{Add\&amp;Norm}$这一块,对于每个sublayer有$LayerNorm(x+Sublayer(x))$.具体是$dropout\rightarrow sublayer的input相加\rightarrow Normalized$.但是在实际编码中,将Norm放到了dropout前面.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SublayerConnection</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, size, dropout</span>):</span></span><br><span class="line">        super(SublayerConnection, self).__init__()</span><br><span class="line">        self.norm = LayerNorm(size)</span><br><span class="line">        self.dropout = nn.Dropout(dropout)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, sublayer</span>):</span></span><br><span class="line">        <span class="keyword">return</span> x + self.dropout(sublayer(self.norm(x)))</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;定义sublayer的残差连接.残差连接实际上就是$f(x)+x$,目的是为了反向传播的时候,梯度连乘,不会造成梯度消失.因为会出现常数项.可以看到是先normalizion再dropout.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EncoderLayer</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, size, self_attn, feed_forward, dropout</span>):</span></span><br><span class="line">        super(EncoderLayer, self).__init__()</span><br><span class="line">        self.self_attn = self_attn</span><br><span class="line">        self.feed_forward = feed_forward</span><br><span class="line">        self.sublayer = clones(SublayerConnection(size, dropout), <span class="number">2</span>)</span><br><span class="line">        self.size = size</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, mask</span>):</span></span><br><span class="line">        x = self.sublayer[<span class="number">0</span>](x, <span class="keyword">lambda</span> x: self.self_attn(x, x, x, mask))</span><br><span class="line">        <span class="keyword">return</span> self.sublayer[<span class="number">1</span>](x, self.feed_forward)</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;Encoder每层有两个sublayer,第一个sublayer[0]用多头注意力机制,第二个sublayer[1]用位置全连接前馈网络.</p>
+<hr>
+<p>然后是Decoder层<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Decoder</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, layer, N</span>):</span></span><br><span class="line">        super(Decoder, self).__init__()</span><br><span class="line">        self.layers = clones(layer, N)</span><br><span class="line">        self.norm = LayerNorm(layer.size)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, memory, src_mask, tgt_mask</span>):</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers:</span><br><span class="line">            x = layer(x, memory, src_mask, tgt_mask)</span><br><span class="line">        <span class="keyword">return</span> self.norm(x)</span><br></pre></td></tr></table></figure><br>和Encoder一样,设计为6个相同的层.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DecoderLayer</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, size, self_attn, src_attn, feed_forward, dropout</span>):</span></span><br><span class="line">        super(DecoderLayer, self).__init__()</span><br><span class="line">        self.size = size</span><br><span class="line">        self.self_attn = self_attn</span><br><span class="line">        self.src_attn = src_attn</span><br><span class="line">        self.feed_forward = feed_forward</span><br><span class="line">        self.sublayer = clones(SublayerConnection(size, dropout), <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, memory, src_mask, tgt_mask</span>):</span></span><br><span class="line">        m = memory</span><br><span class="line">        x = self.sublayer[<span class="number">0</span>](x, <span class="keyword">lambda</span> x: self.self_attn(x, x, x, tgt_mask))</span><br><span class="line">        x = self.sublayer[<span class="number">1</span>](x, <span class="keyword">lambda</span> x: self.src_attn(x, m, m, src_mask))</span><br><span class="line">        <span class="keyword">return</span> self.sublayer[<span class="number">2</span>](x, self.feed_forward)</span><br></pre></td></tr></table></figure><br>&emsp;&emsp;Decoder的sublayer有三个,其中sublayer[0]和Encoder一样用自注意力机制,sublayer[2]同样是前馈网络,sublayer[1]是对Encoder的输出用多头注意力机制.残差网络和Norm和Encoder一样.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subsequent_mask</span>(<span class="params">size</span>):</span></span><br><span class="line">    attn_shape = (<span class="number">1</span>, size, size)</span><br><span class="line">    subsequent_mask = np.triu(np.ones(attn_shape), k=<span class="number">1</span>).astype(<span class="string">&#x27;uint8&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> torch.from_numpy(subsequent_mask) == <span class="number">0</span></span><br></pre></td></tr></table></figure><br>&emsp;&emsp;定义subsequent_mask方法,为了在Decoder时遮盖当前位置后的内容. $np.triu$方法是取上三角矩阵,$k$为偏移量,正数时向上偏移,比如有矩阵$\begin{vmatrix} 1&amp;2 \ 2&amp;3 \ 3&amp;4 \end{vmatrix}$, 其上三角矩阵为$\begin{vmatrix} 1&amp;2 \ 0&amp;3 \ 0&amp;0 \end{vmatrix}$, $k=1$时为$\begin{vmatrix} 0&amp;2 \ 0&amp;0 \ 0&amp;0 \end{vmatrix}$.最后返回的是取反后的矩阵.也就是上三角为0.</p>
+<hr>
+<p>接下来是attent模块.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/21/%E8%8B%8F%E7%BE%8E%E5%B0%94/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -862,120 +960,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/Maximum-entropy-model/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Effe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Effe's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/03/Maximum-entropy-model/" class="post-title-link" itemprop="url">Maximum-entropy-model</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-06-03 09:53:09" itemprop="dateCreated datePublished" datetime="2019-06-03T09:53:09+08:00">2019-06-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">统计学习方法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="最大熵模型"><a href="#最大熵模型" class="headerlink" title="最大熵模型"></a>最大熵模型</h4><p>&emsp;&emsp;最大熵模型是生成模型,根据最大熵原理,在满足约束条件的模型集合中选择熵最大的模型.在模型集合C中,最大熵模型是条件概率分布$P(Y|X)$上的条件熵$H(P)$最大的模型:</p>
-<script type="math/tex; mode=display">H(P)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)</script><p>其中$\widetilde{P}{x}$是经验分布.</p>
-<hr>
-<h5 id="最大熵模型推导"><a href="#最大熵模型推导" class="headerlink" title="最大熵模型推导"></a>最大熵模型推导</h5><p>&emsp;&emsp;条件熵$P(Y|X)$表示已知$X$的情况下$Y$的不确定性,定义为给定$X$的条件下$Y$的条件概率分布的熵对$X$的期望.</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-H(Y|X)&=\sum_x p(x)H(Y|X=x) \\
-&=-\sum_x p(x)\sum_y p(y|x)logp(y|x) \\
-&=-\sum_{x,y}p(x,y)logp(y|x)  
-\end{aligned}</script><p>&emsp;&emsp;如果模型能够获取训练数据中的信息,那么可以假设两个期望相等:</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-E_P(X,Y)&=E_{\widetilde{P}}(X,Y) \\
--\sum_{x,y}\widetilde{P}(x)P(y|x)logp(y|x)&=-\sum_{x,y}\widetilde{P}(x,y)logp(y|x) 
-\end{aligned}</script><p>&emsp;&emsp;由此可以得到最大熵模型的公式.</p>
-<hr>
-<h5 id="最大熵模型学习过程"><a href="#最大熵模型学习过程" class="headerlink" title="最大熵模型学习过程"></a>最大熵模型学习过程</h5><p>&emsp;&emsp;最大熵模型的学习问题:</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
- s.t.\qquad &E_P(f_i)=E_{\widetilde{P}(f_i)}, \quad i=1,2,...,n \\
- &\sum_yP(y|x)=1
-\end{aligned}</script><p>&emsp;&emsp;引入拉格朗日乘子$\omega$,得到拉格朗日函数$L(P,\omega)$:</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-    L(P,\omega)&\equiv-H(P)+\omega_0(1-\sum_y P(y|x))+\sum^n_{i=1}\omega_i(E_{\widetilde{P}}(f_i)-E_P(f_i)) \\
-    &=\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)+\omega_0(1-\sum_y P(y|x))+ \\
-    &\quad\sum^n_{i=1}\omega_i(\sum_{x,y}\widetilde{P}(x,y)f_i(x,y)-\sum_{x,y}\widetilde{P}(x)P(y|x)f_i(x,y))
-\end{aligned}</script><p>&emsp;&emsp;其中$f_i(x,y)$是二值函数,$x,y$同时满足条件时为1,其他情况为0</p>
-<p>&emsp;&emsp;拉格朗日函数的优化问题是:</p>
-<script type="math/tex; mode=display">min_{P\in C}max_\omega L(P,\omega)</script><p>&emsp;&emsp;根据拉格朗日对偶性,可以求其对偶问题:</p>
-<script type="math/tex; mode=display">max_\omega min_{P\in C}L(P,\omega)</script><p>&emsp;&emsp;首先求$L(P,\omega)$关于$P$的极小值问题.即求$L(P,\omega)$对$P(y|x)$的偏导数.</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-    \frac{\partial L(P,\omega)}{\partial P(y|x)}&=\sum_{x,y}\widetilde{P}(x)(logP(y|x)+1)-\sum_y\omega_0-\sum_{x,y}(\widetilde{P}(x)\sum^n_{i=1}\omega_i f_i(x,y)) \\
-    &=\sum_{x,y}\widetilde{P}(x)(logP(y|x)+1-\omega_0-\sum^n_{i=1}\omega_i f_i(x,y))
-\end{aligned}</script><p>&emsp;&emsp;令上式为0,$\widetilde{P}(x)$&gt;0时,</p>
-<script type="math/tex; mode=display">P(y|x)=exp(\sum^n_{i=1}\omega_i f_i(x,y)+\omega_0-1)=\frac{exp(\sum^n_{i=1}\omega_i f_i(x,y))}{exp(1-\omega_0)}</script><p>&emsp;&emsp;因为约束条件$\sum_y P(y|x)=1$:</p>
-<script type="math/tex; mode=display">\sum_yP(y|x)=\sum_y \frac{exp(\sum^n_{i=1}\omega_i f_i(x,y))}{exp(1-\omega_0)}=1</script><script type="math/tex; mode=display">exp(\omega_0-1)=\frac{1}{\sum_yexp(\sum^n_{i=1}\omega_i f_i(x,y))}</script><p>&emsp;&emsp;令$Z<em>\lambda(x)=\sum_yexp(\sum^n</em>{i=1}\omega<em>i f_i(x,y))$,$Z</em>\omega(x)$被称为规范化因子,最终的式子为:</p>
-<script type="math/tex; mode=display">P_\omega(y|x)=\frac{1}{Z_\omega(x)}exp(\sum^n_{i=1}\omega_i f_i(x,y))</script><p>&emsp;&emsp;然后再求极大值问题,也就是再对$\omega$求偏导,令式子为0,求得$\omega$的极大值:</p>
-<script type="math/tex; mode=display">argmax_\omega\Psi(\omega)</script><p>&emsp;&emsp;最后这一步求极大值等价于最大熵模型的极大似然函数,似然函数的形式为条件概率分布为$P(y|x)$的对数似然函数.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1045,7 +1029,7 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1061,6 +1045,11 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xieyu567" title="GitHub → https://github.com/xieyu567" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
 
 
@@ -1087,7 +1076,7 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Effe</span>
+  <span class="author" itemprop="copyrightHolder">effe</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
@@ -1118,7 +1107,7 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
 <script src="/js/schemes/muse.js"></script>
 
 
-<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -1140,6 +1129,11 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
 
 
   
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 
   
 
