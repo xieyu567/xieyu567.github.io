@@ -145,6 +145,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/Exercise-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/03/Exercise-2/" class="post-title-link" itemprop="url">Exercise-2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-03 20:40:17" itemprop="dateCreated datePublished" datetime="2019-06-03T20:40:17+08:00">2019-06-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-14 14:29:06" itemprop="dateModified" datetime="2020-08-14T14:29:06+08:00">2020-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">统计学习方法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="章节2的习题解"><a href="#章节2的习题解" class="headerlink" title="章节2的习题解"></a>章节2的习题解</h4><h5 id="习题1"><a href="#习题1" class="headerlink" title="习题1"></a>习题1</h5><p>&emsp;&emsp;因为异或本身不是线性可分的,不光是感知机模型不能表示异或,只要是非线性模型都无法表示异或.</p>
+<p><img src="https://ws3.sinaimg.cn/large/005BYqpggy1g3oahx3no8j30hs0dct90.jpg" alt></p>
+<hr>
+<h5 id="习题3"><a href="#习题3" class="headerlink" title="习题3"></a>习题3</h5><p>&emsp;&emsp;先证明必要性.即由线性可分$\Rightarrow$凸壳互不相交.</p>
+<p>&emsp;&emsp;样本集线性可分,即存在超平面$wx+b=0$分割样本集,对于每个正实例点都有$wx_i+b&gt;0$, 每个负实例点都有$wx_i+b&lt;0$</p>
+<p>&emsp;&emsp;利用反证法,假如正负实例点集是相交的,那么一定存在点既属于正实例点集又属于负实例点集.与上述相矛盾.因此必要性得证.</p>
+<p>&emsp;&emsp;然后证明充分性,即由凸壳互不相交$\Rightarrow$线性可分.</p>
+<p>&emsp;&emsp;对于正实例点集和负实例点集必然存在距离最近的不同类的两点距离$||x_1,x_2||_2&gt;0$,其他各点之间的距离都大于$||x_1,x_2||_2$</p>
+<p>&emsp;&emsp;那么设一个超平面$wx+b=0$,其中:</p>
+<script type="math/tex; mode=display">w=x_1-x_2</script><script type="math/tex; mode=display">b=\frac{x_1\cdot x_1-x_2\cdot x_2}{2}</script><p>&emsp;&emsp;因此</p>
+<script type="math/tex; mode=display">wx+b=\frac{||x_2-x||_2^2-||x_1-x||^2_2}{2}</script><p>对于和$x_2$同一类的点,可得到$||x_2-x||_2^2\leq ||x_1-x||^2_2$,因此$wx+b<0$,对于和$x_1$同一类的点,则可以得到相反的结果$wx+b>0$.因此得证线性可分.</0$,对于和$x_1$同一类的点,则可以得到相反的结果$wx+b></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/Maximum-entropy-model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -938,7 +1022,7 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
