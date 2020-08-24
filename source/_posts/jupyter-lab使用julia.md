@@ -6,6 +6,9 @@ tags: mac
 mathjax: true
 ---
 要想在jupyter lab/notebook中使用julia需要安装IJulia，但是如果不设置好，julia会单独设置自己的conda环境，占用很大的容量。思路是让julia和python使用同一个conda环境。
+
+<!--more-->
+
 1. 首先确保.julia/compile/{version}和.julia/packages中没有Conda和IJulia文件夹，如有需要删除.julia/Conda文件夹。
 2. 在julia repl中设置ENV["CONDA_JL_HOME"] = "{anaconda3 path}"
 3. 正常安装IJulia
