@@ -14,5 +14,9 @@ tags: 面试
 以常见的wordcounts来说明：
 ![wordcounts-Mapreduce示例](https://tva1.sinaimg.cn/large/008i3skNgy1grtgzic9qhj31g90irq4n.jpg)
 
-##各组件的功能
-DataNode负责文件的存储和读写操作。HDFS将文件分割成若干block。NameNode负责整个分布式文件系统的元数据管理，包括文件路径名、数据块ID以及存储位置等信息。
+##各进程的功能
+1. DataNode负责文件的存储和读写操作。
+2. NameNode负责整个分布式文件系统的元数据管理，包括文件路径名、数据块ID以及存储位置等信息。
+3. Secondary NameNode定期与NameNode进行通信，定期保存元数据的快照。
+4. JobTracker负责分配task，并监控运行的task。
+5. TaskTracker负责具体的task，与JobTracker进行交互。
