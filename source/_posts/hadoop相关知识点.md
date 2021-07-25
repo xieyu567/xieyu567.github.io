@@ -30,4 +30,4 @@ tags: 面试
 6. Application Master将资源分配给各个Node Manager。
 7. 各个Node Manager执行完任务后将结果反馈给Application Master。
 8. Application Master将结果反馈给Application Manager，并注销进程以及释放资源。
-其中Application Manager、Resource Manager、Resource scheduler都属于YARN
+其中Application Manager、Resource Manager、Resource scheduler都属于YARN。
