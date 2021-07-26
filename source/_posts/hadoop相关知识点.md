@@ -31,3 +31,13 @@ tags: 面试
 7. 各个Node Manager执行完任务后将结果反馈给Application Master。
 8. Application Master将结果反馈给Application Manager，并注销进程以及释放资源。
 其中Application Manager、Resource Manager、Resource scheduler都属于YARN。
+
+##MapReduce负载均衡
+1. 数据均衡服务要求NameNode生成DataNode数据分布分析报告，获取每个DataNode磁盘使用情况。
+2. 数据均衡服务汇总情况，通过网络拓扑和数据使用情况，确定数据迁移路线图。
+3. Proxy Source DataNode复制一个数据块到目标DataNode，并在删除相应数据块。
+4. 目标DataNode向Proxy Source DataNode确认数据块迁移完成。
+5. Proxy Source DataNode向Proxy Source DataNode确认数据块迁移完成，重复以上步骤，直至集群达到负载均衡。
+
+{Hadoop_Home}/bin/start-balance.sh为启动脚本
+参数-threshold可以设置阈值，默认为10，也就是阈值在10%以内集群都算均衡。
