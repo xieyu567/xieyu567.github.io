@@ -41,3 +41,25 @@ tags: 面试
 
 {Hadoop_Home}/bin/start-balance.sh为启动脚本
 参数-threshold可以设置阈值，默认为10，也就是阈值在10%以内集群都算均衡。
+
+##HDFS中的block、packet、chunk
+1. block一般是128MB，一般不做修改，原因有两点，一是block设置太大，更多的时间会浪费在传输数据块上，二是block设置太小，NameNode需要存储更多的元数据，大量的数据块和元数据信息会造成网络阻塞。
+2. packet默认是64KB，是client向DataNode或DataNode之间Pipeline传输数据的基本单位。
+3. chunk默认是512B，是数据校验的基本单位。每个chunk还需要携带4B的校验位，因此每个chunk写入packet实际值为516B。
+
+在client向DataNode传输数据时，HDFSOutputStream有一个chunk buffer，写满一个chunk容量时，会校验再写入当前chunk，然后带校验位的chunk写入packet。packet将传输到其他DataNode并存储。
+
+##HDFS写流程
+1. client向NameNode发出写请求。
+2. 检查权限，直接将操作写入EditLog（WAL）
+3. client将文件分成数据块。
+4. client将NameNode返回的可写DataNode列表和数据块发往第一个DataNode，由此client和可写DataNode形成Pipeline，每个packet通过pipeline从client流到第一个DataNode，然后流到第二个DataNode...
+5. 每个DataNode写完一个数据块会返回确认消息。
+6. 写完数据，关闭Pipeline。
+7. 完成任务，返回给NameNode。
+
+##HDFS读流程
+1. client向NameNode发出读请求。
+2. 获得数据块所在DataNode列表，就近与DataNode建立数据流。
+3. 传输，以packet为单位校验。
+4. 完成任务，关闭数据流。
