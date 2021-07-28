@@ -15,9 +15,9 @@ tags: 面试
 ![wordcounts-Mapreduce示例](https://tva1.sinaimg.cn/large/008i3skNgy1grtgzic9qhj31g90irq4n.jpg)
 
 ##各进程的功能
-1. DataNode负责文件的存储和读写操作。
+1. DataNode负责文件的存储和读写操作，定期向NameNode发送心跳。
 2. NameNode负责整个分布式文件系统的元数据管理，包括文件路径名、数据块ID以及存储位置等信息。
-3. Secondary NameNode定期与NameNode进行通信，定期保存元数据的快照。
+3. Secondary NameNode定期与NameNode进行通信，定期保存元数据的快照，辅助NameNode对fsimage和editsLog进行合并。
 4. JobTracker负责分配task，并监控运行的task。
 5. TaskTracker负责具体的task，与JobTracker进行交互。
 
@@ -63,3 +63,11 @@ tags: 面试
 2. 获得数据块所在DataNode列表，就近与DataNode建立数据流。
 3. 传输，以packet为单位校验。
 4. 完成任务，关闭数据流。
+
+##fsimage和editlogs的机制
+fsimage保存着hadoop的元数据信息，如果NameNode发生故障，最近的fsimage会被载入内存，用来重构元数据的最近状态，再从相关点开始向前执行editlogs文件中记录的事务。
+
+如果editlogs太大的话，重建NameNode会很慢，因此NameNode运行时会定期合并fsimage和editlogs。
+
+##HDFS能不能并行写
+不行，client获得NameNode允许写的许可后，数据块会加锁直至写入完成，因此不能同时在一个数据块上进行写操作。
