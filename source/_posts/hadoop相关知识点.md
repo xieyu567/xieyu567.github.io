@@ -71,3 +71,35 @@ fsimage保存着hadoop的元数据信息，如果NameNode发生故障，最近�
 
 ##HDFS能不能并行写
 不行，client获得NameNode允许写的许可后，数据块会加锁直至写入完成，因此不能同时在一个数据块上进行写操作。
+
+##NameNode工作机制
+1. 第一次启动NameNode需要创建Fsimage和Editlogs，如果不是，则直接加载这两个文件到内存中。
+2. client对元数据申请操作请求。
+3. NameNode先将操作记录到Editlogs，再对元数据进行操作。
+4. Secondary NameNode询问NameNode是否需要CheckPoint，并返回消息。
+5. Secondary NameNode请求执行CheckPoint。
+6. NameNode切割现有Editlogs，新操作滚动写入到新的Editlogs中。
+7. 滚动前的Editlogs拷贝到Secondary NameNode。
+8. Secondary NameNode将Editlogs和Fsimage加载到内存合并。
+9. 生成新的Fsimage.chkpoint后拷贝到NameNode。
+10. NameNode将Fsimage.chkpoint重命名为Fsimage。
+
+##DataNode工作机制
+1. 一个数据块在DataNode存储包括两个文件：一是数据本身，二是元数据包括数据块长度，块数据的校验和以及时间戳。
+2. DataNode启动后向NameNode注册，并周期性（默认1小时）地向NameNode上报所有的块信息。
+3. 每3秒一次心跳，心跳返回NameNode给DataNode下达的文件操作指令。如果超过10分钟没有收到DataNode心跳，则判定该DataNode不可用。
+
+##Hadoop的设计缺陷
+1. 不支持并发写入和对文件内容的修改，只适合一次写入、多次读取的场景。
+2. 不支持低延迟、高吞吐的数据访问。
+3. 不适合大量小文件的存储。会占用大量的NameNode内存资源。
+
+##Hadoop的配置文件
+1. core-site.xml。主要配置项有：
+* fs.defaultFS，设置默认hdfs路径。
+* hadoop.tmp.dir，设置默认NameNode、DataNode、Secondary NameNode数据存放路径。
+* ha.zookeeper.quorum，设置zookeeper集群的地址和端口，设置数应为3以上的奇数。
+* io.file.buffer.size，读写缓冲区的大小，默认为4KB。
+2. hadoop-env.sh。主要配置项有：
+* dfs.replication，设置文件块备份数，默认为3.
+* 
