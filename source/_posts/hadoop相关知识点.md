@@ -130,7 +130,23 @@ fsimage保存着hadoop的元数据信息，如果NameNode发生故障，最近�
 "hello hello world" => map => ("hello":2, "world":1)
 或者是要取最大值
 ((1, 20), (1, 10), (2, 10), (2, 1)) => map => ((1, 20), (2, 10))
-类似map阶段的reduce。
+可以看作是local reduce。
 
 * partition是将map产生的kv对分配给不同的reduce task，以实现负载均衡。
-举个栗子。((1, 20), (1, 10), (2, 10), (2, 1))对key值进行hash，key为1的到partition1，key为2的到partition2。
+举个栗子。((1, 20), (1, 10), (2, 10), (2, 1))对key值进行hash后用reduce task数取模，key为1的分配到partition1，key为2的分配到partition0。
+
+##Shuffle的具体流程
+整体的流程可以简化为两个部分
+1. map端。每个map task的结果会先存放到内存缓存区，当缓存区满了之后，会以临时文件的形式溢出到磁盘上，当整个map task结束后，再把磁盘上所有的临时文件合并，等待reduce task拉取。
+2. reduce端。不断拉取当前job中每个map task的结果，并对不同DataNode拉取来的结果进行合并，最终形成reduce的输入文件。
+shuffle中map端的缓冲区大小可以通过mapred-site.xml中的mapreduce.task.io.sort.mb来设置，默认是100MB。reduce端的可以通过JVM的heap size设置。
+
+##MapReduce瓶颈与性能优化
+1. 计算机性能。
+2. 数据倾斜。优化方法：自定义分区，可以根据业务将需要的部分发往固定的一部分Reduce，其余的发往剩余的Reduce；使用Combine，聚合并精简Map结果；使用Map Join，避免使用Reduce Join。
+3. Map和Reduce数设置不合理。如果设置的太少，就会导致task等待，延长处理时间；太多会导致Map、Reduce任务间竞争资源，导致处理超时。
+4. Map时间过长，让Reduce等待。优化方法：调整mapreduce.job.reduce.slowstart.completedmaps使Map运行到一定进度，Reduce也可以开始运行，减少等待时间；规避使用Reduce；设置Reduce端的Buffer，设置mapreduce.reduce.input.buffer.percent，可以让buffer保留一部分数据供Reduce使用，而不是从磁盘读取数据。
+5. 小文件太多。优化方法：预处理阶段合并小文件。用CombineTextInputFormat作为输入。
+6. 大量不可分块的超大文件
+7. 过多的spill和merge。优化方法：通过调整（增大）mapreduce.task.io.sort.mb和mapreduce.map.sort.spill.percent增大触发spill的内存上限，减少spill次数，减少IO；通过调整（增大）mapreduce.task.io.sort.factor增大merge的文件数目，缩短MapReduct时间。
+8. IO瓶颈。优化方式：数据压缩；使用SequenceFile二进制文件。
