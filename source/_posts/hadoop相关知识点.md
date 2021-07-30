@@ -21,17 +21,6 @@ tags: 面试
 4. JobTracker负责分配task，并监控运行的task。
 5. TaskTracker负责具体的task，与JobTracker进行交互。
 
-##YARN任务流程
-1. Client向Yarn提交任务，包括MapReduce Application Master、MapReduce程序以及MapReduce Application启动命令。
-2. Resource Manager分配资源，开启一个Container，在其中运行Application Manager。
-3. Application Manager找一台Node Manager启动Application Master，计算所需的资源。
-4. Application Master向Application Manager申请需要的资源。
-5. Resource scheduler将资源封装给Application Master。
-6. Application Master将资源分配给各个Node Manager。
-7. 各个Node Manager执行完任务后将结果反馈给Application Master。
-8. Application Master将结果反馈给Application Manager，并注销进程以及释放资源。
-其中Application Manager、Resource Manager、Resource scheduler都属于YARN。
-
 ##MapReduce负载均衡
 1. 数据均衡服务要求NameNode生成DataNode数据分布分析报告，获取每个DataNode磁盘使用情况。
 2. 数据均衡服务汇总情况，通过网络拓扑和数据使用情况，确定数据迁移路线图。
@@ -85,6 +74,20 @@ fsimage保存着hadoop的元数据信息，如果NameNode发生故障，最近�
 1. 一个数据块在DataNode存储包括两个文件：一是数据本身，二是元数据包括数据块长度，块数据的校验和以及时间戳。
 2. DataNode启动后向NameNode注册，并周期性（默认1小时）地向NameNode上报所有的块信息。
 3. 每3秒一次心跳，心跳返回NameNode给DataNode下达的文件操作指令。如果超过10分钟没有收到DataNode心跳，则判定该DataNode不可用。
+
+##Yarn工作机制
+Yarn由ResourceManager、NodeManager、 ApplicationMaster和Container等组件组成。
+其中ResourceManager由Scheduler和Applications Manager组成。NodeManager是节点上的任务和资源管理器。ApplicationMaster每个程序拥有一个。Container是资源调度的单元。各组件通过RPC通信。
+1. client向Yarn提交应用程序。
+2. client获取一个YarnRunner向ResourceManager申请一个Application。
+3. ResourceManager将资源路径返回给YarnRunner。
+4. client将运行所需的资源提交到Yarn上，包括MRAppMaster程序、MRAppMaster启动脚本程序、用户程序等。
+5. 应用程序作为一个Task放置在Schedular中，ResourceManager为提交的程序选择一个空闲的NodeManager分配一个Container。并与相应的NodeManager通信，要求NodeManager在当前Container中运行MRAppMaster。
+6. MRAppMaster启动后向ResourceManager注册自己。
+7. 通过轮询方式向ResourceManager申领资源。
+8. MRAppMaster向ResourceManager申请Task需要的资源，ResourceManager分配相应NodeManager给MRAppMaster，MRAppMaster将程序脚本发给ResourceManager，ResourceManager开始启动脚本，开始MapTask。
+9. MapTask结束后，MRAppMaster向ResourceManager申请资源开始ReduceTask。
+10. 全部结束后，MRAppMaster向ResourceManager注销自己。
 
 ##Hadoop的设计缺陷
 1. 不支持并发写入和对文件内容的修改，client获得NameNode允许写的许可后，数据块会加锁直至写入完成，因此不能同时在一个数据块上进行写操作。只适合一次写入、多次读取的场景。
