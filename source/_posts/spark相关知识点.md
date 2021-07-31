@@ -1,0 +1,39 @@
+---
+title: spark相关知识点
+date: 2021-07-31 16:18:22
+visitors: 
+mathjax: true
+tags: 面试
+---
+
+## Spark模型工作类型
+1. 本地模式
+2. StandAlone模式
+3. Spark on Yarn模式，分为Yarn-client和Yarn-cluster
+4. Spark on Mesos模式
+
+---
+本地模式只有一个SparkSubmit进程，把任务全部包圆。
+
+---
+StandAlone模式构建一个Master和Slave构成的集群，资源管理和任务监控是Spark自己监控。
+StandAlone模式包含Master进程（进行资源管理）、SparkSubmit进程（作为Clinet端和运行driver程序）以及CoarseGrainedExecutorBackend进程（并发执行应用程序）。
+StandAlone模式主要节点有Client节点、Master节点和Worker节点。
+
+StandAlone运行流程：
+1. SparkContent连接到Master，向Master注册并申请资源。
+2. Master根据SparkContext的资源申请要求和Worker心跳周期内报告的信息决定在哪个Worker上分配资源，然后在该Worker上获取资源，然后启动StandaloneExecutorBackend。
+3. StandaloneExecutorBackend向SparkContext注册。
+4. SparkContext将Application代码发送给StandaloneExecutorBacked。SparkContext解析Application代码，构建DAG图，并提交给DAG Scheduler分解成Stage，DAG Scheduler将TaskSet提交给Task Scheduler，Task Scheduler将task分配到相应的Worker，最后提交给StandaloneExecutorBackend执行。
+5. StandaloneExecutorBackend建立Executor线程池，开始执行task，并向SparkContext报告，直至task完成。
+6. 所有task完成后，SparkContext向Master注销自己。
+
+---
+Spark on Yarn模式将集群部署、资源和任务监控交给Yarn管理，仅支持粗粒度资源分配方式。
+
+Yarn-client和Yarn-cluster的区别：
+* Yarn-client适用于调试环境。driver运行在客户端，负责调度application，会与Yarn集群产生大量的网络通信。因为本地执行，因此能够看到所有logs，方便调试。ApplicationMaster仅向Yarn请求Executor，其他的都是client负责。
+* Yarn-cluster适用于生产环境，driver运行在集群子节点的ApplicationMaster中，负责向Yarn申请资源，并监督作业的运行状况。
+
+Yarn-client运行流程：
+
