@@ -75,3 +75,14 @@ Yarn-cluster运行流程：
 针对不适宜排序的情况也可以使用bypass模式，和前面一样，只是去掉排序操作，通过设置spark.shuffle.sort.bypassMergeThreshold可以达到这一目的，默认值为200，如果map task数小于该值或者reduce是非聚合操作，就会启用bypass模式，否则是普通模式。
 
 ## Spark优化
+1. 平台层面：防止不必要的jar包分发；提高数据的本地性；选择高效的存储格式parquet；资源参数调优（num-executors设置executor数量；executor-memory设置每个executor可申请内存；executor-cores设置每个executor进程的CPU core数量；spark.default.parallelism设置每个stage的默认task数量，一般设置为executor-cores\*num-executors的2-3倍；spark.storage.memoryFraction设置RDD持久化数据在executor内存中能占的比例；spark.shuffle.memoryFraction设置shuffle过程中进行聚合时能够使用的executor内存比例）。
+2. 应用程序层面：优化过滤操作符，防止过多、过小的任务；降低单条语句的资源开销；任务并行化；复用RDD进行缓存；对多次使用的RDD持久化；处理数据倾斜；尽可能避免使用shuffle算子；使用map-side预聚合（有点类似与MapReduce中的Combine，在本地对相同的key进行聚合）；使用高性能算子（reduceByKey/aggregateByKey代替groupByKey，mapPartitions代替map，foreachPartitions代替foreach，filter之后进行coalesce操作，repartitionAndSortWithinPartitions代替repartition和sort类操作）。
+3. JVM层面：启用高效的序列化方法kyro，增大off head内存。
+
+## Spark持久化级别
+1. MEMORY_ONLY：默认选项，RDD数据以Java对象形式存储到JVM内存中。如果内存不足，一些数据将不会被缓存。
+2. MEMORY_AND_DISK：RDD数据以Java对象形式存储到JVM内存中。如果内存不足，一些数据将存储在磁盘。
+3. MEMORY_ONLY_SER：RDD数据序列化后存储到JVM内存中。如果内存不足，一些数据将不会被缓存。比MEMORY_ONLY节约内存空间，但是读取时需要更多CPU开销。
+4. MEMORY_AND_DISK_SER：可以从上面推出意思^_^。
+5. DISK_ONLY：只使用磁盘存储RDD数据。
+6. MEMORY_ONLY_2，MEMORY_AND_DISK_2...：在以上后面加上2，表示在其他节点保存一个备份，用于容灾备份。
