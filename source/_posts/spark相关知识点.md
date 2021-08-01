@@ -50,3 +50,28 @@ Yarn-cluster运行流程：
 4. ApplicationMaster申请到Container后，与相应的NodeManager通信，在Container中启动CoarseGrainedExecutorBackend，CoarseGrainedExecutorBackend启动后向Client中的SparkContext注册并申请task。
 5. ApplicationMaster中的SparkContext分配task给CoarseGrainedExecutorBackend执行，CoarseGrainedExecutorBackend运行task并向ApplicationMaster汇报运行状态和进度。
 6. 程序完成后，ApplicationMaster向ResourceManager申请注销并关闭。
+
+## Spark on Yarn的优点
+1. 与其他计算框架共享集群资源。
+2. 比Spark自带的Standalone模式资源分配更加细致。
+3. Application部署简化。
+4. Yarn管理集群中的多个服务，能根据负载情况，调整资源使用。
+
+## StandAlone模型的优缺点
+优点：部署简单，不依赖其他资源管理系统。<br/>
+缺点：默认每个应用程序会独占所有可用节点的资源，设置项为spark.cores.max；可能存在单点故障，需要自己配置master HA。
+
+## Spark Shuffle的具体流程
+有两种模式：HashShuffleManage和SortShuffleManage，其中SortShuffleManage是默认模式。
+* HashShuffleManage：在execute中处理每个task后的结果通过buffle缓存的方式写入多个磁盘文件中，reduce task个数由shuffle算子的numPartition参数指定。比如有两个execute分别处理两个task，当numPartition设置为3时，会产生2\*2\*3个文件。<br/>
+优化方法：executor处理多个task时，处理完第一个task产生numPartition个文件，之后的task结果追加到相应的这numPartition个文件中，也就是每一个task产生的结果都共用用一个buffle。这样只会产生2（execute）\*3（numPartition）个文件。
+
+* SortShuffleManage：
+1. 在内存中通过溢写的方式将结果写入磁盘，在溢写前，有两个重要操作：
+    1. 数据聚合，针对可聚合的Shuffle操作（如reduceByKey），会基于key进行数据聚合，减少数据量。
+    2. 数据聚合后进行排序操作。
+2. 对磁盘文件进行合并，通过索引文件标注key值在文件中的位置。<br/>
+产生的文件数为reduce task数\*2<br/>
+针对不适宜排序的情况也可以使用bypass模式，和前面一样，只是去掉排序操作，通过设置spark.shuffle.sort.bypassMergeThreshold可以达到这一目的，默认值为200，如果map task数小于该值或者reduce是非聚合操作，就会启用bypass模式，否则是普通模式。
+
+## Spark优化
