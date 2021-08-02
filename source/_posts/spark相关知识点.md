@@ -96,9 +96,23 @@ Yarn-cluster运行流程：
 ## parquet格式的好处
 速度更快；压缩技术稳定；扫描的吞吐量大；优化Spark的调度和执行。
 
+## RDD缺陷
+1. 不支持细粒度的写和更新操作，只能批量写。
+2. 不支持增量迭代计算。
+
 ## DataFrame比RDD性能好
 1. DataFrame会自动经过Spark优化器（Catalyst），查询计划得到优化。
 2. 使用Off-heap，由操作系统管理的内存，避免大量GC。
+
+## RDD操作
+有两种：Transformation和Action
+* Transformation</br>
+接收RDD，返回一个或多个新的RDD，不改变输入。
+Transformation是lazy操作，执行Action操作时，才真正执行。
+其中父子RDD是一对一对应关系的为窄依赖，一对多对应关系的为宽依赖。
+* Action</br>
+将最终结果返回给Driver或写入外部数据存储。
+First()，take()，reduce()，collect()，count()是常见的一些Action。
 
 ## Spark内存划分
 Spark把堆内内存划分成两个区域：
@@ -122,3 +136,4 @@ Spark2之后默认使用的统一内存管理模式，设置项为spark.memory.u
 5. ANY，跨机架，最慢。</br>
 TaskScheduler发送task时也是以这个优先级来确定数据的位置，先向Executor发送task，等待一段时间后无法执行，就会降低数据本地化级别，发送task给同一节点的其他Executor...</br>
 通过spark.locality.wait设置等待时间。
+
