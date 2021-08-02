@@ -11,7 +11,7 @@ tags: 面试
 2. StandAlone模式
 3. Spark on Yarn模式，分为Yarn-client和Yarn-cluster
 4. Spark on Mesos模式
-
+<!--more-->
 ---
 本地模式只有一个SparkSubmit进程，把任务全部包圆。
 
@@ -86,3 +86,14 @@ Yarn-cluster运行流程：
 4. MEMORY_AND_DISK_SER：可以从上面推出意思^_^。
 5. DISK_ONLY：只使用磁盘存储RDD数据。
 6. MEMORY_ONLY_2，MEMORY_AND_DISK_2...：在以上后面加上2，表示在其他节点保存一个备份，用于容灾备份。
+
+## parquet格式的好处
+速度更快；压缩技术稳定；扫描的吞吐量大；优化Spark的调度和执行。
+
+## Spark内存划分
+Spark把堆内内存划分成两个区域：
+1. Execution Memory，用于执行分布式任务，如Shuffle、Sort和Aggregate等。
+2. Storage Memory，用于缓存RDD和广播变量等数据。</br>
+Spark还会在堆内划分出User Memory的内存空间，用于存储开发者自定义数据结构。还有一块Reserved Memory，用来存储各种Spark内部对象，如存储系统中的BlockMemory、DiskBlockMemory等。
+![Spark内存管理](https://tva1.sinaimg.cn/large/008i3skNgy1gt26qnv2zuj30y50e4jtn.jpg)
+Spark1.6之后使用的统一内存管理模式，Execution Memory和Storage Memory
