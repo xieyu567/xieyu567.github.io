@@ -9,6 +9,7 @@ tags: 面试
 ## Yarn工作机制
 Yarn由ResourceManager、NodeManager、 ApplicationMaster和Container等组件组成。
 其中ResourceManager由Scheduler和Applications Manager组成。NodeManager是节点上的任务和资源管理器。ApplicationMaster每个程序拥有一个。Container是资源调度的单元。各组件通过RPC通信。
+<!--more-->
 1. client向Yarn提交应用程序。
 2. client获取一个YarnRunner向ResourceManager申请一个Application。
 3. ResourceManager将资源路径返回给YarnRunner。
