@@ -61,6 +61,11 @@ Yarn-cluster运行流程：
 优点：部署简单，不依赖其他资源管理系统。<br/>
 缺点：默认每个应用程序会独占所有可用节点的资源，设置项为spark.cores.max；可能存在单点故障，需要自己配置master HA。
 
+## Spark比MapReduce快的原因
+1. IO操作：MapReduce每次Shuffle都要写入磁盘，Spark的Shuffle可以缓存到内存。
+2. Shuffle机制：每次MapReduce都会有一次Shuffle，Spark只有碰到宽依赖才会Shuffle。
+3. JVM优化：MapReduce是以进程的方式运行在Yarn集群中，有多少个task就要开启多少个进程，每启动一个task就会启动一次jvm。Spark是以线程的方式运行的，只在启动Executor进程时启动一次jvm，Executor进程中维护着一个线程池。节省了大量jvm启动时间。
+
 ## Spark Shuffle的具体流程
 有两种模式：HashShuffleManage和SortShuffleManage，其中SortShuffleManage是默认模式。
 * HashShuffleManage：在execute中处理每个task后的结果通过buffle缓存的方式写入多个磁盘文件中，reduce task个数由shuffle算子的numPartition参数指定。比如有两个execute分别处理两个task，当numPartition设置为3时，会产生2\*2\*3个文件。<br/>
@@ -85,15 +90,35 @@ Yarn-cluster运行流程：
 3. MEMORY_ONLY_SER：RDD数据序列化后存储到JVM内存中。如果内存不足，一些数据将不会被缓存。比MEMORY_ONLY节约内存空间，但是读取时需要更多CPU开销。
 4. MEMORY_AND_DISK_SER：可以从上面推出意思^_^。
 5. DISK_ONLY：只使用磁盘存储RDD数据。
-6. MEMORY_ONLY_2，MEMORY_AND_DISK_2...：在以上后面加上2，表示在其他节点保存一个备份，用于容灾备份。
+6. MEMORY_ONLY_2，MEMORY_AND_DISK_2...：在以上后面加上2，表示在其他节点保存一个备份，用于容灾备份。</br>
+使用cache()进行默认缓存或是使用persist(StorageLevel.MEMORY_ONLY)来指定持久化级别。
 
 ## parquet格式的好处
 速度更快；压缩技术稳定；扫描的吞吐量大；优化Spark的调度和执行。
+
+## DataFrame比RDD性能好
+1. DataFrame会自动经过Spark优化器（Catalyst），查询计划得到优化。
+2. 使用Off-heap，由操作系统管理的内存，避免大量GC。
 
 ## Spark内存划分
 Spark把堆内内存划分成两个区域：
 1. Execution Memory，用于执行分布式任务，如Shuffle、Sort和Aggregate等。
 2. Storage Memory，用于缓存RDD和广播变量等数据。</br>
-Spark还会在堆内划分出User Memory的内存空间，用于存储开发者自定义数据结构。还有一块Reserved Memory，用来存储各种Spark内部对象，如存储系统中的BlockMemory、DiskBlockMemory等。
+Spark还会在堆内划分出User Memory的内存空间，用于存储开发者自定义数据结构。还有一块Reserved Memory，默认300MB，用来存储各种Spark内部对象，如存储系统中的BlockMemory、DiskBlockMemory等。
 ![Spark内存管理](https://tva1.sinaimg.cn/large/008i3skNgy1gt26qnv2zuj30y50e4jtn.jpg)
-Spark1.6之后使用的统一内存管理模式，Execution Memory和Storage Memory
+Spark2之后默认使用的统一内存管理模式，设置项为spark.memory.useLegacyMode。Execution Memory和Storage Memory可以互相借用对方的内存。两者之间的抢占规则有3条。
+1. 如果对方的内存空间有空闲，双方都可以抢占。
+2. 对于RDD缓存任务抢占的Execution Memory，当任务有内存需要时，RDD缓存任务必须立即归还抢占的内存，涉及的RDD缓存数据要么写入磁盘，要么清除。
+3. 对于分布式计算任务抢占的Storage Memory，即使RDD缓存任务有收回内存的需要，也要等到任务执行完毕才能释放。
+
+## Spark堆外内存
+由spark.memory.offHeap.size指定堆外内存的大小，通过直接操作系统堆外内存，减少不必要的内存开销已经频繁的GC扫描和回收，提升处理性能。
+
+## Spark数据本地化级别
+1. PROCESS_LOCAL，进程本地化，表示task要计算的数据在同一个Executor中。
+2. NODE_LOCAL，节点本地化，表示task要计算的数据在同一个节点的不同的Executor中、数据在同一节点的磁盘上、或是HDFS上恰好有块在同一节点上。比如Spark要计算的数据在HDFS上。
+3. NO_PREF，没有最佳位置。比如Spark从数据库中读取数据。
+4. RACK_LOCAL，机架本地化，数据在同一机架的不同节点上，需要网络传输或是IO。
+5. ANY，跨机架，最慢。</br>
+TaskScheduler发送task时也是以这个优先级来确定数据的位置，先向Executor发送task，等待一段时间后无法执行，就会降低数据本地化级别，发送task给同一节点的其他Executor...</br>
+通过spark.locality.wait设置等待时间。
