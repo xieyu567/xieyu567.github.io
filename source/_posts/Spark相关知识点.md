@@ -1,5 +1,5 @@
 ---
-title: spark相关知识点
+title: Spark相关知识点
 date: 2021-07-31 16:18:22
 visitors: 
 mathjax: true
@@ -68,16 +68,19 @@ Yarn-cluster运行流程：
 
 ## Spark Shuffle的具体流程
 有两种模式：HashShuffleManage和SortShuffleManage，其中SortShuffleManage是默认模式。
-* HashShuffleManage：在execute中处理每个task后的结果通过buffle缓存的方式写入多个磁盘文件中，reduce task个数由shuffle算子的numPartition参数指定。比如有两个execute分别处理两个task，当numPartition设置为3时，会产生2\*2\*3个文件。<br/>
-优化方法：executor处理多个task时，处理完第一个task产生numPartition个文件，之后的task结果追加到相应的这numPartition个文件中，也就是每一个task产生的结果都共用用一个buffle。这样只会产生2（execute）\*3（numPartition）个文件。
+* HashShuffleManage：在execute中处理每个task后的结果通过bucket缓存的方式写入多个磁盘文件中，reduce task个数由shuffle算子的numPartition参数指定。比如有两个execute分别处理两个task，当numPartition设置为3时，会产生2\*2\*3个文件。<br/>
+优化方法：executor处理多个task时，处理完第一个task产生numPartition个文件，之后的task结果追加到相应的这numPartition个文件中，也就是每一个task产生的结果都共用用一个bucket，这个文件称作ShuffleBlockFile。这样只会产生2（execute）\*3（numPartition）个文件。把spark.shuffle.consolidateFiles设置为true就能完成以上优化机制。
 
 * SortShuffleManage：
 1. 在内存中通过溢写的方式将结果写入磁盘，在溢写前，有两个重要操作：
-    1. 数据聚合，针对可聚合的Shuffle操作（如reduceByKey），会基于key进行数据聚合，减少数据量。
-    2. 数据聚合后进行排序操作。
+    1. 数据聚合，数据会先写入一个内存数据结构，如果是reduceByKey这种聚合类算子，会选用Map,一边通过Map聚合，一边写入内存。如果是join这种普通的shuffle算子，会选用Array,直接写入内存。
+    2. 数据溢写到磁盘前会进行排序操作。
 2. 对磁盘文件进行合并，通过索引文件标注key值在文件中的位置。
 产生的文件数为reduce task数\*2
 针对不适宜排序的情况也可以使用bypass模式，和前面一样，只是去掉排序操作，通过设置spark.shuffle.sort.bypassMergeThreshold可以达到这一目的，默认值为200，如果map task数小于该值或者reduce是非聚合操作，就会启用bypass模式，否则是普通模式。
+
+## fetch处理时机
+Spark默认情况下是不会对数据进行排序的，因此Shuffle Write的executor每写入一点数据，Shuffle Read的executor就可以拉取。
 
 ## Spark优化
 1. 平台层面：防止不必要的jar包分发；提高数据的本地性；选择高效的存储格式parquet；资源参数调优（num-executors设置executor数量；executor-memory设置每个executor可申请内存；executor-cores设置每个executor进程的CPU core数量；spark.default.parallelism设置每个stage的默认task数量，一般设置为executor-cores\*num-executors的2-3倍；spark.storage.memoryFraction设置RDD持久化数据在executor内存中能占的比例；spark.shuffle.memoryFraction设置shuffle过程中进行聚合时能够使用的executor内存比例）。

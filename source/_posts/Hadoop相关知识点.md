@@ -1,5 +1,5 @@
 ---
-title: hadoop相关知识点
+title: Hadoop相关知识点
 date: 2021-06-24 17:07:38
 visitors: 
 mathjax: true
