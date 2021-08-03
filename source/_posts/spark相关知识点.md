@@ -58,7 +58,7 @@ Yarn-cluster运行流程：
 4. Yarn管理集群中的多个服务，能根据负载情况，调整资源使用。
 
 ## StandAlone模型的优缺点
-优点：部署简单，不依赖其他资源管理系统。<br/>
+优点：部署简单，不依赖其他资源管理系统。
 缺点：默认每个应用程序会独占所有可用节点的资源，设置项为spark.cores.max；可能存在单点故障，需要自己配置master HA。
 
 ## Spark比MapReduce快的原因
@@ -75,8 +75,8 @@ Yarn-cluster运行流程：
 1. 在内存中通过溢写的方式将结果写入磁盘，在溢写前，有两个重要操作：
     1. 数据聚合，针对可聚合的Shuffle操作（如reduceByKey），会基于key进行数据聚合，减少数据量。
     2. 数据聚合后进行排序操作。
-2. 对磁盘文件进行合并，通过索引文件标注key值在文件中的位置。<br/>
-产生的文件数为reduce task数\*2<br/>
+2. 对磁盘文件进行合并，通过索引文件标注key值在文件中的位置。
+产生的文件数为reduce task数\*2
 针对不适宜排序的情况也可以使用bypass模式，和前面一样，只是去掉排序操作，通过设置spark.shuffle.sort.bypassMergeThreshold可以达到这一目的，默认值为200，如果map task数小于该值或者reduce是非聚合操作，就会启用bypass模式，否则是普通模式。
 
 ## Spark优化
@@ -90,7 +90,7 @@ Yarn-cluster运行流程：
 3. MEMORY_ONLY_SER：RDD数据序列化后存储到JVM内存中。如果内存不足，一些数据将不会被缓存。比MEMORY_ONLY节约内存空间，但是读取时需要更多CPU开销。
 4. MEMORY_AND_DISK_SER：可以从上面推出意思^_^。
 5. DISK_ONLY：只使用磁盘存储RDD数据。
-6. MEMORY_ONLY_2，MEMORY_AND_DISK_2...：在以上后面加上2，表示在其他节点保存一个备份，用于容灾备份。</br>
+6. MEMORY_ONLY_2，MEMORY_AND_DISK_2...：在以上后面加上2，表示在其他节点保存一个备份，用于容灾备份。
 使用cache()进行默认缓存或是使用persist(StorageLevel.MEMORY_ONLY)来指定持久化级别。
 
 ## parquet格式的好处
@@ -106,18 +106,18 @@ Yarn-cluster运行流程：
 
 ## RDD操作
 有两种：Transformation和Action
-* Transformation</br>
+* Transformation
 接收RDD，返回一个或多个新的RDD，不改变输入。
 Transformation是lazy操作，执行Action操作时，才真正执行。
 其中父子RDD是一对一对应关系的为窄依赖，一对多对应关系的为宽依赖。
-* Action</br>
+* Action
 将最终结果返回给Driver或写入外部数据存储。
 First()，take()，reduce()，collect()，count()是常见的一些Action。
 
 ## Spark内存划分
 Spark把堆内内存划分成两个区域：
 1. Execution Memory，用于执行分布式任务，如Shuffle、Sort和Aggregate等。
-2. Storage Memory，用于缓存RDD和广播变量等数据。</br>
+2. Storage Memory，用于缓存RDD和广播变量等数据。
 Spark还会在堆内划分出User Memory的内存空间，用于存储开发者自定义数据结构。还有一块Reserved Memory，默认300MB，用来存储各种Spark内部对象，如存储系统中的BlockMemory、DiskBlockMemory等。
 ![Spark内存管理](https://tva1.sinaimg.cn/large/008i3skNgy1gt26qnv2zuj30y50e4jtn.jpg)
 Spark2之后默认使用的统一内存管理模式，设置项为spark.memory.useLegacyMode。Execution Memory和Storage Memory可以互相借用对方的内存。两者之间的抢占规则有3条。
@@ -133,7 +133,7 @@ Spark2之后默认使用的统一内存管理模式，设置项为spark.memory.u
 2. NODE_LOCAL，节点本地化，表示task要计算的数据在同一个节点的不同的Executor中、数据在同一节点的磁盘上、或是HDFS上恰好有块在同一节点上。比如Spark要计算的数据在HDFS上。
 3. NO_PREF，没有最佳位置。比如Spark从数据库中读取数据。
 4. RACK_LOCAL，机架本地化，数据在同一机架的不同节点上，需要网络传输或是IO。
-5. ANY，跨机架，最慢。</br>
-TaskScheduler发送task时也是以这个优先级来确定数据的位置，先向Executor发送task，等待一段时间后无法执行，就会降低数据本地化级别，发送task给同一节点的其他Executor...</br>
+5. ANY，跨机架，最慢。
+TaskScheduler发送task时也是以这个优先级来确定数据的位置，先向Executor发送task，等待一段时间后无法执行，就会降低数据本地化级别，发送task给同一节点的其他Executor...
 通过spark.locality.wait设置等待时间。
 
