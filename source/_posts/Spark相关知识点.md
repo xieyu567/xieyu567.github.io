@@ -79,6 +79,15 @@ Yarn-cluster运行流程：
 产生的文件数为reduce task数\*2
 针对不适宜排序的情况也可以使用bypass模式，和前面一样，只是去掉排序操作，通过设置spark.shuffle.sort.bypassMergeThreshold可以达到这一目的，默认值为200，如果map task数小于该值或者reduce是非聚合操作，就会启用bypass模式，否则是普通模式。
 
+## SortShuffleManager和HashShuffleManage的缺陷
+SortShuffleManager：
+1. 如果map阶段的task数量很大，会出现很多小文件。reduce阶段需要消耗大量的内存进行反序列化，加上GC的负担，会对系统造成很大负担。
+2. 如果需要在partition内排序，需要进行map和reduce两次排序。
+HashShuffleManage：
+1. 大量小文件在磁盘中，带来大量的IO操作。
+2. 容易出现内存不够用的情况，因为内存需要保存大量的文件操作handle和临时缓存信息。
+3. 容易出现数据倾斜。
+
 ## fetch处理时机
 Spark默认情况下是不会对数据进行排序的，因此Shuffle Write的executor每写入一点数据，Shuffle Read的executor就可以拉取。
 
