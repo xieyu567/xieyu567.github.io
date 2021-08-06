@@ -1,6 +1,6 @@
 ---
 title: Spark相关知识点
-date: 2021-07-31 16:18:22
+date: 2021-08-06 12:42:37
 visitors: 
 mathjax: true
 tags: 面试
@@ -148,4 +148,3 @@ Spark2之后默认使用的统一内存管理模式，设置项为spark.memory.u
 5. ANY，跨机架，最慢。
 TaskScheduler发送task时也是以这个优先级来确定数据的位置，先向Executor发送task，等待一段时间后无法执行，就会降低数据本地化级别，发送task给同一节点的其他Executor...
 通过spark.locality.wait设置等待时间。
-
