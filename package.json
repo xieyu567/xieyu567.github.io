@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "5.0.2"
+    "version": "5.4.0"
   },
   "dependencies": {
-    "acorn": "^8.0.1",
-    "hexo": "^5.0.2",
+    "acorn": "^8.4.1",
+    "hexo": "^5.4.0",
     "hexo-asset-image": "^1.0.0",
     "hexo-deployer-git": "^2.1.0",
     "hexo-generator-archive": "^1.0.0",
