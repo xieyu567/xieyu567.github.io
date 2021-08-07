@@ -1,7 +1,7 @@
 ---
 title: Spark相关知识点
 date: 2021-08-06 12:42:37
-updated: 2021-08-06 13:09:34
+updated: 2021-08-07 10:04:57
 mathjax: true
 tags: 面试
 ---
@@ -90,6 +90,16 @@ HashShuffleManage：
 
 ## fetch处理时机
 Spark默认情况下是不会对数据进行排序的，因此Shuffle Write的executor每写入一点数据，Shuffle Read的executor就可以拉取。
+
+## Spark任务提交流程
+1. spark-submit提交任务，执行 new SparkContext()，在 SparkContext 里构造 DAGScheduler 和 TaskScheduler。
+2. TaskScheduler 会通过后台的一个进程，连接 Master，向 Master 注册 Application。
+3. Master 接收到 Application 请求后，会使用相应的资源调度算法，在 Worker 上为这个 Application 启动多个 Executor。
+4. Executor 启动后，会自己反向注册到 TaskScheduler 中。所有 Executor 都注册到 Driver 上之后，SparkContext 结束初始化，接下来往下执行我们自己的代码。
+5. 每执行到一个 Action，就会创建一个 Job。Job 会提交给 DAGScheduler。
+6. DAGScheduler 会将 Job 划分为多个 Stage，然后每个 Stage 创建一个 TaskSet。
+7. TaskScheduler 会把每一个 TaskSet 里的 Task，提交到 Executor 上执行。
+8. Executor 上有线程池，每接收到一个 Task，就用 TaskRunner 封装，然后从线程池里取出一个线程执行这个 task。(TaskRunner 将我们编写的代码，拷贝，反序列化，执行 Task，每个 Task 执行 RDD 里的一个 partition)。
 
 ## Spark优化
 1. 平台层面：防止不必要的jar包分发；提高数据的本地性；选择高效的存储格式parquet；资源参数调优（num-executors设置executor数量；executor-memory设置每个executor可申请内存；executor-cores设置每个executor进程的CPU core数量；spark.default.parallelism设置每个stage的默认task数量，一般设置为executor-cores\*num-executors的2-3倍；spark.storage.memoryFraction设置RDD持久化数据在executor内存中能占的比例；spark.shuffle.memoryFraction设置shuffle过程中进行聚合时能够使用的executor内存比例）。
