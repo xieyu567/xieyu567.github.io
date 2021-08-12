@@ -67,7 +67,7 @@ Yarn-cluster运行流程：
 3. JVM优化：MapReduce是以进程的方式运行在Yarn集群中，有多少个task就要开启多少个进程，每启动一个task就会启动一次jvm。Spark是以线程的方式运行的，只在启动Executor进程时启动一次jvm，Executor进程中维护着一个线程池。节省了大量jvm启动时间。
 
 ## Spark Shuffle的具体流程
-有两种模式：HashShuffleManage和SortShuffleManage，其中SortShuffleManage是默认模式。
+有两种模式：HashShuffleManage和SortShuffleManage，其中SortShuffleManage是默认模式。在2.0之后HashShuffleManage不再被支持。
 * HashShuffleManage：在execute中处理每个task后的结果通过bucket缓存的方式写入多个磁盘文件中，reduce task个数由shuffle算子的numPartition参数指定。比如有两个execute分别处理两个task，当numPartition设置为3时，会产生2\*2\*3个文件。<br/>
 优化方法：executor处理多个task时，处理完第一个task产生numPartition个文件，之后的task结果追加到相应的这numPartition个文件中，也就是每一个task产生的结果都共用用一个bucket，这个文件称作ShuffleBlockFile。这样只会产生2（execute）\*3（numPartition）个文件。把spark.shuffle.consolidateFiles设置为true就能完成以上优化机制。
 
@@ -77,7 +77,11 @@ Yarn-cluster运行流程：
     2. 数据溢写到磁盘前会进行排序操作。
 2. 对磁盘文件进行合并，通过索引文件标注key值在文件中的位置。
 产生的文件数为reduce task数\*2
-针对不适宜排序的情况也可以使用bypass模式，和前面一样，只是去掉排序操作，通过设置spark.shuffle.sort.bypassMergeThreshold可以达到这一目的，默认值为200，如果map task数小于该值或者reduce是非聚合操作，就会启用bypass模式，否则是普通模式。
+针对不适宜排序的情况也可以使用bypass模式，和前面一样，只是去掉排序操作，通过设置spark.shuffle.sort.bypassMergeThreshold可以达到这一目的，默认值为200，如果map task数小于该值或者reduce是非聚合操作，就会启用bypass模式，否则是普通模式。还有一种Tungsten-sort也是对SortShuffleManager的优化，主要有三个方面：
+1. 直接在serialized binary data上sort而不是java objects，减少了memory的开销和GC的overhead。
+2. 提供cache-efficient sorter，使用一个8bytes的指针，把排序转化成了一个指针数组的排序。
+3. spill的merge过程也无需反序列化即可完成。
+但是这种Shuffle方法的条件比较苛刻
 
 ## SortShuffleManager和HashShuffleManage的缺陷
 SortShuffleManager：
