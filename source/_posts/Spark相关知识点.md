@@ -77,7 +77,8 @@ Yarn-cluster运行流程：
     2. 数据溢写到磁盘前会进行排序操作。
 2. 对磁盘文件进行合并，通过索引文件标注key值在文件中的位置。
 产生的文件数为reduce task数\*2
-针对不适宜排序的情况也可以使用bypass模式，和前面一样，只是去掉排序操作，通过设置spark.shuffle.sort.bypassMergeThreshold可以达到这一目的，默认值为200，如果map task数小于该值或者reduce是非聚合操作，就会启用bypass模式，否则是普通模式。还有一种Tungsten-sort也是对SortShuffleManager的优化，主要有三个方面：
+针对不适宜排序的情况也可以使用bypass模式，和前面一样，只是去掉排序操作，通过设置spark.shuffle.sort.bypassMergeThreshold可以达到这一目的，默认值为200，如果map task数小于该值或者reduce是非聚合操作，就会启用bypass模式，否则是普通模式。
+还有一种Tungsten-sort也是对SortShuffleManager的优化，通过设置spark.shuffle.manager开启，主要的优化点有三个方面：
 1. 直接在serialized binary data上sort而不是java objects，减少了memory的开销和GC的overhead。
 2. 提供cache-efficient sorter，使用一个8bytes的指针，把排序转化成了一个指针数组的排序。
 3. spill的merge过程也无需反序列化即可完成。
