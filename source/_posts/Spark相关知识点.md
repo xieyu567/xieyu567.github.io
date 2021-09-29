@@ -112,8 +112,8 @@ Spark默认情况下是不会对数据进行排序的，因此Shuffle Write的ex
 3. JVM层面：启用高效的序列化方法kyro，增大off head内存。
 
 ## Spark持久化级别
-1. MEMORY_ONLY：默认选项，RDD数据以Java对象形式存储到JVM内存中。如果内存不足，一些数据将不会被缓存。
-2. MEMORY_AND_DISK：RDD数据以Java对象形式存储到JVM内存中。如果内存不足，一些数据将存储在磁盘。
+1. MEMORY_ONLY：RDD默认选项，RDD数据以Java对象形式存储到JVM内存中。如果内存不足，一些数据将不会被缓存。
+2. MEMORY_AND_DISK：DataFrame和DataSet默认选项，以Java对象形式存储到JVM内存中。如果内存不足，一些数据将存储在磁盘。
 3. MEMORY_ONLY_SER：RDD数据序列化后存储到JVM内存中。如果内存不足，一些数据将不会被缓存。比MEMORY_ONLY节约内存空间，但是读取时需要更多CPU开销。
 4. MEMORY_AND_DISK_SER：可以从上面推出意思^_^。
 5. DISK_ONLY：只使用磁盘存储RDD数据。
