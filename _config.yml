@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Effe's blog
+title: xieyu's blog
 subtitle:
 description:
 keywords:
-author: Effe
+author: xieyu
 language:
 timezone:
 
@@ -78,7 +78,9 @@ pagination_dir: page
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
+plugins: hexo-generator-sitemap
+
+  ## Themes: https://hexo.io/themes/
 theme: next
 
 # Deployment
