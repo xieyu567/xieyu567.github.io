@@ -150,86 +150,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/24/brew-rollback-old-version/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="xieyu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xieyu's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/24/brew-rollback-old-version/" class="post-title-link" itemprop="url">brew rollback old version</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-06-24 08:03:34" itemprop="dateCreated datePublished" datetime="2021-06-24T08:03:34+08:00">2021-06-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>由于zeppelin不支持最新的spark3.2.1，只能将其回滚到3.0.2。</p>
-<ol>
-<li><p>首先查看历史版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew info apache-spark</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>找到历史版本，比如spark3.0.2的row为<a target="_blank" rel="noopener" href="https://github.com/Homebrew/homebrew-core/blob/21b2d942b1cb03fd07d04b78129adb3d44bd2b75/Formula/apache-spark.rb">https://github.com/Homebrew/homebrew-core/blob/21b2d942b1cb03fd07d04b78129adb3d44bd2b75/Formula/apache-spark.rb</a></p>
-</li>
-<li><p>删除spark</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew uninstall apache-spark</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装指定版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install https://github.com/Homebrew/homebrew-core/blob/21b2d942b1cb03fd07d04b78129adb3d44bd2b75/Formula/apache-spark.rb</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>最后锁定版本，以后升级前一定要看看是否兼容-_-</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew pin apache-spark</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/17/grub-problem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -301,78 +221,6 @@ set prefix=(hd0,gpt8)/boot/grub
 <pre><code>sudo update-grub
 sudo grub-install /dev/nvme0n1p2
 </code></pre>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/01/kde%E5%81%87%E6%AD%BB%E4%BA%8B%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="xieyu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xieyu's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/01/kde%E5%81%87%E6%AD%BB%E4%BA%8B%E4%BB%B6/" class="post-title-link" itemprop="url">kde假死事件</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-01-01 18:53:03" itemprop="dateCreated datePublished" datetime="2021-01-01T18:53:03+08:00">2021-01-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>又开始折腾manjaro了，从xfce换到了kde，但是下午出现了两次假死的情况，总结了解决方法。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/01/kde%E5%81%87%E6%AD%BB%E4%BA%8B%E4%BB%B6/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -463,7 +311,7 @@ sudo grub-install /dev/nvme0n1p2
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-3/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/01/kde%E5%81%87%E6%AD%BB%E4%BA%8B%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -477,7 +325,7 @@ sudo grub-install /dev/nvme0n1p2
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/20/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-3/" class="post-title-link" itemprop="url">mac搭建大数据平台(3)-hbase</a>
+            <a href="/2021/01/01/kde%E5%81%87%E6%AD%BB%E4%BA%8B%E4%BB%B6/" class="post-title-link" itemprop="url">kde假死事件</a>
         </h2>
 
         <div class="post-meta">
@@ -487,7 +335,7 @@ sudo grub-install /dev/nvme0n1p2
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-07-20 20:55:49" itemprop="dateCreated datePublished" datetime="2020-07-20T20:55:49+08:00">2020-07-20</time>
+              <time title="Created: 2021-01-01 18:53:03" itemprop="dateCreated datePublished" datetime="2021-01-01T18:53:03+08:00">2021-01-01</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -496,15 +344,6 @@ sudo grub-install /dev/nvme0n1p2
                 <span class="post-meta-item-text">Edited on</span>
                 <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
               </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/big-data/" itemprop="url" rel="index"><span itemprop="name">big data</span></a>
-                </span>
-            </span>
 
           
 
@@ -517,10 +356,10 @@ sudo grub-install /dev/nvme0n1p2
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>hbase的分布式配置要基于zookeeper，记录一下配置流程<br>用brew安装好hbase后，先配置conf/hbase-env.sh<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=&#123;JAVA_HOME&#125;</span><br><span class="line"><span class="built_in">export</span> HBASE_MANAGES_ZK=<span class="literal">true</span></span><br><span class="line"><span class="built_in">export</span> HBASE_CLASS=&#123;HBASE&#125;/conf</span><br></pre></td></tr></table></figure></p>
+          <p>又开始折腾manjaro了，从xfce换到了kde，但是下午出现了两次假死的情况，总结了解决方法。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/07/20/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-3/#more" rel="contents">
+              <a class="btn" href="/2021/01/01/kde%E5%81%87%E6%AD%BB%E4%BA%8B%E4%BB%B6/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -686,6 +525,174 @@ sudo grub-install /dev/nvme0n1p2
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/07/20/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-2/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xieyu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xieyu's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/20/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-3/" class="post-title-link" itemprop="url">mac搭建大数据平台(3)-hbase</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-20 20:55:49" itemprop="dateCreated datePublished" datetime="2020-07-20T20:55:49+08:00">2020-07-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/big-data/" itemprop="url" rel="index"><span itemprop="name">big data</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>hbase的分布式配置要基于zookeeper，记录一下配置流程<br>用brew安装好hbase后，先配置conf/hbase-env.sh<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=&#123;JAVA_HOME&#125;</span><br><span class="line"><span class="built_in">export</span> HBASE_MANAGES_ZK=<span class="literal">true</span></span><br><span class="line"><span class="built_in">export</span> HBASE_CLASS=&#123;HBASE&#125;/conf</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/20/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/27/Transformer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xieyu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xieyu's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/27/Transformer/" class="post-title-link" itemprop="url">Transformer</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-27 14:07:58" itemprop="dateCreated datePublished" datetime="2019-06-27T14:07:58+08:00">2019-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>&emsp;&emsp;这是2017年Google Brain的一篇论文,使用self-attention机制构建模型.和之前完全不同的思路,</p>
+<ul>
+<li>RNN因为是递归式的结构,无法做到并行,而且要获得全局信息必须要做双向RNN.</li>
+<li>CNN则是因为感受域限制,只能获取局部信息.</li>
+<li>Transformer能够一步获取全局信息,在做NLP任务时表现很优异,如共指消解.</li>
+</ul>
+<p>&emsp;&emsp;Transformer使用传统的Encoder-Decoder结构,给定一个序列$(x_1,…,x_n)$经过处理得到$(y_1,…,y_m)$.模型的每一步都是自回归的,每次生成都使用之前的生成作为附加信息输入.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/27/Transformer/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

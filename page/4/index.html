@@ -150,6 +150,101 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/Naive-Bayesian/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xieyu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xieyu's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/27/Naive-Bayesian/" class="post-title-link" itemprop="url">Naive Bayesian</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-27 16:52:44" itemprop="dateCreated datePublished" datetime="2019-05-27T16:52:44+08:00">2019-05-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">统计学习方法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="朴素贝叶斯算法"><a href="#朴素贝叶斯算法" class="headerlink" title="朴素贝叶斯算法"></a>朴素贝叶斯算法</h4><p>朴素贝叶斯算法是典型的生成模型,生成模型由训练数据学习联合概率分布$P(X,Y)$,然后求得后验概率分布$P(Y|X)$.</p>
+<script type="math/tex; mode=display">P(X,Y)=P(Y)P(X|Y)</script><hr>
+<h5 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤:"></a>算法步骤:</h5><ol>
+<li><p>计算先验概率及条件概率</p>
+<script type="math/tex; mode=display">P(Y=c_k)=\frac{\sum^N_{i=1}I(y_i=c_k)}{N}</script><script type="math/tex; mode=display">P(X^(i)=a_{jl}|\frac{\sum^N_{i=1}I(x^{(j)}_i=a_{jl},y_i=c_k)}{\sum^N_{i=1}I(y_i=c_k)})</script><p>其中概率计算方法可以是极大似然估计或贝叶斯估计.</p>
+</li>
+<li><p>对于给定的实例x计算</p>
+<script type="math/tex; mode=display">P(Y=c_k)\prod^n_{j=1}P(X^{(j)}=x^{(j)}|Y=c_k)</script></li>
+<li>确定实例$x$的类<script type="math/tex; mode=display">y=argmax_{c_k}P(Y=c_k)\prod^n_{j=1}P(X^{(j)}=x^{(j)|Y=c_k})</script></li>
+</ol>
+<p>&emsp;&emsp;对于连续值,采用的是高斯模型,即假设特征符合高斯分布；对于离散值,采用多项式模型；另外在伯努利模型中,每个特征的取值是布尔型,这个模型我还不是很清楚在什么场景下使用.</p>
+<hr>
+<p>&emsp;&emsp;朴素贝叶斯的基本假设是条件独立性,这是一个严格的条件,因此模型所需要的参数比较少.这个算法的优点主要有:</p>
+<ol>
+<li>对小规模的数据表现较好,能处理多分类任务.</li>
+<li>面对无关属性,$P(X_i|Y)$几乎是均匀分布,$X_i$类的条件概率不会对总的后验概率计算产生影响.</li>
+</ol>
+<p>&emsp;&emsp;缺点主要有:</p>
+<ol>
+<li>需要计算先验概率.</li>
+<li>输入变量必须是条件独立的,如果样本点之间存在概率依存关系,那么相关属性可能会降低朴素贝叶斯分类器的性能.</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/Maximum-entropy-model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -264,101 +359,6 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/Naive-Bayesian/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="xieyu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xieyu's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/27/Naive-Bayesian/" class="post-title-link" itemprop="url">Naive Bayesian</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-05-27 16:52:44" itemprop="dateCreated datePublished" datetime="2019-05-27T16:52:44+08:00">2019-05-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">统计学习方法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="朴素贝叶斯算法"><a href="#朴素贝叶斯算法" class="headerlink" title="朴素贝叶斯算法"></a>朴素贝叶斯算法</h4><p>朴素贝叶斯算法是典型的生成模型,生成模型由训练数据学习联合概率分布$P(X,Y)$,然后求得后验概率分布$P(Y|X)$.</p>
-<script type="math/tex; mode=display">P(X,Y)=P(Y)P(X|Y)</script><hr>
-<h5 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤:"></a>算法步骤:</h5><ol>
-<li><p>计算先验概率及条件概率</p>
-<script type="math/tex; mode=display">P(Y=c_k)=\frac{\sum^N_{i=1}I(y_i=c_k)}{N}</script><script type="math/tex; mode=display">P(X^(i)=a_{jl}|\frac{\sum^N_{i=1}I(x^{(j)}_i=a_{jl},y_i=c_k)}{\sum^N_{i=1}I(y_i=c_k)})</script><p>其中概率计算方法可以是极大似然估计或贝叶斯估计.</p>
-</li>
-<li><p>对于给定的实例x计算</p>
-<script type="math/tex; mode=display">P(Y=c_k)\prod^n_{j=1}P(X^{(j)}=x^{(j)}|Y=c_k)</script></li>
-<li>确定实例$x$的类<script type="math/tex; mode=display">y=argmax_{c_k}P(Y=c_k)\prod^n_{j=1}P(X^{(j)}=x^{(j)|Y=c_k})</script></li>
-</ol>
-<p>&emsp;&emsp;对于连续值,采用的是高斯模型,即假设特征符合高斯分布；对于离散值,采用多项式模型；另外在伯努利模型中,每个特征的取值是布尔型,这个模型我还不是很清楚在什么场景下使用.</p>
-<hr>
-<p>&emsp;&emsp;朴素贝叶斯的基本假设是条件独立性,这是一个严格的条件,因此模型所需要的参数比较少.这个算法的优点主要有:</p>
-<ol>
-<li>对小规模的数据表现较好,能处理多分类任务.</li>
-<li>面对无关属性,$P(X_i|Y)$几乎是均匀分布,$X_i$类的条件概率不会对总的后验概率计算产生影响.</li>
-</ol>
-<p>&emsp;&emsp;缺点主要有:</p>
-<ol>
-<li>需要计算先验概率.</li>
-<li>输入变量必须是条件独立的,如果样本点之间存在概率依存关系,那么相关属性可能会降低朴素贝叶斯分类器的性能.</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/23/Network-chapter1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -424,6 +424,92 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/07/23/Network-chapter1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/24/Network-chapter2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xieyu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xieyu's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/24/Network-chapter2/" class="post-title-link" itemprop="url">Network-chapter2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-24 09:45:43" itemprop="dateCreated datePublished" datetime="2019-07-24T09:45:43+08:00">2019-07-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Network-A-Systems-Approach/" itemprop="url" rel="index"><span itemprop="name">Computer Network A Systems Approach</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>章节二的习题:</p>
+<h4 id="2-1"><a href="#2-1" class="headerlink" title="2.1"></a>2.1</h4><p>&emsp;&emsp;几种编码方法的区分:</p>
+<p>&emsp;&emsp;<strong>NRZ</strong>:&emsp;低电平时为0,高电平时为1.对于连续的1或0,基线漂移和时钟同步会带来问题.接收方一般是用信号的平均值作为基线判断高低电平,如果连续出现1或0,基线会变化,接收方检测信号就会出现问题;另外接收方必须与发送方的时钟完全同步才能解析NRZ信号,这样布线成本会很高,之后的编码方法通过在信号内的跳变让接收方能够恢复时钟.</p>
+<p>&emsp;&emsp;<strong>NRZI</strong>:&emsp;信号为1时,进行跳变,信号为0时,不变.这种编码方式解决了连续的1的情况,但是没有解决连续的0的情况.</p>
+<p>&emsp;&emsp;<strong>曼彻斯特编码</strong>:&emsp;用NRZ和时钟进行异或操作.信号为0时由低向高跳变,信号为1时由高向低跳变.因此接收方也能够很好的恢复时钟.但是因为跳变频率(波特率)加倍,曼彻斯特编码的效率只有NRZ和NRZI的一半.</p>
+<p>&emsp;&emsp;<strong>4B/5B编码</strong>:&emsp;用5比特来编码4比特信号,然后使用NRZI编码传输.通过限制连续的0的数量(最多一个前导0,最多两个末尾0)来解决NRZI的问题,同时效率比曼彻斯特编码要高(80%).</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/07/24/Network-chapter2/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -639,92 +725,6 @@ max_{P\in C}&H(p)=-\sum_{x,y}\widetilde{P}(x)P(y|x)logP(y|x)\\
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/08/24/Network-chapter3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/24/Network-chapter2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="xieyu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xieyu's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/24/Network-chapter2/" class="post-title-link" itemprop="url">Network-chapter2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-07-24 09:45:43" itemprop="dateCreated datePublished" datetime="2019-07-24T09:45:43+08:00">2019-07-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computer-Network-A-Systems-Approach/" itemprop="url" rel="index"><span itemprop="name">Computer Network A Systems Approach</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>章节二的习题:</p>
-<h4 id="2-1"><a href="#2-1" class="headerlink" title="2.1"></a>2.1</h4><p>&emsp;&emsp;几种编码方法的区分:</p>
-<p>&emsp;&emsp;<strong>NRZ</strong>:&emsp;低电平时为0,高电平时为1.对于连续的1或0,基线漂移和时钟同步会带来问题.接收方一般是用信号的平均值作为基线判断高低电平,如果连续出现1或0,基线会变化,接收方检测信号就会出现问题;另外接收方必须与发送方的时钟完全同步才能解析NRZ信号,这样布线成本会很高,之后的编码方法通过在信号内的跳变让接收方能够恢复时钟.</p>
-<p>&emsp;&emsp;<strong>NRZI</strong>:&emsp;信号为1时,进行跳变,信号为0时,不变.这种编码方式解决了连续的1的情况,但是没有解决连续的0的情况.</p>
-<p>&emsp;&emsp;<strong>曼彻斯特编码</strong>:&emsp;用NRZ和时钟进行异或操作.信号为0时由低向高跳变,信号为1时由高向低跳变.因此接收方也能够很好的恢复时钟.但是因为跳变频率(波特率)加倍,曼彻斯特编码的效率只有NRZ和NRZI的一半.</p>
-<p>&emsp;&emsp;<strong>4B/5B编码</strong>:&emsp;用5比特来编码4比特信号,然后使用NRZI编码传输.通过限制连续的0的数量(最多一个前导0,最多两个末尾0)来解决NRZI的问题,同时效率比曼彻斯特编码要高(80%).</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/07/24/Network-chapter2/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
