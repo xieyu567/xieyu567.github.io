@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Spark模型工作类型 本地模式 StandAlone模式 Spark on Yarn模式，分为Yarn-client和Yarn-cluster Spark on Mesos模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark相关知识点">
+<meta property="og:url" content="http://yoursite.com/2021/08/06/Spark%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="Effe&#39;s blog">
+<meta property="og:description" content="Spark模型工作类型 本地模式 StandAlone模式 Spark on Yarn模式，分为Yarn-client和Yarn-cluster Spark on Mesos模式">
+<meta property="og:locale">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNgy1gt26qnv2zuj30y50e4jtn.jpg">
+<meta property="article:published_time" content="2021-08-06T04:42:37.000Z">
+<meta property="article:modified_time" content="2021-08-12T04:43:21.000Z">
+<meta property="article:author" content="Effe">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNgy1gt26qnv2zuj30y50e4jtn.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2021/08/06/Spark%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'default'
+  };
+</script>
+
+  <title>Spark相关知识点 | Effe's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Effe's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/06/Spark%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spark相关知识点
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-08-06 12:42:37" itemprop="dateCreated datePublished" datetime="2021-08-06T12:42:37+08:00">2021-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-08-12 12:43:21" itemprop="dateModified" datetime="2021-08-12T12:43:21+08:00">2021-08-12</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Spark模型工作类型"><a href="#Spark模型工作类型" class="headerlink" title="Spark模型工作类型"></a>Spark模型工作类型</h2><ol>
+<li>本地模式</li>
+<li>StandAlone模式</li>
+<li>Spark on Yarn模式，分为Yarn-client和Yarn-cluster</li>
+<li>Spark on Mesos模式<span id="more"></span>
+</li>
+</ol>
+<hr>
+<p>本地模式只有一个SparkSubmit进程，把任务全部包圆。</p>
+<hr>
+<p>StandAlone模式构建一个Master和Slave构成的集群，资源管理和任务监控是Spark自己监控。<br>StandAlone模式包含Master进程（进行资源管理）、SparkSubmit进程（作为Clinet端和运行driver程序）以及CoarseGrainedExecutorBackend进程（并发执行应用程序）。<br>StandAlone模式主要节点有Client节点、Master节点和Worker节点。</p>
+<p>StandAlone运行流程：</p>
+<ol>
+<li>SparkContent连接到Master，向Master注册并申请资源。</li>
+<li>Master根据SparkContext的资源申请要求和Worker心跳周期内报告的信息决定在哪个Worker上分配资源，然后在该Worker上获取资源，然后启动StandaloneExecutorBackend。</li>
+<li>StandaloneExecutorBackend向SparkContext注册。</li>
+<li>SparkContext将Application代码发送给StandaloneExecutorBacked。SparkContext解析Application代码，构建DAG图，并提交给DAG Scheduler分解成Stage，DAG Scheduler将TaskSet提交给Task Scheduler，Task Scheduler将task分配到相应的Worker，最后提交给StandaloneExecutorBackend执行。</li>
+<li>StandaloneExecutorBackend建立Executor线程池，开始执行task，并向SparkContext报告，直至task完成。</li>
+<li>所有task完成后，SparkContext向Master注销自己。</li>
+</ol>
+<hr>
+<p>Spark on Yarn模式将集群部署、资源和任务监控交给Yarn管理，仅支持粗粒度资源分配方式。</p>
+<p>Yarn-client和Yarn-cluster的区别：</p>
+<ul>
+<li>Yarn-client适用于调试环境。driver运行在客户端，负责调度application，会与Yarn集群产生大量的网络通信。因为本地执行，因此能够看到所有logs，方便调试。ApplicationMaster仅向Yarn请求Executor，功能十分有限。</li>
+<li>Yarn-cluster适用于生产环境，driver运行在集群子节点的ApplicationMaster中，负责向Yarn申请资源，并监督作业的运行状况。</li>
+</ul>
+<p>Yarn-client运行流程：</p>
+<ol>
+<li>Spark Yarn Client向Yarn的ResouceManager发送请求，申请启动ApplicationMaster。同时在SparkContext初始化中创建DAGScheduler和TaskScheduler。</li>
+<li>ResourceManager收到请求后，在集群选择一个NodeManager，为应用程序分配第一个Container，在Container中启动应用程序的ApplicationMaster。（这个ApplicationMaster不运行SparkContext，只启动ExecutorLanucher）</li>
+<li>client中的SparkContext初始化完毕后，与ApplicationMaster建立连接，向ResourceManager注册，根据任务信息向ResourceManager申请Container。</li>
+<li>ApplicationMaster申请到Container后，与相应的NodeManager通信，在Container中启动CoarseGrainedExecutorBackend，CoarseGrainedExecutorBackend启动后向Client中的SparkContext注册并申请task。</li>
+<li>client中的SparkContext分配task给CoarseGrainedExecutorBackend执行，CoarseGrainedExecutorBackend运行task并向driver汇报运行状态和进度。</li>
+<li>程序完成后，client的SparkContext向ResourceManager申请注销并关闭。</li>
+</ol>
+<p>Yarn-cluster运行流程：</p>
+<ol>
+<li>Spark Yarn Client向Yarn的ResouceManager发送请求，申请启动ApplicationMaster。</li>
+<li>ResourceManager收到请求后，在集群选择一个NodeManager，为应用程序分配第一个Container，在Container中启动应用程序的ApplicationMaster。（这个ApplicationMaster相当于driver客户端，进行SparkContext初始化）</li>
+<li>ApplicationMaster向ResourceManager注册。</li>
+<li>ApplicationMaster申请到Container后，与相应的NodeManager通信，在Container中启动CoarseGrainedExecutorBackend，CoarseGrainedExecutorBackend启动后向Client中的SparkContext注册并申请task。</li>
+<li>ApplicationMaster中的SparkContext分配task给CoarseGrainedExecutorBackend执行，CoarseGrainedExecutorBackend运行task并向ApplicationMaster汇报运行状态和进度。</li>
+<li>程序完成后，ApplicationMaster向ResourceManager申请注销并关闭。</li>
+</ol>
+<h2 id="Spark-on-Yarn的优点"><a href="#Spark-on-Yarn的优点" class="headerlink" title="Spark on Yarn的优点"></a>Spark on Yarn的优点</h2><ol>
+<li>与其他计算框架共享集群资源。</li>
+<li>比Spark自带的Standalone模式资源分配更加细致。</li>
+<li>Application部署简化。</li>
+<li>Yarn管理集群中的多个服务，能根据负载情况，调整资源使用。</li>
+</ol>
+<h2 id="StandAlone模型的优缺点"><a href="#StandAlone模型的优缺点" class="headerlink" title="StandAlone模型的优缺点"></a>StandAlone模型的优缺点</h2><p>优点：部署简单，不依赖其他资源管理系统。<br>缺点：默认每个应用程序会独占所有可用节点的资源，设置项为spark.cores.max；可能存在单点故障，需要自己配置master HA。</p>
+<h2 id="Spark比MapReduce快的原因"><a href="#Spark比MapReduce快的原因" class="headerlink" title="Spark比MapReduce快的原因"></a>Spark比MapReduce快的原因</h2><ol>
+<li>IO操作：MapReduce每次Shuffle都要写入磁盘，Spark的Shuffle可以缓存到内存。</li>
+<li>Shuffle机制：每次MapReduce都会有一次Shuffle，Spark只有碰到宽依赖才会Shuffle。</li>
+<li>JVM优化：MapReduce是以进程的方式运行在Yarn集群中，有多少个task就要开启多少个进程，每启动一个task就会启动一次jvm。Spark是以线程的方式运行的，只在启动Executor进程时启动一次jvm，Executor进程中维护着一个线程池。节省了大量jvm启动时间。</li>
+</ol>
+<h2 id="Spark-Shuffle的具体流程"><a href="#Spark-Shuffle的具体流程" class="headerlink" title="Spark Shuffle的具体流程"></a>Spark Shuffle的具体流程</h2><p>有两种模式：HashShuffleManage和SortShuffleManage，其中SortShuffleManage是默认模式。在2.0之后HashShuffleManage不再被支持。</p>
+<ul>
+<li><p>HashShuffleManage：在execute中处理每个task后的结果通过bucket缓存的方式写入多个磁盘文件中，reduce task个数由shuffle算子的numPartition参数指定。比如有两个execute分别处理两个task，当numPartition设置为3时，会产生2*2*3个文件。<br><br>优化方法：executor处理多个task时，处理完第一个task产生numPartition个文件，之后的task结果追加到相应的这numPartition个文件中，也就是每一个task产生的结果都共用用一个bucket，这个文件称作ShuffleBlockFile。这样只会产生2（execute）*3（numPartition）个文件。把spark.shuffle.consolidateFiles设置为true就能完成以上优化机制。</p>
+</li>
+<li><p>SortShuffleManage：</p>
+</li>
+</ul>
+<ol>
+<li>在内存中通过溢写的方式将结果写入磁盘，在溢写前，有两个重要操作：<ol>
+<li>数据聚合，数据会先写入一个内存数据结构，如果是reduceByKey这种聚合类算子，会选用Map,一边通过Map聚合，一边写入内存。如果是join这种普通的shuffle算子，会选用Array,直接写入内存。</li>
+<li>数据溢写到磁盘前会进行排序操作。</li>
+</ol>
+</li>
+<li>对磁盘文件进行合并，通过索引文件标注key值在文件中的位置。<br>产生的文件数为reduce task数*2<br>针对不适宜排序的情况也可以使用bypass模式，和前面一样，只是去掉排序操作，通过设置spark.shuffle.sort.bypassMergeThreshold可以达到这一目的，默认值为200，如果map task数小于该值或者reduce是非聚合操作，就会启用bypass模式，否则是普通模式。<br>还有一种Tungsten-sort也是对SortShuffleManager的优化，通过设置spark.shuffle.manager开启，主要的优化点有三个方面：</li>
+<li>直接在serialized binary data上sort而不是java objects，减少了memory的开销和GC的overhead。</li>
+<li>提供cache-efficient sorter，使用一个8bytes的指针，把排序转化成了一个指针数组的排序。</li>
+<li>spill的merge过程也无需反序列化即可完成。<br>但是这种Shuffle方法的条件比较苛刻</li>
+</ol>
+<h2 id="SortShuffleManager和HashShuffleManage的缺陷"><a href="#SortShuffleManager和HashShuffleManage的缺陷" class="headerlink" title="SortShuffleManager和HashShuffleManage的缺陷"></a>SortShuffleManager和HashShuffleManage的缺陷</h2><p>SortShuffleManager：</p>
+<ol>
+<li>如果map阶段的task数量很大，会出现很多小文件。reduce阶段需要消耗大量的内存进行反序列化，加上GC的负担，会对系统造成很大负担。</li>
+<li>如果需要在partition内排序，需要进行map和reduce两次排序。<br>HashShuffleManage：</li>
+<li>大量小文件在磁盘中，带来大量的IO操作。</li>
+<li>容易出现内存不够用的情况，因为内存需要保存大量的文件操作handle和临时缓存信息。</li>
+<li>容易出现数据倾斜。</li>
+</ol>
+<h2 id="fetch处理时机"><a href="#fetch处理时机" class="headerlink" title="fetch处理时机"></a>fetch处理时机</h2><p>Spark默认情况下是不会对数据进行排序的，因此Shuffle Write的executor每写入一点数据，Shuffle Read的executor就可以拉取。</p>
+<h2 id="Spark任务提交流程"><a href="#Spark任务提交流程" class="headerlink" title="Spark任务提交流程"></a>Spark任务提交流程</h2><ol>
+<li>spark-submit提交任务，执行 new SparkContext()，在 SparkContext 里构造 DAGScheduler 和 TaskScheduler。</li>
+<li>TaskScheduler 会通过后台的一个进程，连接 Master，向 Master 注册 Application。</li>
+<li>Master 接收到 Application 请求后，会使用相应的资源调度算法，在 Worker 上为这个 Application 启动多个 Executor。</li>
+<li>Executor 启动后，会自己反向注册到 TaskScheduler 中。所有 Executor 都注册到 Driver 上之后，SparkContext 结束初始化，接下来往下执行我们自己的代码。</li>
+<li>每执行到一个 Action，就会创建一个 Job。Job 会提交给 DAGScheduler。</li>
+<li>DAGScheduler 会将 Job 划分为多个 Stage，然后每个 Stage 创建一个 TaskSet。</li>
+<li>TaskScheduler 会把每一个 TaskSet 里的 Task，提交到 Executor 上执行。</li>
+<li>Executor 上有线程池，每接收到一个 Task，就用 TaskRunner 封装，然后从线程池里取出一个线程执行这个 task。(TaskRunner 将我们编写的代码，拷贝，反序列化，执行 Task，每个 Task 执行 RDD 里的一个 partition)。</li>
+</ol>
+<h2 id="Spark优化"><a href="#Spark优化" class="headerlink" title="Spark优化"></a>Spark优化</h2><ol>
+<li>平台层面：防止不必要的jar包分发；提高数据的本地性；选择高效的存储格式parquet；资源参数调优（num-executors设置executor数量；executor-memory设置每个executor可申请内存；executor-cores设置每个executor进程的CPU core数量；spark.default.parallelism设置每个stage的默认task数量，一般设置为executor-cores*num-executors的2-3倍；spark.storage.memoryFraction设置RDD持久化数据在executor内存中能占的比例；spark.shuffle.memoryFraction设置shuffle过程中进行聚合时能够使用的executor内存比例）。</li>
+<li>应用程序层面：优化过滤操作符，防止过多、过小的任务；降低单条语句的资源开销；任务并行化；复用RDD进行缓存；对多次使用的RDD持久化；处理数据倾斜；尽可能避免使用shuffle算子；使用map-side预聚合（有点类似与MapReduce中的Combine，在本地对相同的key进行聚合）；使用高性能算子（reduceByKey/aggregateByKey代替groupByKey，mapPartitions代替map，foreachPartitions代替foreach，filter之后进行coalesce操作，repartitionAndSortWithinPartitions代替repartition和sort类操作）。</li>
+<li>JVM层面：启用高效的序列化方法kyro，增大off head内存。</li>
+</ol>
+<h2 id="Spark持久化级别"><a href="#Spark持久化级别" class="headerlink" title="Spark持久化级别"></a>Spark持久化级别</h2><ol>
+<li>MEMORY_ONLY：RDD默认选项，RDD数据以Java对象形式存储到JVM内存中。如果内存不足，一些数据将不会被缓存。</li>
+<li>MEMORY_AND_DISK：DataFrame和DataSet默认选项，以Java对象形式存储到JVM内存中。如果内存不足，一些数据将存储在磁盘。</li>
+<li>MEMORY_ONLY_SER：RDD数据序列化后存储到JVM内存中。如果内存不足，一些数据将不会被缓存。比MEMORY_ONLY节约内存空间，但是读取时需要更多CPU开销。</li>
+<li>MEMORY<em>AND_DISK_SER：可以从上面推出意思^</em>^。</li>
+<li>DISK_ONLY：只使用磁盘存储RDD数据。</li>
+<li>MEMORY_ONLY_2，MEMORY_AND_DISK_2…：在以上后面加上2，表示在其他节点保存一个备份，用于容灾备份。<br>使用cache()进行默认缓存或是使用persist(StorageLevel.MEMORY_ONLY)来指定持久化级别。</li>
+</ol>
+<h2 id="parquet格式的好处"><a href="#parquet格式的好处" class="headerlink" title="parquet格式的好处"></a>parquet格式的好处</h2><p>速度更快；压缩技术稳定；扫描的吞吐量大；优化Spark的调度和执行。</p>
+<h2 id="RDD缺陷"><a href="#RDD缺陷" class="headerlink" title="RDD缺陷"></a>RDD缺陷</h2><ol>
+<li>不支持细粒度的写和更新操作，只能批量写。</li>
+<li>不支持增量迭代计算。</li>
+</ol>
+<h2 id="DataFrame比RDD性能好"><a href="#DataFrame比RDD性能好" class="headerlink" title="DataFrame比RDD性能好"></a>DataFrame比RDD性能好</h2><ol>
+<li>DataFrame会自动经过Spark优化器（Catalyst），查询计划得到优化。</li>
+<li>使用Off-heap，由操作系统管理的内存，避免大量GC。</li>
+</ol>
+<h2 id="RDD操作"><a href="#RDD操作" class="headerlink" title="RDD操作"></a>RDD操作</h2><p>有两种：Transformation和Action</p>
+<ul>
+<li>Transformation<br>接收RDD，返回一个或多个新的RDD，不改变输入。<br>Transformation是lazy操作，执行Action操作时，才真正执行。<br>其中父子RDD是一对一对应关系的为窄依赖，一对多对应关系的为宽依赖。</li>
+<li>Action<br>将最终结果返回给Driver或写入外部数据存储。<br>First()，take()，reduce()，collect()，count()是常见的一些Action。</li>
+</ul>
+<h2 id="Spark内存划分"><a href="#Spark内存划分" class="headerlink" title="Spark内存划分"></a>Spark内存划分</h2><p>Spark把堆内内存划分成两个区域：</p>
+<ol>
+<li>Execution Memory，用于执行分布式任务，如Shuffle、Sort和Aggregate等。</li>
+<li>Storage Memory，用于缓存RDD和广播变量等数据。<br>Spark还会在堆内划分出User Memory的内存空间，用于存储开发者自定义数据结构。还有一块Reserved Memory，默认300MB，用来存储各种Spark内部对象，如存储系统中的BlockMemory、DiskBlockMemory等。<br><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gt26qnv2zuj30y50e4jtn.jpg" alt="Spark内存管理"><br>Spark2之后默认使用的统一内存管理模式，设置项为spark.memory.useLegacyMode。Execution Memory和Storage Memory可以互相借用对方的内存。两者之间的抢占规则有3条。</li>
+<li>如果对方的内存空间有空闲，双方都可以抢占。</li>
+<li>对于RDD缓存任务抢占的Execution Memory，当任务有内存需要时，RDD缓存任务必须立即归还抢占的内存，涉及的RDD缓存数据要么写入磁盘，要么清除。</li>
+<li>对于分布式计算任务抢占的Storage Memory，即使RDD缓存任务有收回内存的需要，也要等到任务执行完毕才能释放。</li>
+</ol>
+<h2 id="Spark堆外内存"><a href="#Spark堆外内存" class="headerlink" title="Spark堆外内存"></a>Spark堆外内存</h2><p>由spark.memory.offHeap.size指定堆外内存的大小，通过直接操作系统堆外内存，减少不必要的内存开销已经频繁的GC扫描和回收，提升处理性能。</p>
+<h2 id="Spark数据本地化级别"><a href="#Spark数据本地化级别" class="headerlink" title="Spark数据本地化级别"></a>Spark数据本地化级别</h2><ol>
+<li>PROCESS_LOCAL，进程本地化，表示task要计算的数据在同一个Executor中。</li>
+<li>NODE_LOCAL，节点本地化，表示task要计算的数据在同一个节点的不同的Executor中、数据在同一节点的磁盘上、或是HDFS上恰好有块在同一节点上。比如Spark要计算的数据在HDFS上。</li>
+<li>NO_PREF，没有最佳位置。比如Spark从数据库中读取数据。</li>
+<li>RACK_LOCAL，机架本地化，数据在同一机架的不同节点上，需要网络传输或是IO。</li>
+<li>ANY，跨机架，最慢。<br>TaskScheduler发送task时也是以这个优先级来确定数据的位置，先向Executor发送task，等待一段时间后无法执行，就会降低数据本地化级别，发送task给同一节点的其他Executor…<br>通过spark.locality.wait设置等待时间。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"># 面试</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/04/Kafka%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="prev" title="Kafka相关知识点">
+      <i class="fa fa-chevron-left"></i> Kafka相关知识点
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/06/Hadoop%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="next" title="Hadoop相关知识点">
+      Hadoop相关知识点 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark%E6%A8%A1%E5%9E%8B%E5%B7%A5%E4%BD%9C%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">Spark模型工作类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-on-Yarn%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">Spark on Yarn的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StandAlone%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">StandAlone模型的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark%E6%AF%94MapReduce%E5%BF%AB%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">4.</span> <span class="nav-text">Spark比MapReduce快的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-Shuffle%E7%9A%84%E5%85%B7%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="nav-number">5.</span> <span class="nav-text">Spark Shuffle的具体流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SortShuffleManager%E5%92%8CHashShuffleManage%E7%9A%84%E7%BC%BA%E9%99%B7"><span class="nav-number">6.</span> <span class="nav-text">SortShuffleManager和HashShuffleManage的缺陷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fetch%E5%A4%84%E7%90%86%E6%97%B6%E6%9C%BA"><span class="nav-number">7.</span> <span class="nav-text">fetch处理时机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B"><span class="nav-number">8.</span> <span class="nav-text">Spark任务提交流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark%E4%BC%98%E5%8C%96"><span class="nav-number">9.</span> <span class="nav-text">Spark优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%A7%E5%88%AB"><span class="nav-number">10.</span> <span class="nav-text">Spark持久化级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#parquet%E6%A0%BC%E5%BC%8F%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-number">11.</span> <span class="nav-text">parquet格式的好处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDD%E7%BC%BA%E9%99%B7"><span class="nav-number">12.</span> <span class="nav-text">RDD缺陷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataFrame%E6%AF%94RDD%E6%80%A7%E8%83%BD%E5%A5%BD"><span class="nav-number">13.</span> <span class="nav-text">DataFrame比RDD性能好</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDD%E6%93%8D%E4%BD%9C"><span class="nav-number">14.</span> <span class="nav-text">RDD操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark%E5%86%85%E5%AD%98%E5%88%92%E5%88%86"><span class="nav-number">15.</span> <span class="nav-text">Spark内存划分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark%E5%A0%86%E5%A4%96%E5%86%85%E5%AD%98"><span class="nav-number">16.</span> <span class="nav-text">Spark堆外内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark%E6%95%B0%E6%8D%AE%E6%9C%AC%E5%9C%B0%E5%8C%96%E7%BA%A7%E5%88%AB"><span class="nav-number">17.</span> <span class="nav-text">Spark数据本地化级别</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Effe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xieyu567" title="GitHub → https://github.com/xieyu567" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">effe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  
+
+</body>
+</html>

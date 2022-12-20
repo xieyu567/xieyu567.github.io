@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Mapreduce流程一种计算框架，分为input,split,map,shuffle,reduce,finalize六个步骤 举个例子：厨房购入一些水果（input），不同的厨师拿取水果（split），将水果切好（map），放入不同的容器中（shuffle），根据需求从不同的容器中取出组合成果盘（reduce），等待顾客消费（finalize）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop相关知识点">
+<meta property="og:url" content="http://yoursite.com/2021/08/06/Hadoop%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="Effe&#39;s blog">
+<meta property="og:description" content="Mapreduce流程一种计算框架，分为input,split,map,shuffle,reduce,finalize六个步骤 举个例子：厨房购入一些水果（input），不同的厨师拿取水果（split），将水果切好（map），放入不同的容器中（shuffle），根据需求从不同的容器中取出组合成果盘（reduce），等待顾客消费（finalize）。">
+<meta property="og:locale">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNgy1grtgzic9qhj31g90irq4n.jpg">
+<meta property="article:published_time" content="2021-08-06T04:54:23.000Z">
+<meta property="article:modified_time" content="2021-08-06T05:10:56.000Z">
+<meta property="article:author" content="Effe">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNgy1grtgzic9qhj31g90irq4n.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2021/08/06/Hadoop%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'default'
+  };
+</script>
+
+  <title>Hadoop相关知识点 | Effe's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Effe's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/06/Hadoop%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hadoop相关知识点
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-08-06 12:54:23 / Modified: 13:10:56" itemprop="dateCreated datePublished" datetime="2021-08-06T12:54:23+08:00">2021-08-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Mapreduce流程"><a href="#Mapreduce流程" class="headerlink" title="Mapreduce流程"></a>Mapreduce流程</h2><p>一种计算框架，分为input,split,map,shuffle,reduce,finalize六个步骤</p>
+<p>举个例子：厨房购入一些水果（input），不同的厨师拿取水果（split），将水果切好（map），放入不同的容器中（shuffle），根据需求从不同的容器中取出组合成果盘（reduce），等待顾客消费（finalize）。<br><span id="more"></span><br>以常见的wordcounts来说明：<br><img src="https://tva1.sinaimg.cn/large/008i3skNgy1grtgzic9qhj31g90irq4n.jpg" alt="wordcounts-Mapreduce示例"></p>
+<h2 id="Hadoop各进程的功能"><a href="#Hadoop各进程的功能" class="headerlink" title="Hadoop各进程的功能"></a>Hadoop各进程的功能</h2><ol>
+<li>DataNode负责文件的存储和读写操作，定期向NameNode发送心跳。</li>
+<li>NameNode负责整个分布式文件系统的元数据管理，包括文件路径名、数据块ID以及存储位置等信息。</li>
+<li>Secondary NameNode定期与NameNode进行通信，定期保存元数据的快照，辅助NameNode对fsimage和editsLog进行合并。</li>
+<li>JobTracker负责分配task，并监控运行的task。</li>
+<li>TaskTracker负责具体的task，与JobTracker进行交互。</li>
+</ol>
+<h2 id="MapReduce负载均衡"><a href="#MapReduce负载均衡" class="headerlink" title="MapReduce负载均衡"></a>MapReduce负载均衡</h2><ol>
+<li>数据均衡服务要求NameNode生成DataNode数据分布分析报告，获取每个DataNode磁盘使用情况。</li>
+<li>数据均衡服务汇总情况，通过网络拓扑和数据使用情况，确定数据迁移路线图。</li>
+<li>Proxy Source DataNode复制一个数据块到目标DataNode，并在Source DataNode删除相应数据块。</li>
+<li>目标DataNode向Proxy Source DataNode确认数据块迁移完成。</li>
+<li>Proxy Source DataNode向数据均衡服务确认数据块迁移完成，重复以上步骤，直至集群达到负载均衡。</li>
+</ol>
+<p>{Hadoop_Home}/bin/start-balance.sh为启动脚本<br>参数-threshold可以设置阈值，默认为10，也就是阈值在10%以内集群都算均衡。</p>
+<h2 id="HDFS中的block、packet、chunk"><a href="#HDFS中的block、packet、chunk" class="headerlink" title="HDFS中的block、packet、chunk"></a>HDFS中的block、packet、chunk</h2><ol>
+<li>block一般是128MB，一般不做修改，原因有两点，一是block设置太大，更多的时间会浪费在传输数据块上，二是block设置太小，NameNode需要存储更多的元数据，大量的数据块和元数据信息会造成网络阻塞。</li>
+<li>packet默认是64KB，是client向DataNode或DataNode之间Pipeline传输数据的基本单位。</li>
+<li>chunk默认是512B，是数据校验的基本单位。每个chunk还需要携带4B的校验位，因此每个chunk写入packet实际值为516B。</li>
+</ol>
+<p>在client向DataNode传输数据时，HDFSOutputStream有一个chunk buffer，写满一个chunk容量时，会校验再写入当前chunk，然后带校验位的chunk写入packet。packet将传输到其他DataNode并存储。</p>
+<h2 id="HDFS写流程"><a href="#HDFS写流程" class="headerlink" title="HDFS写流程"></a>HDFS写流程</h2><ol>
+<li>client向NameNode发出写请求。</li>
+<li>检查权限，直接将操作写入EditLog（WAL）</li>
+<li>client将文件分成数据块。</li>
+<li>client将NameNode返回的可写DataNode列表和数据块发往第一个DataNode，由此client和可写DataNode形成Pipeline，每个packet通过pipeline从client流到第一个DataNode，然后流到第二个DataNode…</li>
+<li>每个DataNode写完一个数据块会返回确认消息。</li>
+<li>写完数据，关闭Pipeline。</li>
+<li>完成任务，返回给NameNode。</li>
+</ol>
+<h2 id="HDFS读流程"><a href="#HDFS读流程" class="headerlink" title="HDFS读流程"></a>HDFS读流程</h2><ol>
+<li>client向NameNode发出读请求。</li>
+<li>获得数据块所在DataNode列表，就近与DataNode建立数据流。</li>
+<li>传输，以packet为单位校验。</li>
+<li>完成任务，关闭数据流。</li>
+</ol>
+<h2 id="fsimage和editlogs的机制"><a href="#fsimage和editlogs的机制" class="headerlink" title="fsimage和editlogs的机制"></a>fsimage和editlogs的机制</h2><p>fsimage保存着hadoop的元数据信息，如果NameNode发生故障，最近的fsimage会被载入内存，用来重构元数据的最近状态，再从相关点开始向前执行editlogs文件中记录的事务。</p>
+<p>如果editlogs太大的话，重建NameNode会很慢，因此NameNode运行时会定期合并fsimage和editlogs。</p>
+<h2 id="NameNode工作机制"><a href="#NameNode工作机制" class="headerlink" title="NameNode工作机制"></a>NameNode工作机制</h2><ol>
+<li>第一次启动NameNode需要创建Fsimage和Editlogs，如果不是，则直接加载这两个文件到内存中。</li>
+<li>client对元数据申请操作请求。</li>
+<li>NameNode先将操作记录到Editlogs，再对元数据进行操作。</li>
+<li>Secondary NameNode询问NameNode是否需要CheckPoint，并返回消息。</li>
+<li>Secondary NameNode请求执行CheckPoint。</li>
+<li>NameNode切割现有Editlogs，新操作滚动写入到新的Editlogs中。</li>
+<li>滚动前的Editlogs拷贝到Secondary NameNode。</li>
+<li>Secondary NameNode将Editlogs和Fsimage加载到内存合并。</li>
+<li>生成新的Fsimage.chkpoint后拷贝到NameNode。</li>
+<li>NameNode将Fsimage.chkpoint重命名为Fsimage。</li>
+</ol>
+<h2 id="DataNode工作机制"><a href="#DataNode工作机制" class="headerlink" title="DataNode工作机制"></a>DataNode工作机制</h2><ol>
+<li>一个数据块在DataNode存储包括两个文件：一是数据本身，二是元数据包括数据块长度，块数据的校验和以及时间戳。</li>
+<li>DataNode启动后向NameNode注册，并周期性（默认1小时）地向NameNode上报所有的块信息。</li>
+<li>每3秒一次心跳，心跳返回NameNode给DataNode下达的文件操作指令。如果超过10分钟没有收到DataNode心跳，则判定该DataNode不可用。</li>
+</ol>
+<h2 id="Hadoop的设计缺陷"><a href="#Hadoop的设计缺陷" class="headerlink" title="Hadoop的设计缺陷"></a>Hadoop的设计缺陷</h2><ol>
+<li>不支持并发写入和对文件内容的修改，client获得NameNode允许写的许可后，数据块会加锁直至写入完成，因此不能同时在一个数据块上进行写操作。只适合一次写入、多次读取的场景。</li>
+<li>不支持低延迟、高吞吐的数据访问。</li>
+<li>不适合大量小文件的存储。会占用大量的NameNode内存资源。</li>
+</ol>
+<h2 id="Hadoop的配置文件"><a href="#Hadoop的配置文件" class="headerlink" title="Hadoop的配置文件"></a>Hadoop的配置文件</h2><ol>
+<li>core-site.xml。主要配置项有：</li>
+</ol>
+<ul>
+<li>fs.defaultFS，设置默认hdfs路径。</li>
+<li>hadoop.tmp.dir，设置默认NameNode、DataNode、Secondary NameNode数据存放路径。</li>
+<li>ha.zookeeper.quorum，设置zookeeper集群的地址和端口，设置数应为3以上的奇数。</li>
+<li>io.file.buffer.size，读写缓冲区的大小，默认为4KB。</li>
+</ul>
+<ol>
+<li>hadoop-env.sh。主要配置项有：</li>
+</ol>
+<ul>
+<li>dfs.replication，设置文件块备份数，默认为3。</li>
+<li>dfs.data.dir，设置DataNode在本地存储的位置，默认为${hadoop.tmp.dir}/dfs/data。</li>
+<li>dfs.name.dir，设置NameNode在本地存储的位置，默认为${hadoop.tmp.dir}/dfs/name。</li>
+</ul>
+<ol>
+<li>mapred-site.xml</li>
+</ol>
+<ul>
+<li>mapreduce.framework.name，设置mapreduce使用何种框架，可选值为local（默认）、classic和yarn。</li>
+</ul>
+<ol>
+<li>yarn-site.xml</li>
+</ol>
+<ul>
+<li>yarn.nodemanager.aux-services，设置aux-services名称，默认为mapreduce_shuffle。</li>
+</ul>
+<h2 id="Hadoop集群的进程"><a href="#Hadoop集群的进程" class="headerlink" title="Hadoop集群的进程"></a>Hadoop集群的进程</h2><ol>
+<li>namenode。HDFS的守护进程，负责维护整个文件系统，存储整个文件系统的元数据。</li>
+<li>datanode。HDFS工作节点的守护进程。</li>
+<li>secondarynamenode。NameNode的冗余守护进程。</li>
+<li>resourcemanager。Yarn的守护进程，负责资源调度。监控NodeManager，client的请求由其负责。</li>
+<li>nodemanager。单个节点的资源管理。执行来自ResourceManager的命令。</li>
+</ol>
+<h2 id="Hadoop实现二次排序"><a href="#Hadoop实现二次排序" class="headerlink" title="Hadoop实现二次排序"></a>Hadoop实现二次排序</h2><ol>
+<li>先定义一个新的数据类型将原key和value组合成为新的key。</li>
+<li>定义一个partition，对新key的第一个字段排序，再定义一个类，对新key的第二个字段排序。</li>
+<li>这样在shuffle阶段就完成了二次排序，reduce阶段只需要遍历输出就行了。</li>
+</ol>
+<h2 id="Mapreduce中combine和partition的作用"><a href="#Mapreduce中combine和partition的作用" class="headerlink" title="Mapreduce中combine和partition的作用"></a>Mapreduce中combine和partition的作用</h2><ul>
+<li><p>combine可以减少map阶段的输出，能减少IO。举个栗子如果没有combine<br>“hello hello world” =&gt; map =&gt; (“hello”:1, “hello”:1, “world”:1)<br>而如果有combine，则<br>“hello hello world” =&gt; map =&gt; (“hello”:2, “world”:1)<br>或者是要取最大值<br>((1, 20), (1, 10), (2, 10), (2, 1)) =&gt; map =&gt; ((1, 20), (2, 10))<br>可以看作是local reduce。</p>
+</li>
+<li><p>partition是将map产生的kv对分配给不同的reduce task，以实现负载均衡。<br>举个栗子。((1, 20), (1, 10), (2, 10), (2, 1))对key值进行hash后用reduce task数取模，key为1的分配到partition1，key为2的分配到partition0。</p>
+</li>
+</ul>
+<h2 id="Hadoop-Shuffle的具体流程"><a href="#Hadoop-Shuffle的具体流程" class="headerlink" title="Hadoop Shuffle的具体流程"></a>Hadoop Shuffle的具体流程</h2><p>整体的流程可以简化为两个部分</p>
+<ol>
+<li>map端。每个map task的结果会先存放到内存缓存区，当缓存区满了之后，会以临时文件的形式溢出到磁盘上，当整个map task结束后，再把磁盘上所有的临时文件合并，等待reduce task拉取。</li>
+<li>reduce端。不断拉取当前job中每个map task的结果，并对不同DataNode拉取来的结果进行合并，最终形成reduce的输入文件。<br>shuffle中map端的缓冲区大小可以通过mapred-site.xml中的mapreduce.task.io.sort.mb来设置，默认是100MB。reduce端的可以通过JVM的heap size设置。</li>
+</ol>
+<h2 id="MapReduce瓶颈与性能优化"><a href="#MapReduce瓶颈与性能优化" class="headerlink" title="MapReduce瓶颈与性能优化"></a>MapReduce瓶颈与性能优化</h2><ol>
+<li>计算机性能。</li>
+<li>数据倾斜。优化方法：自定义分区，可以根据业务将需要的部分发往固定的一部分Reduce，其余的发往剩余的Reduce；使用Combine，聚合并精简Map结果；使用Map Join，避免使用Reduce Join。</li>
+<li>Map和Reduce数设置不合理。如果设置的太少，就会导致task等待，延长处理时间；太多会导致Map、Reduce任务间竞争资源，导致处理超时。</li>
+<li>Map时间过长，让Reduce等待。优化方法：调整mapreduce.job.reduce.slowstart.completedmaps使Map运行到一定进度，Reduce也可以开始运行，减少等待时间；规避使用Reduce；设置Reduce端的Buffer，设置mapreduce.reduce.input.buffer.percent，可以让buffer保留一部分数据供Reduce使用，而不是从磁盘读取数据。</li>
+<li>小文件太多。优化方法：预处理阶段合并小文件。用CombineTextInputFormat作为输入。</li>
+<li>大量不可分块的超大文件</li>
+<li>过多的spill和merge。优化方法：通过调整（增大）mapreduce.task.io.sort.mb和mapreduce.map.sort.spill.percent增大触发spill的内存上限，减少spill次数，减少IO；通过调整（增大）mapreduce.task.io.sort.factor增大merge的文件数目，缩短MapReduct时间。</li>
+<li>IO瓶颈。优化方式：数据压缩；使用SequenceFile二进制文件。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"># 面试</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/06/Spark%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="prev" title="Spark相关知识点">
+      <i class="fa fa-chevron-left"></i> Spark相关知识点
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/09/29/manjaro%E5%86%85%E6%A0%B8%E8%AF%BB%E5%8F%96%E9%94%99%E8%AF%AF/" rel="next" title="manjaro内核读取错误">
+      manjaro内核读取错误 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mapreduce%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">Mapreduce流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop%E5%90%84%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-number">2.</span> <span class="nav-text">Hadoop各进程的功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MapReduce%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="nav-number">3.</span> <span class="nav-text">MapReduce负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS%E4%B8%AD%E7%9A%84block%E3%80%81packet%E3%80%81chunk"><span class="nav-number">4.</span> <span class="nav-text">HDFS中的block、packet、chunk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS%E5%86%99%E6%B5%81%E7%A8%8B"><span class="nav-number">5.</span> <span class="nav-text">HDFS写流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS%E8%AF%BB%E6%B5%81%E7%A8%8B"><span class="nav-number">6.</span> <span class="nav-text">HDFS读流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fsimage%E5%92%8Ceditlogs%E7%9A%84%E6%9C%BA%E5%88%B6"><span class="nav-number">7.</span> <span class="nav-text">fsimage和editlogs的机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NameNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="nav-number">8.</span> <span class="nav-text">NameNode工作机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataNode%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="nav-number">9.</span> <span class="nav-text">DataNode工作机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop%E7%9A%84%E8%AE%BE%E8%AE%A1%E7%BC%BA%E9%99%B7"><span class="nav-number">10.</span> <span class="nav-text">Hadoop的设计缺陷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">11.</span> <span class="nav-text">Hadoop的配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop%E9%9B%86%E7%BE%A4%E7%9A%84%E8%BF%9B%E7%A8%8B"><span class="nav-number">12.</span> <span class="nav-text">Hadoop集群的进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop%E5%AE%9E%E7%8E%B0%E4%BA%8C%E6%AC%A1%E6%8E%92%E5%BA%8F"><span class="nav-number">13.</span> <span class="nav-text">Hadoop实现二次排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mapreduce%E4%B8%ADcombine%E5%92%8Cpartition%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">14.</span> <span class="nav-text">Mapreduce中combine和partition的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop-Shuffle%E7%9A%84%E5%85%B7%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="nav-number">15.</span> <span class="nav-text">Hadoop Shuffle的具体流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MapReduce%E7%93%B6%E9%A2%88%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">16.</span> <span class="nav-text">MapReduce瓶颈与性能优化</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Effe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xieyu567" title="GitHub → https://github.com/xieyu567" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">effe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  
+
+</body>
+</html>

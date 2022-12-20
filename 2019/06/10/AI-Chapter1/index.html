@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="第一章的习题: 1.1a) 智能: 能够按照人类一样思考和判断.b) 人工智能: 制造能够理解智能实体的实体.c) Agent: 能够行动的某种东西,可以是机械臂或者是机器人等.d) 理性: 思维方式和行动方式合理并且符合逻辑.e) 逻辑推理: 严密按照逻辑规则从初始条件机械地推导出结论.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI-Chapter1">
+<meta property="og:url" content="http://yoursite.com/2019/06/10/AI-Chapter1/index.html">
+<meta property="og:site_name" content="Effe&#39;s blog">
+<meta property="og:description" content="第一章的习题: 1.1a) 智能: 能够按照人类一样思考和判断.b) 人工智能: 制造能够理解智能实体的实体.c) Agent: 能够行动的某种东西,可以是机械臂或者是机器人等.d) 理性: 思维方式和行动方式合理并且符合逻辑.e) 逻辑推理: 严密按照逻辑规则从初始条件机械地推导出结论.">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-06-10T07:08:54.000Z">
+<meta property="article:modified_time" content="2022-12-20T12:07:08.283Z">
+<meta property="article:author" content="Effe">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/06/10/AI-Chapter1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'default'
+  };
+</script>
+
+  <title>AI-Chapter1 | Effe's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Effe's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/10/AI-Chapter1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Effe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Effe's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AI-Chapter1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-10 15:08:54" itemprop="dateCreated datePublished" datetime="2019-06-10T15:08:54+08:00">2019-06-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI-an-answer-of-the-modern-method/" itemprop="url" rel="index"><span itemprop="name">AI-an answer of the modern method</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>第一章的习题:</p>
+<h4 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h4><h5 id="a-智能-能够按照人类一样思考和判断"><a href="#a-智能-能够按照人类一样思考和判断" class="headerlink" title="a) 智能: 能够按照人类一样思考和判断."></a>a) 智能: 能够按照人类一样思考和判断.</h5><h5 id="b-人工智能-制造能够理解智能实体的实体"><a href="#b-人工智能-制造能够理解智能实体的实体" class="headerlink" title="b) 人工智能: 制造能够理解智能实体的实体."></a>b) 人工智能: 制造能够理解智能实体的实体.</h5><h5 id="c-Agent-能够行动的某种东西-可以是机械臂或者是机器人等"><a href="#c-Agent-能够行动的某种东西-可以是机械臂或者是机器人等" class="headerlink" title="c) Agent: 能够行动的某种东西,可以是机械臂或者是机器人等."></a>c) Agent: 能够行动的某种东西,可以是机械臂或者是机器人等.</h5><h5 id="d-理性-思维方式和行动方式合理并且符合逻辑"><a href="#d-理性-思维方式和行动方式合理并且符合逻辑" class="headerlink" title="d) 理性: 思维方式和行动方式合理并且符合逻辑."></a>d) 理性: 思维方式和行动方式合理并且符合逻辑.</h5><h5 id="e-逻辑推理-严密按照逻辑规则从初始条件机械地推导出结论"><a href="#e-逻辑推理-严密按照逻辑规则从初始条件机械地推导出结论" class="headerlink" title="e) 逻辑推理: 严密按照逻辑规则从初始条件机械地推导出结论."></a>e) 逻辑推理: 严密按照逻辑规则从初始条件机械地推导出结论.</h5><span id="more"></span>
+<h4 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h4><p>&emsp;&emsp;反射行动是理性的,因为理性是行为和思考合理.但是不是智能的,因为反射行动不包含逻辑思考,而判断是否智能的关键是能否像人类一样的思考和行动,反射行动即使是无脊椎动物也具有.</p>
+<h4 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h4><p>&emsp;&emsp;我认为不是的,智商测试主要测试的是人的逻辑思维,推理能力等,如果ANALOGY程序在测试中比人类的得分更高,那么可以得出ANALOGY在逻辑思维,推理能力上比人类的表现更优秀,但是像人类一样思考和判断并不代表人类的思维方式是机械的完全理性的思维方式.因此我认为这只能表示这个程序在逻辑思维能力上比人类表现更好,但是并不代表它是一个比人更智能的程序.</p>
+<h4 id="1-7"><a href="#1-7" class="headerlink" title="1.7"></a>1.7</h4><p>&emsp;&emsp;超市条码扫描器和网络搜索引擎不是人工智能,语音激活和对网络状态动态相应的网络路由算法是人工智能.</p>
+<h4 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h4><p>&emsp;&emsp;我认为现有的模型都是用一个复杂的映射关系逼近人类的认知过程,这些复杂的数学工具只是实现的手段.现在流行的神经网络方法在可解释性上还比较差,而人类的认知过程也没有完全解析,因此还是一个黑盒.</p>
+<h4 id="1-9"><a href="#1-9" class="headerlink" title="1.9"></a>1.9</h4><p>&emsp;&emsp;生物的进化是随着环境的改变而改变的,对人来说,既包括自然环境也包括社会环境.进化的意义在于更好地适应环境生存下去.系统一般是趋向于熵增的方向.如果生物不进化,那么只有可能全部死亡或是全部生存.进化让生物也向熵增的方向发展,一部分不适应环境的基因会消失,而适应环境的基因会存续.</p>
+<h4 id="1-10"><a href="#1-10" class="headerlink" title="1.10"></a>1.10</h4><p>&emsp;&emsp;AI是一门科学,也是一门工程.首先AI需要用机器来重现人类的认知和行为方式,需要用到心理学,生物学等不同学科的领域知识来研究人类认知过程.同时也需要用到计算机工程,机器人等工程学领域知识将AI进行实现.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/06/05/Deep-Learning/" rel="prev" title="Deep Learning">
+      <i class="fa fa-chevron-left"></i> Deep Learning
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/06/11/AI-chapter2/" rel="next" title="AI-chapter2">
+      AI-chapter2 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1"><span class="nav-number">1.</span> <span class="nav-text">1.1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#a-%E6%99%BA%E8%83%BD-%E8%83%BD%E5%A4%9F%E6%8C%89%E7%85%A7%E4%BA%BA%E7%B1%BB%E4%B8%80%E6%A0%B7%E6%80%9D%E8%80%83%E5%92%8C%E5%88%A4%E6%96%AD"><span class="nav-number">1.1.</span> <span class="nav-text">a) 智能: 能够按照人类一样思考和判断.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#b-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-%E5%88%B6%E9%80%A0%E8%83%BD%E5%A4%9F%E7%90%86%E8%A7%A3%E6%99%BA%E8%83%BD%E5%AE%9E%E4%BD%93%E7%9A%84%E5%AE%9E%E4%BD%93"><span class="nav-number">1.2.</span> <span class="nav-text">b) 人工智能: 制造能够理解智能实体的实体.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#c-Agent-%E8%83%BD%E5%A4%9F%E8%A1%8C%E5%8A%A8%E7%9A%84%E6%9F%90%E7%A7%8D%E4%B8%9C%E8%A5%BF-%E5%8F%AF%E4%BB%A5%E6%98%AF%E6%9C%BA%E6%A2%B0%E8%87%82%E6%88%96%E8%80%85%E6%98%AF%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%AD%89"><span class="nav-number">1.3.</span> <span class="nav-text">c) Agent: 能够行动的某种东西,可以是机械臂或者是机器人等.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#d-%E7%90%86%E6%80%A7-%E6%80%9D%E7%BB%B4%E6%96%B9%E5%BC%8F%E5%92%8C%E8%A1%8C%E5%8A%A8%E6%96%B9%E5%BC%8F%E5%90%88%E7%90%86%E5%B9%B6%E4%B8%94%E7%AC%A6%E5%90%88%E9%80%BB%E8%BE%91"><span class="nav-number">1.4.</span> <span class="nav-text">d) 理性: 思维方式和行动方式合理并且符合逻辑.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#e-%E9%80%BB%E8%BE%91%E6%8E%A8%E7%90%86-%E4%B8%A5%E5%AF%86%E6%8C%89%E7%85%A7%E9%80%BB%E8%BE%91%E8%A7%84%E5%88%99%E4%BB%8E%E5%88%9D%E5%A7%8B%E6%9D%A1%E4%BB%B6%E6%9C%BA%E6%A2%B0%E5%9C%B0%E6%8E%A8%E5%AF%BC%E5%87%BA%E7%BB%93%E8%AE%BA"><span class="nav-number">1.5.</span> <span class="nav-text">e) 逻辑推理: 严密按照逻辑规则从初始条件机械地推导出结论.</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3"><span class="nav-number">2.</span> <span class="nav-text">1.3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4"><span class="nav-number">3.</span> <span class="nav-text">1.4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7"><span class="nav-number">4.</span> <span class="nav-text">1.7</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-8"><span class="nav-number">5.</span> <span class="nav-text">1.8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9"><span class="nav-number">6.</span> <span class="nav-text">1.9</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-10"><span class="nav-number">7.</span> <span class="nav-text">1.10</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Effe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xieyu567" title="GitHub → https://github.com/xieyu567" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">effe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  
+
+</body>
+</html>
