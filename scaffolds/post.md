@@ -1,7 +1,7 @@
 ---
 title: {{ title }}
 date: {{ date }}
-updated: {{ updated }}
+updated: {{ date }}
 mathjax: true
 categories:
 tags:
