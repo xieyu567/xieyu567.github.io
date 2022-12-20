@@ -4,7 +4,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -150,6 +150,150 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/23/scala-repl%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xieyu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xieyu's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/23/scala-repl%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">scala repl问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-04-23 17:12:28" itemprop="dateCreated datePublished" datetime="2020-04-23T17:12:28+08:00">2020-04-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-20 21:10:05" itemprop="dateModified" datetime="2022-12-20T21:10:05+08:00">2022-12-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/big-data/" itemprop="url" rel="index"><span itemprop="name">big data</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天遇到了一个很恼人的小问题,在scala的repl中输入空格,实际上删除了一个字符,但是显示为增加空格.</p>
+<p>在stackoverflow中发现有人通过将.pyenv目录下的infocmp取消执行权限解决这个问题,而我的系统中,infocmp在anaconda目录下,应该是与系统的infocmp冲突了,将其</p>
+<pre><code>chmod a-x ./infocmp
+</code></pre><p>即可.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/03/vscode%E5%9C%A8manjaro%E4%B8%AD%E5%AE%89%E8%A3%85%E7%9A%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xieyu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xieyu's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/03/vscode%E5%9C%A8manjaro%E4%B8%AD%E5%AE%89%E8%A3%85%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">vscode在manjaro中安装的问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-08-03 14:09:54" itemprop="dateCreated datePublished" datetime="2021-08-03T14:09:54+08:00">2021-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-20 21:10:05" itemprop="dateModified" datetime="2022-12-20T21:10:05+08:00">2022-12-20</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>首先使用的是官方源的vscode,版本号为1.58.0-1，应该是有问题，无法连接商店也无法同步设置。github的解决方法是设置代理，但是实际操作后发现并没有什么用。</p>
+<p>接下来直接从官方网站获取tar包，直接使用发现网络是可以通的，能够连接商店和登陆帐号。但是登陆github时会出现错误”writing login information to the keychain failed”。这里需要安装钥匙环组件。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S gnome-keyring libsecret</span><br></pre></td></tr></table></figure></p>
+<p>最后在npm安装package.json时出现错误，需要把package-lock.json删除后安装，最后安装hexo-cli就可以在新电脑上写blog了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/14/%E6%9B%B4%E6%96%B0hexo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -181,7 +325,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
+                <time title="Modified: 2022-12-20 21:10:05" itemprop="dateModified" datetime="2022-12-20T21:10:05+08:00">2022-12-20</time>
               </span>
 
           
@@ -249,7 +393,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
+                <time title="Modified: 2022-12-20 21:10:05" itemprop="dateModified" datetime="2022-12-20T21:10:05+08:00">2022-12-20</time>
               </span>
 
           
@@ -274,6 +418,73 @@
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/12/terminal%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xieyu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xieyu's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/12/terminal%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">terminal中使用代理服务器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-12 13:07:50" itemprop="dateCreated datePublished" datetime="2020-09-12T13:07:50+08:00">2020-09-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-20 21:10:05" itemprop="dateModified" datetime="2022-12-20T21:10:05+08:00">2022-12-20</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>有时候需要在terminal中使用lantern，需要先打开lantern查看https代理服务器的地址和端口，然后在terminal中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HTTP_PROXY=http://&#123;ip&#125;:&#123;port&#125;</span><br><span class="line"><span class="built_in">export</span> HTTPS_PROXY=http://&#123;ip&#125;:&#123;port&#125;</span><br></pre></td></tr></table></figure>
+<p>这样在当前的窗口下就可以实现代理。应该换成https也可以用</p>
+
       
     </div>
 
@@ -323,7 +534,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
+                <time title="Modified: 2022-12-20 21:10:05" itemprop="dateModified" datetime="2022-12-20T21:10:05+08:00">2022-12-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -349,169 +560,6 @@
           <p>&emsp;&emsp;今天遇到了一个很有意思的问题，需要从一个网站复制文本，但是复制下来的文本和网页展示的文本不一致。</p>
 <p>&emsp;&emsp;显然先打开检查工具看源码，源码中文本也是乱码的，但是所有文本不对应的标签都是属于ccw-font-style这个类，对应的字体是ccw mix font，用万能的github搜索了一下。发现已经有人共享了这个字体变换的映射表，很明显这是个很简单的替换加密方法，只要有映射表，很快就能写好脚本解密。</p>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/08/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="xieyu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xieyu's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/08/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-5/" class="post-title-link" itemprop="url">mac搭建大数据平台(5)-flink</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-08 09:58:33" itemprop="dateCreated datePublished" datetime="2020-08-08T09:58:33+08:00">2020-08-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/big-data/" itemprop="url" rel="index"><span itemprop="name">big data</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>flink的安装比较简单<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install apache-flink</span><br></pre></td></tr></table></figure></p>
-<p>默认命令和端口:</p>
-<ol>
-<li>bin/start-cluster.sh  bin/stop-cluster.sh</li>
-<li>localhost:8081</li>
-<li>bin/flink run {jar} #运行jar包程序</li>
-<li>bin/flink run —class effe.WordCount {jar} #运行jar包中的类</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/23/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="xieyu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xieyu's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/23/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-4/" class="post-title-link" itemprop="url">mac搭建大数据平台(4)-sqoop</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-23 14:48:31" itemprop="dateCreated datePublished" datetime="2020-07-23T14:48:31+08:00">2020-07-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/big-data/" itemprop="url" rel="index"><span itemprop="name">big data</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>sqoop的安装比较简单<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install sqoop</span><br></pre></td></tr></table></figure></p>
-<p>配置{sqoop}/libexec/conf/sqoop-env.sh<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HADOOP_HOME=<span class="string">&quot;&#123;HADOOP&#125;/libexec&quot;</span></span><br><span class="line"><span class="built_in">export</span> HBASE_HOME=<span class="string">&quot;&#123;HBASE&#125;/libexec&quot;</span></span><br><span class="line"><span class="built_in">export</span> HIVE_HOME=<span class="string">&quot;&#123;HIVE&#125;/libexec&quot;</span></span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/23/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-4/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -561,7 +609,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
+                <time title="Modified: 2022-12-20 21:10:05" itemprop="dateModified" datetime="2022-12-20T21:10:05+08:00">2022-12-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -643,7 +691,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
+                <time title="Modified: 2022-12-20 21:10:05" itemprop="dateModified" datetime="2022-12-20T21:10:05+08:00">2022-12-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -693,78 +741,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/29/manjaro%E5%86%85%E6%A0%B8%E8%AF%BB%E5%8F%96%E9%94%99%E8%AF%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="xieyu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xieyu's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/29/manjaro%E5%86%85%E6%A0%B8%E8%AF%BB%E5%8F%96%E9%94%99%E8%AF%AF/" class="post-title-link" itemprop="url">manjaro内核读取错误</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-09-29 21:17:07" itemprop="dateCreated datePublished" datetime="2021-09-29T21:17:07+08:00">2021-09-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>记录一个比较常见的错误，可能出现在pacman更新之后<br>Boot: failed to start load kernel module<br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/29/manjaro%E5%86%85%E6%A0%B8%E8%AF%BB%E5%8F%96%E9%94%99%E8%AF%AF/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/13/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -796,7 +772,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
+                <time title="Modified: 2022-12-20 21:10:05" itemprop="dateModified" datetime="2022-12-20T21:10:05+08:00">2022-12-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -851,7 +827,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/02/manjaro%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/29/manjaro%E5%86%85%E6%A0%B8%E8%AF%BB%E5%8F%96%E9%94%99%E8%AF%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -865,7 +841,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/02/manjaro%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">manjaro用户管理</a>
+            <a href="/2021/09/29/manjaro%E5%86%85%E6%A0%B8%E8%AF%BB%E5%8F%96%E9%94%99%E8%AF%AF/" class="post-title-link" itemprop="url">manjaro内核读取错误</a>
         </h2>
 
         <div class="post-meta">
@@ -875,14 +851,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-01-02 08:19:53" itemprop="dateCreated datePublished" datetime="2021-01-02T08:19:53+08:00">2021-01-02</time>
+              <time title="Created: 2021-09-29 21:17:07" itemprop="dateCreated datePublished" datetime="2021-09-29T21:17:07+08:00">2021-09-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-20 20:07:08" itemprop="dateModified" datetime="2022-12-20T20:07:08+08:00">2022-12-20</time>
+                <time title="Modified: 2022-12-20 21:10:05" itemprop="dateModified" datetime="2022-12-20T21:10:05+08:00">2022-12-20</time>
               </span>
 
           
@@ -896,10 +872,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>重新在manjaro上部署大数据组件，尝试把原来没有整理清楚的用户管理梳理一下。</p>
+          <p>记录一个比较常见的错误，可能出现在pacman更新之后<br>Boot: failed to start load kernel module<br></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/01/02/manjaro%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/#more" rel="contents">
+              <a class="btn" href="/2021/09/29/manjaro%E5%86%85%E6%A0%B8%E8%AF%BB%E5%8F%96%E9%94%99%E8%AF%AF/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1006,7 +982,7 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/xieyu567" title="GitHub → https://github.com/xieyu567" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/xieyu567" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xieyu567" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
   </div>
 
@@ -1037,7 +1013,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">xieyu</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
 
         

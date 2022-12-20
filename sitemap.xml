@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/tags/index.html</loc>
+    
+    <lastmod>2022-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/23/scala-repl%E9%97%AE%E9%A2%98/</loc>
+    
+    <lastmod>2022-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2021/08/03/vscode%E5%9C%A8manjaro%E4%B8%AD%E5%AE%89%E8%A3%85%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
+    
+    <lastmod>2022-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/08/14/%E6%9B%B4%E6%96%B0hexo/</loc>
     
     <lastmod>2022-12-20</lastmod>
@@ -20,6 +47,15 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/2020/09/12/terminal%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    
+    <lastmod>2022-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/04/17/%E7%BD%91%E9%A1%B5%E6%96%87%E6%9C%AC%E5%8A%A0%E5%AF%86/</loc>
     
     <lastmod>2022-12-20</lastmod>
@@ -29,7 +65,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/index.html</loc>
+    <loc>http://yoursite.com/googleb9ded104c4e00358.html</loc>
     
     <lastmod>2022-12-20</lastmod>
     
@@ -39,24 +75,6 @@
   
   <url>
     <loc>http://yoursite.com/categories/index.html</loc>
-    
-    <lastmod>2022-12-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/08/08/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-5/</loc>
-    
-    <lastmod>2022-12-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/07/23/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-4/</loc>
     
     <lastmod>2022-12-20</lastmod>
     
@@ -83,7 +101,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2021/09/29/manjaro%E5%86%85%E6%A0%B8%E8%AF%BB%E5%8F%96%E9%94%99%E8%AF%AF/</loc>
+    <loc>http://yoursite.com/2020/08/13/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-8/</loc>
     
     <lastmod>2022-12-20</lastmod>
     
@@ -92,7 +110,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/08/13/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-8/</loc>
+    <loc>http://yoursite.com/2021/09/29/manjaro%E5%86%85%E6%A0%B8%E8%AF%BB%E5%8F%96%E9%94%99%E8%AF%AF/</loc>
     
     <lastmod>2022-12-20</lastmod>
     
@@ -110,42 +128,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/09/01/pacman-update-problem/</loc>
-    
-    <lastmod>2022-12-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/23/scala-repl%E9%97%AE%E9%A2%98/</loc>
-    
-    <lastmod>2022-12-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/09/12/terminal%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-    
-    <lastmod>2022-12-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2021/08/03/vscode%E5%9C%A8manjaro%E4%B8%AD%E5%AE%89%E8%A3%85%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
-    
-    <lastmod>2022-12-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2021/07/25/mlocate/</loc>
     
     <lastmod>2022-12-20</lastmod>
@@ -155,7 +137,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/08/30/Network-chapter4/</loc>
+    <loc>http://yoursite.com/2019/09/01/pacman-update-problem/</loc>
     
     <lastmod>2022-12-20</lastmod>
     
@@ -164,16 +146,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/05/29/Perceptron/</loc>
-    
-    <lastmod>2022-12-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/08/31/Network-chapter5/</loc>
+    <loc>http://yoursite.com/2019/06/27/Transformer/</loc>
     
     <lastmod>2022-12-20</lastmod>
     
@@ -236,15 +209,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/07/20/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-2/</loc>
-    
-    <lastmod>2022-12-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2020/07/20/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-3/</loc>
     
     <lastmod>2022-12-20</lastmod>
@@ -254,7 +218,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/06/27/Transformer/</loc>
+    <loc>http://yoursite.com/2020/07/20/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-2/</loc>
     
     <lastmod>2022-12-20</lastmod>
     
@@ -263,7 +227,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/05/29/KNN/</loc>
+    <loc>http://yoursite.com/2020/07/23/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-4/</loc>
     
     <lastmod>2022-12-20</lastmod>
     
@@ -272,7 +236,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2021/08/04/Kafka%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/</loc>
+    <loc>http://yoursite.com/2020/08/08/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-5/</loc>
     
     <lastmod>2022-12-20</lastmod>
     
@@ -282,15 +246,6 @@
   
   <url>
     <loc>http://yoursite.com/2019/06/03/Logistic-regression/</loc>
-    
-    <lastmod>2022-12-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/05/27/Naive-Bayesian/</loc>
     
     <lastmod>2022-12-20</lastmod>
     
@@ -317,7 +272,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/07/24/Network-chapter2/</loc>
+    <loc>http://yoursite.com/2019/05/27/Naive-Bayesian/</loc>
     
     <lastmod>2022-12-20</lastmod>
     
@@ -335,7 +290,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/06/10/AI-Chapter1/</loc>
+    <loc>http://yoursite.com/2019/07/24/Network-chapter2/</loc>
     
     <lastmod>2022-12-20</lastmod>
     
@@ -344,7 +299,34 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/06/11/AI-chapter2/</loc>
+    <loc>http://yoursite.com/2019/08/31/Network-chapter5/</loc>
+    
+    <lastmod>2022-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/08/30/Network-chapter4/</loc>
+    
+    <lastmod>2022-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/05/29/Perceptron/</loc>
+    
+    <lastmod>2022-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/05/29/Decision-Tree/</loc>
     
     <lastmod>2022-12-20</lastmod>
     
@@ -371,7 +353,25 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/05/29/Decision-Tree/</loc>
+    <loc>http://yoursite.com/2019/06/03/Exercise-2/</loc>
+    
+    <lastmod>2022-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/05/29/KNN/</loc>
+    
+    <lastmod>2022-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2021/08/04/Kafka%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/</loc>
     
     <lastmod>2022-12-20</lastmod>
     
@@ -389,7 +389,16 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/06/03/Exercise-2/</loc>
+    <loc>http://yoursite.com/2019/06/10/AI-Chapter1/</loc>
+    
+    <lastmod>2022-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/06/11/AI-chapter2/</loc>
     
     <lastmod>2022-12-20</lastmod>
     
@@ -518,6 +527,13 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/categories/NLP/</loc>
+    <lastmod>2022-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/categories/solved-problem/</loc>
     <lastmod>2022-12-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -526,13 +542,6 @@
   
   <url>
     <loc>http://yoursite.com/categories/big-data/</loc>
-    <lastmod>2022-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/categories/NLP/</loc>
     <lastmod>2022-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
