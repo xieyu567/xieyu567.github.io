@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yoursite.com/2022/12/21/come-back/</loc>
+    
+    <lastmod>2022-12-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://yoursite.com/about/index.html</loc>
     
     <lastmod>2022-12-20</lastmod>
@@ -436,7 +445,7 @@
 
   <url>
     <loc>https://yoursite.com/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -444,63 +453,63 @@
   
   <url>
     <loc>https://yoursite.com/tags/AI/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yoursite.com/tags/machine-learning/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yoursite.com/tags/%E9%9D%A2%E8%AF%95/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yoursite.com/tags/Network/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yoursite.com/tags/mac/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yoursite.com/tags/Manjaro/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yoursite.com/tags/manjaro/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yoursite.com/tags/big-data/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yoursite.com/tags/web/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -509,56 +518,56 @@
   
   <url>
     <loc>https://yoursite.com/categories/AI-an-answer-of-the-modern-method/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yoursite.com/categories/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yoursite.com/categories/papers/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yoursite.com/categories/Computer-Network-A-Systems-Approach/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yoursite.com/categories/NLP/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yoursite.com/categories/solved-problem/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yoursite.com/categories/big-data/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yoursite.com/categories/web/</loc>
-    <lastmod>2022-12-20</lastmod>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
