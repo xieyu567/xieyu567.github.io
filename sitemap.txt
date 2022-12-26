@@ -1,3 +1,4 @@
+https://yoursite.com/2022/12/26/FP%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E7%9A%84%E6%A6%82%E5%BF%B5/
 https://yoursite.com/2022/12/21/come-back/
 https://yoursite.com/about/index.html
 https://yoursite.com/tags/index.html
@@ -65,3 +66,4 @@ https://yoursite.com/categories/NLP/
 https://yoursite.com/categories/solved-problem/
 https://yoursite.com/categories/big-data/
 https://yoursite.com/categories/web/
+https://yoursite.com/categories/Functional-Programming/

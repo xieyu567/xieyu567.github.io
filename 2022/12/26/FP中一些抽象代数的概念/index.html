@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Magma原群是在二元运算下封闭的集合。举一个例子 M &#x3D; \{true, false\} \ and \ \bullet \ &#x3D; \&amp;\&amp;集合$M$是布尔值在$\&amp;\&amp;$运算下的集合，很显然这个集合是封闭的，$true$和$false$任意组合进行$\&amp;\&amp;$运算，结果仍为$true$或$false$。原群的数学表达为 \forall a, b \in M \Ri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FP中一些抽象代数的概念">
+<meta property="og:url" content="https://yoursite.com/2022/12/26/FP%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E7%9A%84%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="xieyu&#39;s blog">
+<meta property="og:description" content="Magma原群是在二元运算下封闭的集合。举一个例子 M &#x3D; \{true, false\} \ and \ \bullet \ &#x3D; \&amp;\&amp;集合$M$是布尔值在$\&amp;\&amp;$运算下的集合，很显然这个集合是封闭的，$true$和$false$任意组合进行$\&amp;\&amp;$运算，结果仍为$true$或$false$。原群的数学表达为 \forall a, b \in M \Ri">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-12-26T08:23:54.000Z">
+<meta property="article:modified_time" content="2022-12-26T08:23:54.000Z">
+<meta property="article:author" content="xieyu">
+<meta property="article:tag" content="Database">
+<meta property="article:tag" content="Function Programming">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://yoursite.com/2022/12/26/FP%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E7%9A%84%E6%A6%82%E5%BF%B5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'default'
+  };
+</script>
+
+  <title>FP中一些抽象代数的概念 | xieyu's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">xieyu's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2022/12/26/FP%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0%E7%9A%84%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xieyu">
+      <meta itemprop="description" content="Some essays about technology">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xieyu's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          FP中一些抽象代数的概念
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-26 16:23:54" itemprop="dateCreated datePublished" datetime="2022-12-26T16:23:54+08:00">2022-12-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Functional-Programming/" itemprop="url" rel="index"><span itemprop="name">Functional Programming</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="Magma"><a href="#Magma" class="headerlink" title="Magma"></a>Magma</h4><p>原群是在二元运算下封闭的集合。举一个例子</p>
+<script type="math/tex; mode=display">M = \{true, false\} \ and \ \bullet \ = \&\&</script><p>集合$M$是布尔值在$\&amp;\&amp;$运算下的集合，很显然这个集合是封闭的，$true$和$false$任意组合进行$\&amp;\&amp;$运算，结果仍为$true$或$false$。<br>原群的数学表达为</p>
+<script type="math/tex; mode=display">\forall a, b \in M \Rightarrow a \cdot b \in M</script><p>其中$M$就是原群</p>
+<span id="more"></span>
+<h3 id="Semigroup"><a href="#Semigroup" class="headerlink" title="Semigroup"></a>Semigroup</h3><p>半群就是二元运算满足结合律的原群。数学表达为</p>
+<script type="math/tex; mode=display">\forall a, b, c \in S \Rightarrow a \cdot (b \cdot c) = (a \cdot b) \cdot c</script><p>常见的字符串拼接操作符在非空字符串集合可以看作是半群，比如</p>
+<script type="math/tex; mode=display">("ab" <> "bc") <> "cd" = "ab" <> ("bc" <> "cd")</script><h4 id="Monoid"><a href="#Monoid" class="headerlink" title="Monoid"></a>Monoid</h4><p>幺半群就是在半群的基础上再添加一个幺元。数学表达为</p>
+<script type="math/tex; mode=display">e \in M, \forall a \in M \Rightarrow a \cdot e = e \cdot a = a</script><p>幺元最简单的例子就是自然数集合中，乘法之于1，加法之于0。另外上面的字符串拼接的例子，补上空字符串就构成了幺半群。再举一个例子</p>
+<script type="math/tex; mode=display">M = \{true, false\} \ and \ \bullet = ||, e = false</script><script type="math/tex; mode=display">
+\begin{align}
+&true || false = true   &(封闭性)\\
+&true || (true || false) = (true || true) || false &(运算结合性)\\
+&false || true = true || false = true &(幺元)
+\end{align}</script><p>计算机中的Monoid和数学中的Monoid是同构的，实际上就是类型，比如提到的字符串、数组、整型等都是幺半群。</p>
+<h4 id="Group"><a href="#Group" class="headerlink" title="Group"></a>Group</h4><p>群是在幺半群的基础上在加上逆元的约束，每个元素都有一个唯一的逆元。数学表达为</p>
+<script type="math/tex; mode=display">\forall a \in G, a^\prime \in G, e \in G \Rightarrow a \cdot a^\prime = a^\prime \cdot a = e</script><p>最简单的例子是自然数加法中的相反数和乘法中的倒数。有一点需要注意的就是幺元的逆元是自身。<br>计算机中加法的模运算就是个一个群，可以参考<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Modular_arithmetic#:~:text=In%20mathematics%2C%20modular%20arithmetic%20is,Disquisitiones%20Arithmeticae%2C%20published%20in%201801">模运算的wiki</a></p>
+<h4 id="Abelian-Group"><a href="#Abelian-Group" class="headerlink" title="Abelian Group"></a>Abelian Group</h4><p>阿贝尔群是在群的基础上加交换律的约束。数学表达为</p>
+<script type="math/tex; mode=display">\forall a \in A, b \in A \Rightarrow a \cdot b = b \cdot a</script><p>在purescript中其实也就是简单加了个约束，下面两个类型签名是等价的<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find :: \forall a. Abelian a (Set a -&gt; Maybe a)</span><br><span class="line">find :: \forall a. Group a =&gt; Commutative a =&gt; Set a -&gt; Maybe a</span><br></pre></td></tr></table></figure></p>
+<h4 id="Semiring"><a href="#Semiring" class="headerlink" title="Semiring"></a>Semiring</h4><p>半环是一种代数结构，包含集合$R$和两个二元运算符$+$和$\bullet$。<br>在repl中我们可以看到加法和乘法的类型签名<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; :t (*)</span><br><span class="line">forall a. Semiring a =&gt; a -&gt; a -&gt; a</span><br><span class="line"></span><br><span class="line">&gt; :t (+)</span><br><span class="line">forall a. Semiring a =&gt; a -&gt; a -&gt; a</span><br></pre></td></tr></table></figure><br>另外还有四个约束条件，具体可以查看<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Semiring#:~:text=In%20abstract%20algebra%2C%20a%20semiring,must%20have%20an%20additive%20inverse.">半环的wiki</a>。这里需要注意的是wiki中的+，$\bullet$，0，1，都是抽象的，当然我们可以具体的带入加法和乘法，但是它们可以为任意函数，0只是代表运算符$+$的幺元，1代表运算符$\bullet$的幺元。</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&(R, +)\ is\ a\ Commutative\ Monoid\ with\ Identity\ of\ 0: \\
+\\
+&(a + b) + c = a + (b + c) &[Associativity]\ (Semigroup)\\
+&0 + a = a + 0 = a &[Identity]\ (Monoid)\\
+&a + b = b + a &[Commutative]\ (Commutative Monoid)
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+&(R, \cdot)\ is\ a\ Monoid\ with\ Identity\ of\ 1: \\
+\\
+&(a \cdot b) \cdot c = a \cdot (b \cdot c) &[Associativity]\ (Semigroup)\\
+&1 \cdot a = a \cdot 1 = a &[Identity]\ (Monoid)
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+&a \cdot (b + c) = (a \cdot b) + (a \cdot c) &[Left Distributivity]\\
+&(a + b) \cdot c = (a \cdot c) + (b \cdot c) &[Right Distributivity]
+\end{align}</script><script type="math/tex; mode=display">
+a \cdot 0 = 0 \cdot a = 0 \qquad\qquad [Annihilation]</script><p>我们再看一下半环的类型签名<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Semiring a where</span><br><span class="line">  add :: a -&gt; a -&gt; a</span><br><span class="line">  zero :: a</span><br><span class="line">  mul :: a -&gt; a -&gt; a</span><br><span class="line">  one :: a</span><br></pre></td></tr></table></figure><br>还有Int的实现<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">instance semiringInt :: Semiring Int where</span><br><span class="line">  add = intAdd</span><br><span class="line">  zero = 0</span><br><span class="line">  mul = intMul</span><br><span class="line">  one = 1</span><br><span class="line"></span><br><span class="line">foreign import intAdd :: Int -&gt; Int -&gt; Int</span><br><span class="line">foreign import intMul :: Int -&gt; Int -&gt; Int</span><br></pre></td></tr></table></figure></p>
+<h4 id="Ring"><a href="#Ring" class="headerlink" title="Ring"></a>Ring</h4><p>环在半环的基础上添加一个加法逆元的约束。</p>
+<script type="math/tex; mode=display">
+a + (-a) = 0  \qquad\qquad [Additive\ Inverse]</script><p>也就是说$(R, +)$从可交换幺半群变成了可交换群，不仅可以做加法操作还可以进行减法操作。<br>看一下类型签名和Int的实现<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Semiring a &lt;= Ring a where</span><br><span class="line">  sub :: a -&gt; a -&gt; a</span><br><span class="line"></span><br><span class="line">instance ringInt :: Ring Int where</span><br><span class="line">  sub = intSub</span><br></pre></td></tr></table></figure></p>
+<h4 id="Commutative-Ring-amp-Euclidean-Ring"><a href="#Commutative-Ring-amp-Euclidean-Ring" class="headerlink" title="Commutative Ring &amp; Euclidean Ring"></a>Commutative Ring &amp; Euclidean Ring</h4><p>再回顾一下半环的约束条件，只有对于$(R, +)$是可交换的，交换环增加了对$(R, \cdot)$可交换的约束。实际上在purescript中交换环仅仅是个声明，没有额外添加约束，它的类型签名如下<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class Ring a &lt;= CommutativeRing a</span><br></pre></td></tr></table></figure><br>欧式环是用来支持除法的交换环，在交换环的基础上添加了三个约束。<br>第一个约束是Integral domain。任意两个非零元素乘积不为零。</p>
+<script type="math/tex; mode=display">
+\forall a \in R, b \in R, witch\ a \ne 0\ and\ b \ne 0 \Rightarrow a \cdot b \ne 0</script><p>第二个约束是Euclidean function degree</p>
+<script type="math/tex; mode=display">
+\forall a \in R, which\ a \ne 0 \Rightarrow degree\ a >= 0</script><script type="math/tex; mode=display">
+\begin{equation}
+\left.\begin{aligned}
+\forall a, b \in R, which\ b \ne 0 \\
+q = a / b \\
+r = a\ mod\ b \\
+\end{aligned}
+\right \}
+\Rightarrow a = q \ast b + r, which\ degree\ r = 0\ or\ degree\ r < b  
+\end{equation}</script><p>第三个约束是Submultiplicative euclidean function</p>
+<script type="math/tex; mode=display">
+\forall a \in R, b \in R, witch\ a \ne 0\ and\ b \ne 0 \Rightarrow degree\ a \leq degree\ (a \ast b)</script><p>最后看一下欧式环的类型签名<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class CommutativeRing a &lt;= EuclideanRing a where</span><br><span class="line">  degree :: a -&gt; Int</span><br><span class="line">  div :: a -&gt; a -&gt; a</span><br><span class="line">  mod :: a -&gt; a -&gt; a</span><br></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/12/21/come-back/" rel="prev" title="come_back">
+      <i class="fa fa-chevron-left"></i> come_back
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Magma"><span class="nav-number">1.</span> <span class="nav-text">Magma</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semigroup"><span class="nav-number"></span> <span class="nav-text">Semigroup</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Monoid"><span class="nav-number">1.</span> <span class="nav-text">Monoid</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Group"><span class="nav-number">2.</span> <span class="nav-text">Group</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Abelian-Group"><span class="nav-number">3.</span> <span class="nav-text">Abelian Group</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Semiring"><span class="nav-number">4.</span> <span class="nav-text">Semiring</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ring"><span class="nav-number">5.</span> <span class="nav-text">Ring</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Commutative-Ring-amp-Euclidean-Ring"><span class="nav-number">6.</span> <span class="nav-text">Commutative Ring &amp; Euclidean Ring</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">xieyu</p>
+  <div class="site-description" itemprop="description">Some essays about technology</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xieyu567" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xieyu567" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xieyu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  
+
+</body>
+</html>

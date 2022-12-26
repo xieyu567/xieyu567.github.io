@@ -159,6 +159,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2020/08/13/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xieyu">
+      <meta itemprop="description" content="Some essays about technology">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xieyu's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/13/mac%E6%90%AD%E5%BB%BA%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-8/" class="post-title-link" itemprop="url">mac搭建大数据平台(8)-kafka</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-13 08:14:34" itemprop="dateCreated datePublished" datetime="2020-08-13T08:14:34+08:00">2020-08-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-20 21:10:05" itemprop="dateModified" datetime="2022-12-20T21:10:05+08:00">2022-12-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/big-data/" itemprop="url" rel="index"><span itemprop="name">big data</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用brew安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install kafka</span><br></pre></td></tr></table></figure></p>
+<p>这里使用kafka自带的zookeeper</p>
+<p>默认命令和端口:</p>
+<ol>
+<li>zookeeper-server-start {kafka}/config/zookeeper.properties #在启动kafka之前需要先启动zookeeper</li>
+<li>kafka-server-start {kafka}/config/server.properties #启动kafka</li>
+<li>kafka-topics —create —zookeeper localhost:2181 —replication -factor 1 —partitions 1 —topic {topicName} #新建topic</li>
+<li>kafka-console-producer —broker-list localhost:9092 —topic {topicName} #producer生产数据，在&gt;后可以输入需要的数据，ctrl+c退出即可</li>
+<li>kafka-console-consumer —bootstrap-server localhost:9092 —topic {topicName} —from-beginning #在consumer端读取数据</li>
+<li>localhost:2181 #zookeeper端口</li>
+<li>localhost:9092 #kafka端口</li>
+<li>zookeeper-server-stop kafka-server-stop #停止服务</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
     <link itemprop="mainEntityOfPage" href="https://yoursite.com/2021/09/29/manjaro%E5%86%85%E6%A0%B8%E8%AF%BB%E5%8F%96%E9%94%99%E8%AF%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -845,78 +931,6 @@ sudo grub-install /dev/nvme0n1p2
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yoursite.com/2021/01/01/kde%E5%81%87%E6%AD%BB%E4%BA%8B%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="xieyu">
-      <meta itemprop="description" content="Some essays about technology">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xieyu's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/01/kde%E5%81%87%E6%AD%BB%E4%BA%8B%E4%BB%B6/" class="post-title-link" itemprop="url">kde假死事件</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-01-01 18:53:03" itemprop="dateCreated datePublished" datetime="2021-01-01T18:53:03+08:00">2021-01-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-12-20 21:10:05" itemprop="dateModified" datetime="2022-12-20T21:10:05+08:00">2022-12-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>又开始折腾manjaro了，从xfce换到了kde，但是下午出现了两次假死的情况，总结了解决方法。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/01/kde%E5%81%87%E6%AD%BB%E4%BA%8B%E4%BB%B6/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -986,13 +1000,13 @@ sudo grub-install /dev/nvme0n1p2
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
